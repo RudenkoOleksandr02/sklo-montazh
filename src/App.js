@@ -1,25 +1,80 @@
-import logo from './logo.svg';
-import './App.css';
+import s from './App.module.css';
+import {createTheme, colors, ThemeProvider} from "@mui/material";
+import {connect, Provider} from "react-redux";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import store from "./store/store";
+import Home from "./components/Home/Home";
+import Navbar from "./components/Navbar/Navbar";
+import Showers from "./components/Catalog/Showers/Showers";
+import Mirrors from "./components/Catalog/Mirrors/Mirrors";
+import Product from "./components/Product/Product";
+import Footer from "./components/Footer/Footer";
+import Partitions from "./components/Catalog/Partitions/Partitions";
+import Doors from "./components/Catalog/Doors/Doors";
+import Shelves from "./components/Catalog/Shelves/Shelves";
+import PhotoPrintings from "./components/Catalog/PhotoPrintings/PhotoPrintings";
+import Railings from "./components/Catalog/Railings/Railings";
+import Portfolio from "./components/Portfolio/Portfolio";
+import Order from "./components/Order/Order";
+import ScrollToTop from './ScrollToTop';
+import {Helmet, HelmetProvider} from 'react-helmet-async';
+import NotFound from "./components/NotFound/NotFound";
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: colors.blue[500],
+        },
+        secondary: {
+            main: colors.blue[800]
+        }
+    }
+})
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <HelmetProvider>
+            <ThemeProvider theme={theme}>
+                <div className={s.wrapper}>
+                    <Helmet>
+                        <title>Скло Монтаж</title>
+                        <meta name="description"
+                              content="Сайт з продажу, монтажу та встановлення душових кабін, огорож, дзеркал з LED-підсвічуванням та підігрівом, скляних перегородок, скляних дверей, полиць зі скла, скляних перил та фотодруку на склі."
+                        />
+                        <meta name="keywords"
+                              content="скло, монтаж, душові кабіни, дзеркала, установка, ремонт, скляні конструкції"
+                        />
+                    </Helmet>
+                    <Navbar/>
+                    <Routes>
+                        <Route path='/home' element={<Home/>}/>
+                        <Route path='/shower' element={<Showers/>}/>
+                        <Route path='/mirror' element={<Mirrors/>}/>
+                        <Route path='/partition' element={<Partitions/>}/>
+                        <Route path='/door' element={<Doors/>}/>
+                        <Route path='/shelf' element={<Shelves/>}/>
+                        <Route path='/photoPrinting' element={<PhotoPrintings/>}/>
+                        <Route path='/railing' element={<Railings/>}/>
+                        <Route path='/portfolio' element={<Portfolio/>}/>
+                        <Route path='/delivery' element={<Order/>}/>
+                        <Route path={'/:category/:productId'} element={<Product/>}/>
+                        <Route path='/' element={<Navigate to='/home'/>}/>
+                        <Route path={'*'} element={<NotFound/>}/>
+                    </Routes>
+                    <Footer/>
+                </div>
+            </ThemeProvider>
+        </HelmetProvider>
+    )
 }
 
-export default App;
+const ContainerApp = connect(null)(App);
+const SkloMontazhApp = () => {
+    return <BrowserRouter>
+        <ScrollToTop/>
+        <Provider store={store}>
+            <ContainerApp/>
+        </Provider>
+    </BrowserRouter>
+}
+export default SkloMontazhApp;

@@ -1,0 +1,1 @@
+export const BaseURL = 'https://strapisklo-montazh-production.up.railway.app';
