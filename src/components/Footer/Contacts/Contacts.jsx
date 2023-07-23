@@ -22,6 +22,12 @@ const Contacts = () => {
             }}/>
             <Link href='https://www.instagram.com/sklomontazh.kiev/' color='secondary'>Наш інстаграм</Link>
         </Stack>
+        <Box sx={{
+            margin: '5px 0'
+        }}>
+            <Typography>Офіс: м.Київ вул.Івана Франка 3</Typography>
+            <Typography>Склад: м.Київ вул.Бориспільська 9</Typography>
+        </Box>
     </Box>
 }
 
