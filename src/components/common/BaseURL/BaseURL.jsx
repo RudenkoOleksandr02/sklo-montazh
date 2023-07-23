@@ -1,1 +1,1 @@
-export const BaseURL = 'https://strapisklo-montazh-production.up.railway.app';
+export const BaseURL = 'https://strapisklo-montazh-production-6018.up.railway.app';
