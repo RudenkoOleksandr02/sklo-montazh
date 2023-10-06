@@ -181,3 +181,43 @@ export const orderAPI = {
             .then(response => response.data.data.orders.data[0].attributes.content)
     }
 }
+
+const furnitureQl = `
+    query getFurniture {
+  furnitures(pagination: {limit: 1000}) {
+    data {
+      id
+      attributes {
+        Name
+        article
+        description
+        inStock
+        price
+        Image {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}
+`;
+
+export const furnitureAPI = {
+    getFurniture() {
+        return instance.post('', {query: furnitureQl})
+            .then(response => response.data.data.furnitures.data.map(furniture => {
+                return {
+                    id: furniture.id,
+                    ...furniture.attributes,
+                    Image: furniture.attributes.Image.data.map(image => {
+                        return image.attributes.url
+                    })
+                }
+            }))
+    }
+}
+

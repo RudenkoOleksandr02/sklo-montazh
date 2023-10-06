@@ -19,6 +19,7 @@ import Order from "./components/Order/Order";
 import ScrollToTop from './ScrollToTop';
 import {Helmet, HelmetProvider} from 'react-helmet-async';
 import NotFound from "./components/NotFound/NotFound";
+import Furniture from "./components/Furniture/Furniture";
 
 const theme = createTheme({
     palette: {
@@ -57,6 +58,7 @@ function App() {
                         <Route path='/railing' element={<Railings/>}/>
                         <Route path='/portfolio' element={<Portfolio/>}/>
                         <Route path='/delivery' element={<Order/>}/>
+                        <Route path='/furniture' element={<Furniture/>}/>
                         <Route path={'/:category/:productId'} element={<Product/>}/>
                         <Route path='/' element={<Navigate to='/home'/>}/>
                         <Route path={'*'} element={<NotFound/>}/>

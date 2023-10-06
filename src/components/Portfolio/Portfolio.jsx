@@ -19,7 +19,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
     const [photos, setPhotos] = useState(null);
-    const [category, setCategory] = useState('shower');
+    const [category, setCategory] = useState('door');
     const handleClick = (id) => {
         getProductGallery(id);
     }
@@ -85,34 +85,34 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                                                justifyContent: 'center'
                                            }}
                         >
-                            <ToggleButton value='shower'
+                            <ToggleButton value='door'
                                           onClick={() => handleClick(1)}
-                                          aria-label='shower'
-                            >Душові кабіни</ToggleButton>
+                                          aria-label='door'
+                            >Двері</ToggleButton>
                             <ToggleButton value='mirror'
                                           onClick={() => handleClick(2)}
                                           aria-label='mirror'
                             >Дзеркала</ToggleButton>
-                            <ToggleButton value='door'
-                                          onClick={() => handleClick(3)}
-                                          aria-label='door'
-                            >Двері</ToggleButton>
-                            <ToggleButton value='shelf'
-                                          onClick={() => handleClick(4)}
-                                          aria-label='shelf'
-                            >Полиці</ToggleButton>
                             <ToggleButton value='partition'
-                                          onClick={() => handleClick(5)}
+                                          onClick={() => handleClick(3)}
                                           aria-label='partition'
                             >Перегородки</ToggleButton>
-                            <ToggleButton value='railing'
-                                          onClick={() => handleClick(6)}
-                                          aria-label='railing'
-                            >Перила</ToggleButton>
                             <ToggleButton value='photoPrinting'
-                                          onClick={() => handleClick(7)}
+                                          onClick={() => handleClick(4)}
                                           aria-label='photo printing'
                             >Фотодрук</ToggleButton>
+                            <ToggleButton value='railing'
+                                          onClick={() => handleClick(5)}
+                                          aria-label='railing'
+                            >Перила</ToggleButton>
+                            <ToggleButton value='shelf'
+                                          onClick={() => handleClick(6)}
+                                          aria-label='shelf'
+                            >Полиці</ToggleButton>
+                            <ToggleButton value='shower'
+                                          onClick={() => handleClick(7)}
+                                          aria-label='shower'
+                            >Душові кабіни</ToggleButton>
                         </ToggleButtonGroup>
                     </Stack>
                     {!images

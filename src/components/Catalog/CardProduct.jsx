@@ -57,7 +57,7 @@ const CardProduct = ({mainImage, name, price, alt, id, category}) => {
                 <Typography
                     sx={{
                         textAlign: 'center'
-                    }}>{price ? `Ціна без монтажу: ${price} грн` : 'Ціна залежить від ваших уподобань'}
+                    }}>{price ? `Ціна товару: ${price} грн` : 'Ціна залежить від ваших уподобань'}
                 </Typography>
             </CardContent>
             <CardActions>

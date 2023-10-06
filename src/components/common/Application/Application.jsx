@@ -3,7 +3,7 @@ import {Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContent
 import ContactForm from "./ContactForm/ContactForm";
 import emailjs from "emailjs-com";
 
-const Application = ({title}) => {
+const Application = ({title, isDisabled = false}) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
@@ -43,6 +43,7 @@ const Application = ({title}) => {
             <Button variant="contained"
                     onClick={() => setOpen(true)}
                     color='secondary'
+                    disabled={isDisabled}
             >
                 Залишити заявку
             </Button>

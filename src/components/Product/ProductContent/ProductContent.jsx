@@ -1,6 +1,6 @@
 import {Box, Breadcrumbs, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import Application from "./Application/Application";
+import Application from "../../common/Application/Application";
 import ReactMarkdown from 'react-markdown';
 import s from '../../common/Link/Link.module.css';
 
@@ -39,7 +39,7 @@ const ProductContent = ({category, name, price, article, preDescription}) => {
             margin: '16px 0'
         }}>
             {price
-                ? <Typography>Ціна без монтажу:
+                ? <Typography>Ціна товару:
                     <Typography color='secondary' component='span' sx={{fontWeight: 'bold'}}> {price}</Typography> грн
                 </Typography>
                 : <Typography>Ціна залежить від ваших уподобань. Залиште заявку і ми з вами зв'яжемося</Typography>
