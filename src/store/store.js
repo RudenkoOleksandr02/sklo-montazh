@@ -5,13 +5,15 @@ import productReducer from "./product-reducer";
 import portfolioReducer from "./portfolio-reducer";
 import orderReducer from './order-reducer';
 import furnitureReducer from "./furniture-reducer";
+import basketReducer from "./basket-reducer";
 
 let reducers = combineReducers({
     catalog: catalogReducer,
     product: productReducer,
     portfolio: portfolioReducer,
     order: orderReducer,
-    furniture: furnitureReducer
+    furniture: furnitureReducer,
+    basket: basketReducer
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddle)));

@@ -14,6 +14,7 @@ const Products = () => {
         <Link to='/shelf' className={s.item}>Полиці зі скла</Link>
         <Link to='/photoPrinting' className={s.item}>Фотодрук на склі</Link>
         <Link to='/railing' className={s.item}>Перила</Link>
+        <Link to='/furniture' className={s.item}>Фурнітура</Link>
     </Stack>
 }
 

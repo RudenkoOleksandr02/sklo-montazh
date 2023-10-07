@@ -182,18 +182,22 @@ export const orderAPI = {
     }
 }
 
-const furnitureQl = `
-    query getFurniture {
-  furnitures(pagination: {limit: 1000}) {
+
+
+
+
+const FurnitureBarbellsQl = `
+query getFurniture {
+  barbells(pagination: {limit: 1000}) {
     data {
       id
       attributes {
-        Name
+        name
         article
         description
         inStock
         price
-        Image {
+        images {
           data {
             attributes {
               url
@@ -205,19 +209,77 @@ const furnitureQl = `
   }
 }
 `;
+const furnitureQl = (type) => {
+    return `query getFurniture {
+  ${type}(pagination: {limit: 1000}) {
+    data {
+      id
+      attributes {
+        name
+        article
+        description
+        inStock
+        price
+        images {
+          data {
+            attributes {
+              url
+            }
+          }
+        }
+      }
+    }
+  }
+}`
+}
 
+const getFurniture = (type) => {
+    let furnitureQuery = furnitureQl(type);
+    return instance.post('', {query: furnitureQuery})
+        .then(response => response.data.data[type].data.map(furniture => {
+            return {
+                id: furniture.id,
+                ...furniture.attributes,
+                images: furniture.attributes.images.data.map(image => {
+                    return image.attributes.url
+                })
+            }
+        }))
+}
 export const furnitureAPI = {
-    getFurniture() {
-        return instance.post('', {query: furnitureQl})
-            .then(response => response.data.data.furnitures.data.map(furniture => {
+    getBarbells() {
+        return instance.post('', {query: FurnitureBarbellsQl})
+            .then(response => response.data.data.barbells.data.map(furniture => {
                 return {
                     id: furniture.id,
                     ...furniture.attributes,
-                    Image: furniture.attributes.Image.data.map(image => {
+                    images: furniture.attributes.images.data.map(image => {
                         return image.attributes.url
                     })
                 }
             }))
+    },
+    getFastenings() {
+        return getFurniture('furnitureFastenings')
+    },
+    getLoops() {
+        return getFurniture('furnitureLoops')
+    },
+    getProfiles() {
+        return getFurniture('furnitureProfiles')
+    },
+    getSealers() {
+        return getFurniture('furnitureSealers')
+    },
+    getSlidingSystems() {
+        return getFurniture('furnitureSlidingSystems')
+    },
+    getThresholds() {
+        return getFurniture('furnitureThresholds')
+    },
+    getHandles() {
+        return getFurniture('furnitureHandles')
     }
 }
+
 

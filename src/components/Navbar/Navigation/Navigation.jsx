@@ -22,6 +22,7 @@ const Navigation = ({open, handleClick, handleClose, anchorEl, direction, setIsO
                 aria-expanded={open ? 'true' : undefined}
                 endIcon={!open ? <KeyboardArrowDownIcon/> : <KeyboardArrowUpIcon/>}
             >Каталог продукції</Button>
+            <NavigationItem path='/furniture' name='Фурнітура' setIsOpenDrawer={setIsOpenDrawer}/>
             <NavigationItem path='/portfolio' name='Портфоліо' setIsOpenDrawer={setIsOpenDrawer}/>
             <NavigationItem path='/delivery' name='Оплата і доставка' setIsOpenDrawer={setIsOpenDrawer}/>
         </Stack>
