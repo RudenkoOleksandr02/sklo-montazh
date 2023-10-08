@@ -41,7 +41,7 @@ const Purchases = ({
                                 <Box key={product.id}
                                      sx={{margin: '5px 16px', textAlign: 'center', borderBottom: '1px solid grey'}}>
                                     {product.name}{' '}
-                                    <Typography sx={{color: 'black'}} sx={{
+                                    <Box sx={{color: 'black'}} sx={{
                                         display: 'flex',
                                         justifyContent: 'center',
                                         alignItems: 'center'
@@ -56,7 +56,7 @@ const Purchases = ({
                                                                                         decreaseProductQuantity={decreaseProductQuantity}
                                                                                         category={product.category}
                                     />
-                                    </Typography>
+                                    </Box>
                                 </Box>
                             );
                         }
@@ -69,7 +69,7 @@ const Purchases = ({
             ) : (
                 <Box sx={{margin: '50px 16px 0', textAlign: 'center'}}>
                     Загальна ціна:{' '}
-                    <Typography sx={{display: 'inline-block', fontWeight: 'bold'}}>{totalPrice}грн</Typography>
+                    <Typography sx={{display: 'inline-block', fontWeight: 'bold'}}>{totalPrice} грн</Typography>
                 </Box>
             )}
             <Box sx={{margin: '16px auto'}}>

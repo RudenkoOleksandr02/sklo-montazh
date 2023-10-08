@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import {Box, Breadcrumbs, CircularProgress, Typography} from "@mui/material";
+import {Box, Breadcrumbs, CircularProgress, Paper, Typography} from "@mui/material";
 import {connect} from "react-redux";
 import {getContent} from "../../store/order-reducer";
 import {useEffect} from "react";
@@ -46,7 +46,12 @@ const Order = ({content, getContent}) => {
                         display: 'block',
                         margin: '16px auto'
                     }}/>
-                    : <ReactMarkdown>{content}</ReactMarkdown>}
+                    : <Paper elevation={4} sx={{
+                        padding: '2px 6px'
+                    }}>
+                        <ReactMarkdown>{content}</ReactMarkdown>
+                    </Paper>
+                }
             </Box>
         </>
     </HelmetProvider>

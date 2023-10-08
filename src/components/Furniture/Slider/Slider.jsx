@@ -21,6 +21,7 @@ const Slider = ({images, width, handleOpenModal}) => {
             setCurrentImage(images.length - 1);
         }
     }
+
     return (
         <Box sx={{
             display: 'inline-flex',
@@ -32,6 +33,7 @@ const Slider = ({images, width, handleOpenModal}) => {
             <Box onClick={handleOpenModal} sx={{
                 cursor: 'pointer'
             }}>
+
                 <img src={images[currentImage]} alt='Фурнітура' width={width}/>
             </Box>
             <IconButton onClick={nextImage}>

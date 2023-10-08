@@ -2,8 +2,10 @@ import {useState} from "react";
 import {Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Alert} from "@mui/material";
 import ContactForm from "./ContactForm/ContactForm";
 import emailjs from "emailjs-com";
+import {connect} from "react-redux";
+import {clearBasket} from "../../../store/basket-reducer";
 
-const Application = ({title, isDisabled = false}) => {
+const Application = ({title, isDisabled = false, clearBasket}) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
@@ -29,6 +31,7 @@ const Application = ({title, isDisabled = false}) => {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
                 .then((result) => {
                     console.log(result.text);
+                    clearBasket();
                 })
                 .catch((error) => {
                     console.error(error.text);
@@ -36,6 +39,7 @@ const Application = ({title, isDisabled = false}) => {
         } else {
             setIsError(true);
         }
+
     }
 
     return (
@@ -77,9 +81,9 @@ const Application = ({title, isDisabled = false}) => {
                                      bottom: '0',
                                      fontSize: '16px'
                                  }}
-            >Чекайте на дзвінок :)</Alert>}
+            >Ваша заявка відправлена</Alert>}
         </>
     );
 };
 
-export default Application;
+export default connect(null, {clearBasket})(Application);

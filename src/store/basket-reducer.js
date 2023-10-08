@@ -11,6 +11,8 @@ const initialState = {
 
 const ADD_PRODUCT = 'ADD_PRODUCT';
 const DECREASE_PRODUCT_QUANTITY = 'DECREASE_PRODUCT_QUANTITY';
+const CLEAR_BASKET = 'CLEAR_BASKET';
+
 const basketReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_PRODUCT: {
@@ -56,6 +58,18 @@ const basketReducer = (state = initialState, action) => {
                 };
             }
         }
+        case CLEAR_BASKET: {
+            return {
+                barbells: [],
+                fastenings: [],
+                handles: [],
+                loops: [],
+                slidingSystems: [],
+                thresholds: [],
+                sealers: [],
+                profiles: []
+            }
+        }
         default:
             return state;
     }
@@ -82,3 +96,10 @@ export const decreaseProductQuantity = (category, productName) => {
         }
     };
 };
+
+export const clearBasket = () => {
+    return {
+        type: CLEAR_BASKET
+    };
+};
+

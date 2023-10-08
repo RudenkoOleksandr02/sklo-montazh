@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Box, Dialog, DialogContent, DialogContentText, DialogTitle, Typography} from "@mui/material";
 import Slider from "../Slider/Slider";
 

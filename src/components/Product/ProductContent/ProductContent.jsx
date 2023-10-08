@@ -32,7 +32,7 @@ const ProductContent = ({category, name, price, article, preDescription}) => {
         </Box>
         <Box>
             {article && <Typography>Артикул:
-                <Typography color='secondary' component='span'>{article}</Typography>
+                <Typography color='secondary' component='span'> {article}</Typography>
             </Typography>}
         </Box>
         <Box sx={{
@@ -40,7 +40,7 @@ const ProductContent = ({category, name, price, article, preDescription}) => {
         }}>
             {price
                 ? <Typography>Ціна товару:
-                    <Typography color='secondary' component='span' sx={{fontWeight: 'bold'}}> {price}</Typography> грн
+                    <Typography component='span'> {price}</Typography> грн
                 </Typography>
                 : <Typography>Ціна залежить від ваших уподобань. Залиште заявку і ми з вами зв'яжемося</Typography>
             }

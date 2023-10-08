@@ -88,30 +88,37 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                             <ToggleButton value='door'
                                           onClick={() => handleClick(1)}
                                           aria-label='door'
+                                          disabled={category === 'door'}
                             >Двері</ToggleButton>
                             <ToggleButton value='mirror'
                                           onClick={() => handleClick(2)}
                                           aria-label='mirror'
+                                          disabled={category === 'mirror'}
                             >Дзеркала</ToggleButton>
                             <ToggleButton value='partition'
                                           onClick={() => handleClick(3)}
                                           aria-label='partition'
+                                          disabled={category === 'partition'}
                             >Перегородки</ToggleButton>
                             <ToggleButton value='photoPrinting'
                                           onClick={() => handleClick(4)}
                                           aria-label='photo printing'
+                                          disabled={category === 'photoPrinting'}
                             >Фотодрук</ToggleButton>
                             <ToggleButton value='railing'
                                           onClick={() => handleClick(5)}
                                           aria-label='railing'
+                                          disabled={category === 'railing'}
                             >Перила</ToggleButton>
                             <ToggleButton value='shelf'
                                           onClick={() => handleClick(6)}
                                           aria-label='shelf'
+                                          disabled={category === 'shelf'}
                             >Полиці</ToggleButton>
                             <ToggleButton value='shower'
                                           onClick={() => handleClick(7)}
                                           aria-label='shower'
+                                          disabled={category === 'shower'}
                             >Душові кабіни</ToggleButton>
                         </ToggleButtonGroup>
                     </Stack>

@@ -37,6 +37,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1', // Равномерное распределение кнопок на экранах с разными размерами
                 }}
+                disabled={formats === 'barbells'}
             >
                 Штанги
             </ToggleButton>
@@ -46,6 +47,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'fastenings'}
             >
                 Кріплення
             </ToggleButton>
@@ -55,6 +57,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'handles'}
             >
                 Ручки
             </ToggleButton>
@@ -64,6 +67,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'loops'}
             >
                 Петлі
             </ToggleButton>
@@ -73,6 +77,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'slidingSystems'}
             >
                 Розсувні системи
             </ToggleButton>
@@ -82,6 +87,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'thresholds'}
             >
                 Пороги
             </ToggleButton>
@@ -91,6 +97,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'sealers'}
             >
                 Ущільнювачі
             </ToggleButton>
@@ -100,6 +107,7 @@ const ButtonsRequest = ({
                 sx={{
                     flex: '1',
                 }}
+                disabled={formats === 'profiles'}
             >
                 Профілі
             </ToggleButton>

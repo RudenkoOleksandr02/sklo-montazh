@@ -1,4 +1,4 @@
-import {Typography, Box} from "@mui/material";
+import {Typography, Box, Paper} from "@mui/material";
 import ReactMarkdown from 'react-markdown';
 
 const ProductDescription = ({description}) => {
@@ -6,9 +6,11 @@ const ProductDescription = ({description}) => {
         <Typography variant='h6' component='div' sx={{
             textAlign: 'center'
         }}>Опис</Typography>
-        <Box>
+        <Paper elevation={4} sx={{
+            padding: '2px 6px'
+        }}>
             <ReactMarkdown>{description}</ReactMarkdown>
-        </Box>
+        </Paper>
     </Box>
 }
 
