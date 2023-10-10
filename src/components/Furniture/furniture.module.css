@@ -1,0 +1,14 @@
+@keyframes blink {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.blink_animation {
+    animation: blink 1.5s infinite;
+}
+
+

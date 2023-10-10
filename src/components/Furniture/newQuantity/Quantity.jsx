@@ -8,19 +8,15 @@ const Quantity = ({
                       name,
                       basket,
                       price,
-                      totalPrice,
-                      setTotalPrice,
                       addProductToBasket,
                       decreaseProductQuantity,
                       category
                   }) => {
     const handleAdd = () => {
         addProductToBasket(category, {id, name, price, category})
-        setTotalPrice(totalPrice + price)
     }
     const handleDecrease = () => {
         decreaseProductQuantity(category, name)
-        setTotalPrice(totalPrice - price)
     }
 
     return (

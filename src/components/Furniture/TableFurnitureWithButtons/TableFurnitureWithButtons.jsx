@@ -16,8 +16,6 @@ const TableFurnitureWithButtons = ({
                                        furniture,
                                        basket,
                                        handleOpenModal,
-                                       setTotalPrice,
-                                       totalPrice,
                                        getBarbells,
                                        getFastenings,
                                        getHandles,
@@ -55,8 +53,6 @@ const TableFurnitureWithButtons = ({
         <TableFurniture
             furniture={furniture}
             handleOpenModal={handleOpenModal}
-            setTotalPrice={setTotalPrice}
-            totalPrice={totalPrice}
             basket={basket}
             category={category}
             addProductToBasket={addProductToBasket}
@@ -67,7 +63,7 @@ const TableFurnitureWithButtons = ({
 
 const mapStateToProps = (state) => {
     return {
-        basket: state.basket,
+        basket: state.basket.furniture,
         furniture: state.furniture.furniture
     }
 }

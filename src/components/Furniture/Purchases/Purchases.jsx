@@ -9,10 +9,9 @@ const Purchases = ({
                        openDrawer,
                        setOpenDrawer,
                        basket,
-                       totalPrice,
-                       setTotalPrice,
                        addProductToBasket,
-                       decreaseProductQuantity
+                       decreaseProductQuantity,
+                       totalAmount
                    }) => {
     const [names, setNames] = useState([]);
 
@@ -27,6 +26,8 @@ const Purchases = ({
         }
         setNames(namesArray);
     }, [basket]);
+
+
 
     return (
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} anchor="left">
@@ -47,14 +48,12 @@ const Purchases = ({
                                         alignItems: 'center'
                                     }}>
                                         {product.price * product.quantity} грн <Quantity basket={basket}
-                                                                                        name={product.name}
-                                                                                        price={product.price}
-                                                                                        setTotalPrice={setTotalPrice}
-                                                                                        totalPrice={totalPrice}
-                                                                                        id={product.id}
-                                                                                        addProductToBasket={addProductToBasket}
-                                                                                        decreaseProductQuantity={decreaseProductQuantity}
-                                                                                        category={product.category}
+                                                                                         name={product.name}
+                                                                                         price={product.price}
+                                                                                         id={product.id}
+                                                                                         addProductToBasket={addProductToBasket}
+                                                                                         decreaseProductQuantity={decreaseProductQuantity}
+                                                                                         category={product.category}
                                     />
                                     </Box>
                                 </Box>
@@ -69,7 +68,7 @@ const Purchases = ({
             ) : (
                 <Box sx={{margin: '50px 16px 0', textAlign: 'center'}}>
                     Загальна ціна:{' '}
-                    <Typography sx={{display: 'inline-block', fontWeight: 'bold'}}>{totalPrice} грн</Typography>
+                    <Typography sx={{display: 'inline-block', fontWeight: 'bold'}}>{totalAmount} грн</Typography>
                 </Box>
             )}
             <Box sx={{margin: '16px auto'}}>
@@ -84,7 +83,8 @@ const Purchases = ({
 };
 
 const mapStateToProps = (state) => ({
-    basket: state.basket
+    basket: state.basket.furniture,
+    totalAmount: state.basket.totalAmount
 });
 
 export default connect(mapStateToProps, {addProductToBasket, decreaseProductQuantity})(Purchases);

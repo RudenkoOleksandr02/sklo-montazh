@@ -9,9 +9,10 @@ import Purchases from "./Purchases/Purchases";
 import {Link} from "react-router-dom";
 import s from "../common/Link/Link.module.css";
 import TableFurnitureWithButtons from "./TableFurnitureWithButtons/TableFurnitureWithButtons";
+import styles from './furniture.module.css'
+import {connect} from "react-redux";
 
-
-const Furniture = () => {
+const Furniture = ({totalAmount}) => {
     const [modalData, setModalData] = useState({
         open: false,
         name: '',
@@ -19,7 +20,6 @@ const Furniture = () => {
         description: ''
     });
     const [openDrawer, setOpenDrawer] = useState(false);
-    const [totalPrice, setTotalPrice] = useState(0);
 
     const handleOpenModal = (open, name, images, description) => {
         setModalData({
@@ -55,28 +55,30 @@ const Furniture = () => {
         />
         <TableFurnitureWithButtons
             handleOpenModal={handleOpenModal}
-            setTotalPrice={setTotalPrice}
-            totalPrice={totalPrice}
         />
-        <IconButton onClick={() => setOpenDrawer(true)} sx={{
+        <IconButton className={totalAmount !== 0 && styles.blink_animation} onClick={() => setOpenDrawer(true)} sx={{
             position: 'sticky',
-            bottom: '50%'
-        }}
-        >
+            bottom: '10%',
+        }}>
             <ShoppingCartIcon sx={{
                 fontSize: '45px',
                 padding: '3px',
-                color: '#1565C0',
-                border: '2px dashed green',
+                color: totalAmount === 0 ? 'rgba(0, 0, 0, 0.5)' : '#1565C0',
+                border: totalAmount === 0 ? '2px inset rgba(0, 0, 0, 0.5)' : '2px inset #1565C0',
+                transition: '0.5s',
                 borderRadius: '50%'
             }}/>
         </IconButton>
         <Purchases openDrawer={openDrawer}
                    setOpenDrawer={setOpenDrawer}
-                   totalPrice={totalPrice}
-                   setTotalPrice={setTotalPrice}
         />
     </Box>
 };
 
-export default Furniture;
+const mapStateToProps = (state) => {
+    return {
+        totalAmount: state.basket.totalAmount
+    }
+}
+
+export default connect(mapStateToProps)(Furniture);

@@ -14,7 +14,7 @@ import Slider from "../../Slider/Slider";
 import Quantity from "../../newQuantity/Quantity";
 import {connect} from "react-redux";
 
-const TableFurniture = ({isLoading, furniture, handleOpenModal, basket, addProductToBasket, decreaseProductQuantity, setTotalPrice, totalPrice, category}) => {
+const TableFurniture = ({isLoading, furniture, handleOpenModal, basket, addProductToBasket, decreaseProductQuantity, category}) => {
     return <Box>
         {isLoading ? <CircularProgress sx={{
             display: 'block',
@@ -56,8 +56,7 @@ const TableFurniture = ({isLoading, furniture, handleOpenModal, basket, addProdu
                                 {row.inStock ? <Quantity basket={basket}
                                                          name={row.name}
                                                          price={row.price}
-                                                         setTotalPrice={setTotalPrice}
-                                                         totalPrice={totalPrice} id={row.id}
+                                                         id={row.id}
                                                          addProductToBasket={addProductToBasket}
                                                          decreaseProductQuantity={decreaseProductQuantity}
                                                          category={category}
