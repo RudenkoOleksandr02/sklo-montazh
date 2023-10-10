@@ -18,17 +18,18 @@ const Modal = ({images, description, name, open, setModalData}) => {
             <DialogContent>
                 <Box sx={{
                     margin: '0 auto',
-                    width: 'min-content'
+                    display: 'flex',
+                    justifyContent: 'center'
                 }}>
                     <Slider images={images} width={300} height={300}/>
                 </Box>
+                <Typography variant='h6' component='h3' sx={{
+                    textAlign: 'center',
+                    margin: '16px 0'
+                }}>Опис</Typography>
                 <DialogContentText sx={{
                     color: 'black'
                 }}>
-                    <Typography variant='h6' component='h2' sx={{
-                        textAlign: 'center',
-                        margin: '16px 0'
-                    }}>Опис</Typography>
                     {description ? description : ''}
                 </DialogContentText>
             </DialogContent>

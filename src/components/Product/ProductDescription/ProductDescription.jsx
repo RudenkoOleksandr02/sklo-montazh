@@ -6,7 +6,7 @@ const ProductDescription = ({description}) => {
         <Typography variant='h6' component='div' sx={{
             textAlign: 'center'
         }}>Опис</Typography>
-        <Paper elevation={4} sx={{
+        <Paper elevation={2} sx={{
             padding: '2px 6px'
         }}>
             <ReactMarkdown>{description}</ReactMarkdown>

@@ -65,79 +65,129 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                         margin: '16px 0'
                     }}>Портфоліо</Typography>
                 </Box>
-                <Paper
-                    elevation={4}
-                    sx={{
-                        maxWidth: '1000px',
-                        margin: '24px auto',
-                        paddingBottom: '16px'
-                    }}>
-                    <Stack direction='row' justifyContent='center' flexWrap='wrap'>
-                        <ToggleButtonGroup value={category}
-                                           onChange={handleCategoryChange}
-                                           aria-label='category'
-                                           size='small'
-                                           color='secondary'
-                                           exclusive
-                                           sx={{
-                                               display: 'flex',
-                                               flexWrap: 'wrap',
-                                               justifyContent: 'center'
-                                           }}
-                        >
-                            <ToggleButton value='door'
-                                          onClick={() => handleClick(1)}
-                                          aria-label='door'
-                                          disabled={category === 'door'}
-                            >Двері</ToggleButton>
-                            <ToggleButton value='mirror'
-                                          onClick={() => handleClick(2)}
-                                          aria-label='mirror'
-                                          disabled={category === 'mirror'}
-                            >Дзеркала</ToggleButton>
-                            <ToggleButton value='partition'
-                                          onClick={() => handleClick(3)}
-                                          aria-label='partition'
-                                          disabled={category === 'partition'}
-                            >Перегородки</ToggleButton>
-                            <ToggleButton value='photoPrinting'
-                                          onClick={() => handleClick(4)}
-                                          aria-label='photo printing'
-                                          disabled={category === 'photoPrinting'}
-                            >Фотодрук</ToggleButton>
-                            <ToggleButton value='railing'
-                                          onClick={() => handleClick(5)}
-                                          aria-label='railing'
-                                          disabled={category === 'railing'}
-                            >Перила</ToggleButton>
-                            <ToggleButton value='shelf'
-                                          onClick={() => handleClick(6)}
-                                          aria-label='shelf'
-                                          disabled={category === 'shelf'}
-                            >Полиці</ToggleButton>
-                            <ToggleButton value='shower'
-                                          onClick={() => handleClick(7)}
-                                          aria-label='shower'
-                                          disabled={category === 'shower'}
-                            >Душові кабіни</ToggleButton>
-                        </ToggleButtonGroup>
-                    </Stack>
-                    {!images
-                        ? <CircularProgress sx={{
-                            display: 'block',
-                            margin: '16px auto'
-                        }}/>
-                        : <Grid container rowSpacing={2}>
-                            {photos && photos.map((image, index) => {
-                                return <Image
-                                    key={index}
-                                    image={image}
-                                    title={title}
-                                />
-                            })}
-                        </Grid>
-                    }
-                </Paper>
+                <Box sx={{
+                    maxWidth: '1000px',
+                    margin: '24px auto'
+                }}>
+                    <ToggleButtonGroup value={category}
+                                       onChange={handleCategoryChange}
+                                       aria-label='category'
+                                       size='small'
+                                       color='secondary'
+                                       exclusive
+                                       sx={{
+                                           display: 'flex',
+                                           flexWrap: 'wrap'
+                                       }}
+                    >
+                        <ToggleButton value='door'
+                                      onClick={() => handleClick(1)}
+                                      aria-label='door'
+                                      disabled={category === 'door'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Двері</ToggleButton>
+                        <ToggleButton value='mirror'
+                                      onClick={() => handleClick(2)}
+                                      aria-label='mirror'
+                                      disabled={category === 'mirror'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Дзеркала</ToggleButton>
+                        <ToggleButton value='partition'
+                                      onClick={() => handleClick(3)}
+                                      aria-label='partition'
+                                      disabled={category === 'partition'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Перегородки</ToggleButton>
+                        <ToggleButton value='photoPrinting'
+                                      onClick={() => handleClick(4)}
+                                      aria-label='photo printing'
+                                      disabled={category === 'photoPrinting'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Фотодрук</ToggleButton>
+                        <ToggleButton value='railing'
+                                      onClick={() => handleClick(5)}
+                                      aria-label='railing'
+                                      disabled={category === 'railing'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Перила</ToggleButton>
+                        <ToggleButton value='shelf'
+                                      onClick={() => handleClick(6)}
+                                      aria-label='shelf'
+                                      disabled={category === 'shelf'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Полиці</ToggleButton>
+                        <ToggleButton value='shower'
+                                      onClick={() => handleClick(7)}
+                                      aria-label='shower'
+                                      disabled={category === 'shower'}
+                                      sx={{
+                                          flex: '1',
+                                          minWidth: '100px',
+                                          borderLeft: '1px solid #D5D5D5 !important',
+                                          borderRadius: '0',
+                                          marginLeft: '0 !important'
+                                      }}
+                        >Душові кабіни</ToggleButton>
+                    </ToggleButtonGroup>
+                    <Paper
+                        elevation={1}
+                        sx={{
+                            padding: '16px 0',
+                            borderRadius: '0'
+                        }}>
+                        {!images
+                            ? <CircularProgress sx={{
+                                display: 'block',
+                                margin: '16px auto'
+                            }}/>
+                            : <Grid container rowSpacing={2}>
+                                {photos && photos.map((image, index) => {
+                                    return <Image
+                                        key={index}
+                                        image={image}
+                                        title={title}
+                                    />
+                                })}
+                            </Grid>
+                        }
+                    </Paper>
+                </Box>
             </Box>
         </>
     </HelmetProvider>

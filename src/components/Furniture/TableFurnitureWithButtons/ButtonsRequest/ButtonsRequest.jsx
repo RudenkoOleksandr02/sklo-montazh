@@ -25,17 +25,21 @@ const ButtonsRequest = ({
             onChange={handleFormatChange}
             exclusive
             color='secondary'
-            size="small" // Изменение размера кнопок для адаптивности
+            size="small"
             sx={{
                 display: 'flex',
-                flexWrap: 'wrap', // Позволяет кнопкам переноситься на новую строку при нехватке места
+                flexWrap: 'wrap'
             }}
         >
             <ToggleButton
                 value='barbells'
                 onClick={() => openCategory('barbells', getBarbells)}
                 sx={{
-                    flex: '1', // Равномерное распределение кнопок на экранах с разными размерами
+                    flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'barbells'}
             >
@@ -46,6 +50,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('fastenings', getFastenings)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'fastenings'}
             >
@@ -56,6 +64,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('handles', getHandles)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'handles'}
             >
@@ -66,6 +78,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('loops', getLoops)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'loops'}
             >
@@ -76,6 +92,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('slidingSystems', getSlidingSystems)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'slidingSystems'}
             >
@@ -86,6 +106,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('thresholds', getThresholds)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'thresholds'}
             >
@@ -96,6 +120,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('sealers', getSealers)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'sealers'}
             >
@@ -106,6 +134,10 @@ const ButtonsRequest = ({
                 onClick={() => openCategory('profiles', getProfiles)}
                 sx={{
                     flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
                 }}
                 disabled={formats === 'profiles'}
             >

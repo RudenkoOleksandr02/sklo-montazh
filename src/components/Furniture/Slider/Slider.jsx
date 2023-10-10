@@ -30,13 +30,15 @@ const Slider = ({images, width, height, handleOpenModal}) => {
     return (
         <Box sx={{
             display: 'inline-flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            justifyContent: 'center',
+            width: width + 100 + 'px'
         }}>
             <IconButton onClick={prevImage}>
                 <ArrowBackIcon/>
             </IconButton>
             <Box onClick={handleOpenModal} sx={{
-                cursor: 'pointer'
+                cursor: 'pointer',
             }}>
                 {loading && <Skeleton width={width}
                                       height={height}
@@ -45,8 +47,11 @@ const Slider = ({images, width, height, handleOpenModal}) => {
                 }
                 <img src={images[currentImage]}
                      alt='Фурнітура'
-                     width={width}
-                     style={{ display: loading ? 'none' : 'block' }}
+                     style={{
+                         display: loading ? 'none' : 'block',
+                         maxWidth: '100%',
+                         objectFit: 'contain',
+                     }}
                      onLoad={handleImageLoad}
                 />
             </Box>
