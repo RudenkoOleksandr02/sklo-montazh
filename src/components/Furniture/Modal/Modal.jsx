@@ -20,7 +20,7 @@ const Modal = ({images, description, name, open, setModalData}) => {
                     margin: '0 auto',
                     width: 'min-content'
                 }}>
-                    <Slider images={images} width={300}/>
+                    <Slider images={images} width={300} height={300}/>
                 </Box>
                 <DialogContentText sx={{
                     color: 'black'

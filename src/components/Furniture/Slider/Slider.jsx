@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import ArrowBackIcon from '@mui/icons-material/ArrowBackIosNew';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForwardIos';
-import {Box, IconButton} from "@mui/material";
+import {Box, IconButton, Skeleton} from "@mui/material";
 
-const Slider = ({images, width, handleOpenModal}) => {
+const Slider = ({images, width, height, handleOpenModal}) => {
     const [currentImage, setCurrentImage] = useState(0);
+    const [loading, setLoading] = useState(true)
 
     const nextImage = () => {
         if (currentImage < images.length - 1) {
@@ -22,6 +23,10 @@ const Slider = ({images, width, handleOpenModal}) => {
         }
     }
 
+    const handleImageLoad = () => {
+        setLoading(false)
+    }
+
     return (
         <Box sx={{
             display: 'inline-flex',
@@ -33,8 +38,17 @@ const Slider = ({images, width, handleOpenModal}) => {
             <Box onClick={handleOpenModal} sx={{
                 cursor: 'pointer'
             }}>
-
-                <img src={images[currentImage]} alt='Фурнітура' width={width}/>
+                {loading && <Skeleton width={width}
+                                      height={height}
+                                      variant='rectangular'
+                                      animation='wave'/>
+                }
+                <img src={images[currentImage]}
+                     alt='Фурнітура'
+                     width={width}
+                     style={{ display: loading ? 'none' : 'block' }}
+                     onLoad={handleImageLoad}
+                />
             </Box>
             <IconButton onClick={nextImage}>
                 <ArrowForwardIcon/>

@@ -56,7 +56,7 @@ const Furniture = ({totalAmount}) => {
         <TableFurnitureWithButtons
             handleOpenModal={handleOpenModal}
         />
-        <IconButton className={totalAmount !== 0 && styles.blink_animation} onClick={() => setOpenDrawer(true)} sx={{
+        <IconButton className={totalAmount !== 0 ? styles.blink_animation : ''} onClick={() => setOpenDrawer(true)} sx={{
             position: 'sticky',
             bottom: '10%',
         }}>
