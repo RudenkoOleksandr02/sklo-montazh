@@ -16,7 +16,7 @@ const Quantity = ({
         addProductToBasket(category, {id, name, price, category})
     }
     const handleDecrease = () => {
-        decreaseProductQuantity(category, name)
+        decreaseProductQuantity(category, id)
     }
 
     return (

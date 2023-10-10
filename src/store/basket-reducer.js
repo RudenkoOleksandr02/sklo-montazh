@@ -21,7 +21,7 @@ const basketReducer = (state = initialState, action) => {
         case ADD_PRODUCT: {
             const { category, product } = action.payload;
             const categoryIndex = state.furniture[category].findIndex(
-                (item) => item.name === product.name
+                (item) => item.id === product.id
             );
 
             if (categoryIndex !== -1) {
@@ -47,9 +47,9 @@ const basketReducer = (state = initialState, action) => {
             }
         }
         case DECREASE_PRODUCT_QUANTITY: {
-            const { category, productName } = action.payload;
+            const { category, productId } = action.payload;
             const productIndex = state.furniture[category].findIndex(
-                (item) => item.name === productName
+                (item) => item.id === productId
             );
 
             if (productIndex !== -1) {
@@ -69,6 +69,8 @@ const basketReducer = (state = initialState, action) => {
                     totalAmount: state.totalAmount - updatedProduct.price,
                 };
             }
+
+            return state;
         }
         case CLEAR_BASKET: {
             return {
@@ -103,12 +105,12 @@ export const addProductToBasket = (category, product) => {
     };
 };
 
-export const decreaseProductQuantity = (category, productName) => {
+export const decreaseProductQuantity = (category, productId) => {
     return {
         type: DECREASE_PRODUCT_QUANTITY,
         payload: {
             category,
-            productName,
+            productId,
         },
     };
 };
