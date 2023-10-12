@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Box, Drawer, Typography} from '@mui/material';
+import {Box, Drawer, IconButton, Typography} from '@mui/material';
 import Application from "../../common/Application/Application";
 import {connect} from 'react-redux';
 import Quantity from "../newQuantity/Quantity";
 import {addProductToBasket, decreaseProductQuantity} from "../../../store/basket-reducer";
+import CloseIcon from '@mui/icons-material/Close';
 
 const Purchases = ({
                        openDrawer,
@@ -28,19 +29,23 @@ const Purchases = ({
     }, [basket]);
 
 
-
     return (
         <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)} anchor="left">
+            <IconButton onClick={() => setOpenDrawer(false)} sx={{
+                alignSelf: 'flex-end'
+            }}>
+                <CloseIcon/>
+            </IconButton>
             <Box>
-                <Box sx={{textAlign: 'center', margin: '16px'}}>
-                    {names.length === 0 && 'Кошик порожній'}
-                </Box>
+                {names.length === 0 ? <Box sx={{textAlign: 'center', margin: '16px', width: '170px'}}>
+                    Кошик порожній
+                </Box> : ''}
                 {Object.keys(basket).map((category) => {
                     return basket[category].map((product) => {
                         if (product.quantity > 0) {
                             return (
                                 <Box key={product.id}
-                                     sx={{margin: '5px 16px', textAlign: 'center', borderBottom: '1px solid grey'}}>
+                                     sx={{margin: '5px 16px', textAlign: 'center', borderBottom: '1px solid grey', maxWidth: '200px'}}>
                                     {product.name}{' '}
                                     <Box sx={{color: 'black'}} sx={{
                                         display: 'flex',
