@@ -31,12 +31,11 @@ const Slider = ({images, width, height, handleOpenModal}) => {
         <Box sx={{
             display: 'inline-flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            width: width + 100 + 'px'
+            justifyContent: 'center'
         }}>
-            <IconButton onClick={prevImage}>
+            {images.length > 1 && <IconButton onClick={prevImage}>
                 <ArrowBackIcon/>
-            </IconButton>
+            </IconButton>}
             <Box onClick={handleOpenModal} sx={{
                 cursor: 'pointer',
             }}>
@@ -49,15 +48,16 @@ const Slider = ({images, width, height, handleOpenModal}) => {
                      alt='Фурнітура'
                      style={{
                          display: loading ? 'none' : 'block',
-                         maxWidth: '100%',
+                         maxWidth: width === 300 ? '100%' : 'auto',
+                         width: width + 'px',
                          objectFit: 'contain',
                      }}
                      onLoad={handleImageLoad}
                 />
             </Box>
-            <IconButton onClick={nextImage}>
+            {images.length > 1 && <IconButton onClick={nextImage}>
                 <ArrowForwardIcon/>
-            </IconButton>
+            </IconButton>}
         </Box>
     );
 };

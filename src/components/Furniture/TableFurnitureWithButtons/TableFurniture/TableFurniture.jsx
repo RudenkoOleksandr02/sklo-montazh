@@ -35,8 +35,8 @@ const TableFurniture = ({isLoading, furniture, handleOpenModal, basket, addProdu
                         return <TableRow key={row.id}>
                             <TableCell align='center'>
                                 <Slider images={row.images}
-                                        width={100}
-                                        height={100}
+                                        width={120}
+                                        height={120}
                                         handleOpenModal={() => handleOpenModal(true, row.name, row.images, row.description)}
                                 />
                             </TableCell>
