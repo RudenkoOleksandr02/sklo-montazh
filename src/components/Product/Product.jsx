@@ -3,7 +3,7 @@ import {withRouter} from "../../HOC/withRouter";
 import {connect} from "react-redux";
 import {getProduct} from "../../store/product-reducer";
 import {compose} from "redux";
-import {CircularProgress, Grid} from "@mui/material";
+import {Box, CircularProgress, Grid} from "@mui/material";
 import ProductImages from "./ProductImages/ProductImages";
 import ProductContent from "./ProductContent/ProductContent";
 import ProductDescription from "./ProductDescription/ProductDescription";
@@ -44,30 +44,33 @@ const Product = (props) => {
                       content={metaKeys}
                 />
             </Helmet>
-            <Grid
-                container
-                spacing={2}
-                sx={{
-                    padding: '24px',
-                    maxWidth: '1250px',
-                    margin: 'auto'
-                }}
-            >
-                <Grid item md={5} xs={12}>
-                    <ProductImages mainImage={mainImage} otherImage={otherImage}/>
+            <Box sx={{
+                maxWidth: '1250px',
+                margin: 'auto'
+            }}>
+                <Grid
+                    container
+                    spacing={2}
+                    sx={{
+                        padding: '24px'
+                    }}
+                >
+                    <Grid item md={5} xs={12}>
+                        <ProductImages mainImage={mainImage} otherImage={otherImage}/>
+                    </Grid>
+                    <Grid item md={7} xs={12}>
+                        <ProductContent article={article}
+                                        name={name}
+                                        price={price}
+                                        category={category}
+                                        preDescription={preDescription}
+                        />
+                    </Grid>
+                    <Grid item xs={12}>
+                        {description && <ProductDescription description={description}/>}
+                    </Grid>
                 </Grid>
-                <Grid item md={7} xs={12}>
-                    <ProductContent article={article}
-                                    name={name}
-                                    price={price}
-                                    category={category}
-                                    preDescription={preDescription}
-                    />
-                </Grid>
-                <Grid item xs={12}>
-                    {description && <ProductDescription description={description}/>}
-                </Grid>
-            </Grid>
+            </Box>
         </>
     </HelmetProvider>
 }

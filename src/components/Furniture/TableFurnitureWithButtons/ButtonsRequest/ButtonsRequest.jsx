@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {ToggleButton, ToggleButtonGroup, IconButton, Box} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
@@ -39,16 +39,24 @@ const ButtonsRequest = ({
     };
 
     const buttonsData = [
-        { value: 'barbells', label: 'Штанги', action: () => openCategory('barbells', getBarbells) },
-        { value: 'fastenings', label: 'Кріплення', action: () => openCategory('fastenings', getFastenings) },
-        { value: 'handles', label: 'Ручки', action: () => openCategory('handles', getHandles) },
-        { value: 'loops', label: 'Петлі', action: () => openCategory('loops', getLoops) },
-        { value: 'slidingSystems', label: 'Розсувні системи', action: () => openCategory('slidingSystems', getSlidingSystems) },
-        { value: 'thresholds', label: 'Пороги', action: () => openCategory('thresholds', getThresholds) },
-        { value: 'sealers', label: 'Ущільнювачі', action: () => openCategory('sealers', getSealers) },
-        { value: 'profiles', label: 'Профілі', action: () => openCategory('profiles', getProfiles) },
-        { value: 'pendulumSystems', label: 'Маятникові системи', action: () => openCategory('pendulumSystems', getPendulumSystems) },
-        { value: 'shelfMounts', label: 'Кріплення для полиць', action: () => openCategory('shelfMounts', getShelfMounts) }
+        {value: 'barbells', label: 'Штанги', action: () => openCategory('barbells', getBarbells)},
+        {value: 'fastenings', label: 'Кріплення', action: () => openCategory('fastenings', getFastenings)},
+        {value: 'handles', label: 'Ручки', action: () => openCategory('handles', getHandles)},
+        {value: 'loops', label: 'Петлі', action: () => openCategory('loops', getLoops)},
+        {
+            value: 'slidingSystems',
+            label: 'Розсувні системи',
+            action: () => openCategory('slidingSystems', getSlidingSystems)
+        },
+        {value: 'thresholds', label: 'Пороги', action: () => openCategory('thresholds', getThresholds)},
+        {value: 'sealers', label: 'Ущільнювачі', action: () => openCategory('sealers', getSealers)},
+        {value: 'profiles', label: 'Профілі', action: () => openCategory('profiles', getProfiles)},
+        {
+            value: 'pendulumSystems',
+            label: 'Маятникові системи',
+            action: () => openCategory('pendulumSystems', getPendulumSystems)
+        },
+        {value: 'shelfMounts', label: 'Кріплення для полиць', action: () => openCategory('shelfMounts', getShelfMounts)}
     ];
 
     const visibleButtons = buttonsData
@@ -78,24 +86,24 @@ const ButtonsRequest = ({
             alignItems: 'center'
         }}>
             <IconButton onClick={prevPage} disabled={page === 1}>
-                <KeyboardArrowLeftIcon />
+                <KeyboardArrowLeftIcon/>
             </IconButton>
             <ToggleButtonGroup
                 value={formats}
                 onChange={handleFormatChange}
                 exclusive
-                color='secondary'
+                color="secondary"
                 size="small"
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
-                    width: '100%'
+                    width: '100%',
                 }}
             >
                 {visibleButtons}
             </ToggleButtonGroup>
             <IconButton onClick={nextPage} disabled={endIndex >= totalButtons}>
-                <KeyboardArrowRightIcon />
+                <KeyboardArrowRightIcon/>
             </IconButton>
         </Box>
     );

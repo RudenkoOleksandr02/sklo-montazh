@@ -17,10 +17,11 @@ const Catalog = ({titleCategory, products, category, alt}) => {
                 fontSize: '14px'
             }}>{titleCategory}</Typography>
         </Breadcrumbs>
-        <Grid container spacing={2} sx={{
+        <Box sx={{
             maxWidth: '1250px',
-            margin: 'auto'
+            margin: '0 auto'
         }}>
+        <Grid container spacing={2}>
             <Grid item xs={12}>
                 <Typography variant='h5' component='h2' sx={{
                     textAlign: 'center',
@@ -42,6 +43,7 @@ const Catalog = ({titleCategory, products, category, alt}) => {
                                         alt={alt}/>
                 })}
         </Grid>
+        </Box>
     </Box>
 }
 
