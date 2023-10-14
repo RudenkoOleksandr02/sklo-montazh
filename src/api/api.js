@@ -279,6 +279,12 @@ export const furnitureAPI = {
     },
     getHandles() {
         return getFurniture('furnitureHandles')
+    },
+    getPendulumSystems() {
+        return getFurniture('furniturePendulumSystems')
+    },
+    getShelfMounts() {
+        return getFurniture('furnitureShelfMounts')
     }
 }
 

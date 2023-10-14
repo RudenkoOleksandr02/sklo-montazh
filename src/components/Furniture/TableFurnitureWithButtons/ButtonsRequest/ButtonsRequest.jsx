@@ -10,7 +10,9 @@ const ButtonsRequest = ({
                             getSlidingSystems,
                             getThresholds,
                             getSealers,
-                            getProfiles
+                            getProfiles,
+                            getPendulumSystems,
+                            getShelfMounts
                         }) => {
     const [formats, setFormats] = useState('barbells')
     const handleFormatChange = (event, newFormats) => {
@@ -142,6 +144,34 @@ const ButtonsRequest = ({
                 disabled={formats === 'profiles'}
             >
                 Профілі
+            </ToggleButton>
+            <ToggleButton
+                value='pendulumSystems'
+                onClick={() => openCategory('pendulumSystems', getPendulumSystems)}
+                sx={{
+                    flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
+                }}
+                disabled={formats === 'pendulumSystems'}
+            >
+                Маятникові системи
+            </ToggleButton>
+            <ToggleButton
+                value='shelfMounts'
+                onClick={() => openCategory('shelfMounts', getShelfMounts)}
+                sx={{
+                    flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important'
+                }}
+                disabled={formats === 'shelfMounts'}
+            >
+                Кріплення для полиць
             </ToggleButton>
         </ToggleButtonGroup>
     );

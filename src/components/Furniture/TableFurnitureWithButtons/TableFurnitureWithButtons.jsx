@@ -6,9 +6,9 @@ import {
     getBarbells,
     getFastenings,
     getHandles,
-    getLoops,
+    getLoops, getPendulumSystems,
     getProfiles,
-    getSealers, getSlidingSystems, getThresholds
+    getSealers, getShelfMounts, getSlidingSystems, getThresholds
 } from "../../../store/furniture-reducer";
 import ButtonsRequest from "./ButtonsRequest/ButtonsRequest";
 
@@ -26,6 +26,8 @@ const TableFurnitureWithButtons = ({
                                        getThresholds,
                                        addProductToBasket,
                                        decreaseProductQuantity,
+                                       getPendulumSystems,
+                                       getShelfMounts
                                    }) => {
     useEffect(() => {
         getBarbells();
@@ -48,6 +50,8 @@ const TableFurnitureWithButtons = ({
                         getSealers={getSealers}
                         getSlidingSystems={getSlidingSystems}
                         getThresholds={getThresholds}
+                        getPendulumSystems={getPendulumSystems}
+                        getShelfMounts={getShelfMounts}
         />
 
         <TableFurniture
@@ -77,5 +81,7 @@ export default connect(mapStateToProps, {
     getProfiles,
     getSealers,
     getSlidingSystems,
-    getThresholds
+    getThresholds,
+    getPendulumSystems,
+    getShelfMounts
 })(TableFurnitureWithButtons);

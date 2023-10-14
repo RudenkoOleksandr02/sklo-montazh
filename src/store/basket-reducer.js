@@ -8,6 +8,8 @@ const initialState = {
         thresholds: [],
         sealers: [],
         profiles: [],
+        pendulumSystems: [],
+        shelfMounts: []
     },
     totalAmount: 0,
 };

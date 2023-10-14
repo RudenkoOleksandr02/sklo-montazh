@@ -96,3 +96,9 @@ export const getSlidingSystems = () => async (dispatch) => {
 export const getThresholds = () => async (dispatch) => {
     getFurniture(dispatch, furnitureAPI.getThresholds)
 }
+export const getPendulumSystems = () => async (dispatch) => {
+    getFurniture(dispatch, furnitureAPI.getPendulumSystems)
+}
+export const getShelfMounts = () => async (dispatch) => {
+    getFurniture(dispatch, furnitureAPI.getShelfMounts)
+}
