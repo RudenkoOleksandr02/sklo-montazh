@@ -1,11 +1,9 @@
 import {useState} from "react";
 import {Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Alert} from "@mui/material";
-import ContactForm from "./ContactForm/ContactForm";
+import ContactForm from "../../../common/ContactForm/ContactForm";
 import emailjs from "emailjs-com";
-import {connect} from "react-redux";
-import {clearBasket} from "../../../store/basket-reducer";
 
-const Application = ({title, isDisabled = false, clearBasket}) => {
+const Application = ({title}) => {
     const [open, setOpen] = useState(false);
     const [name, setName] = useState('');
     const [tel, setTel] = useState('');
@@ -31,7 +29,6 @@ const Application = ({title, isDisabled = false, clearBasket}) => {
             emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
                 .then((result) => {
                     console.log(result.text);
-                    clearBasket();
                 })
                 .catch((error) => {
                     console.error(error.text);
@@ -47,7 +44,6 @@ const Application = ({title, isDisabled = false, clearBasket}) => {
             <Button variant="contained"
                     onClick={() => setOpen(true)}
                     color='secondary'
-                    disabled={isDisabled}
             >
                 Залишити заявку
             </Button>
@@ -86,4 +82,4 @@ const Application = ({title, isDisabled = false, clearBasket}) => {
     );
 };
 
-export default connect(null, {clearBasket})(Application);
+export default Application;

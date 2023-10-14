@@ -1,6 +1,6 @@
 import {Box, Breadcrumbs, Typography} from "@mui/material";
 import {Link} from "react-router-dom";
-import Application from "../../common/Application/Application";
+import Application from "./Application/Application";
 import ReactMarkdown from 'react-markdown';
 import s from '../../common/Link/Link.module.css';
 

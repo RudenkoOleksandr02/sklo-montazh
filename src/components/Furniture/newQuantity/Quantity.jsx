@@ -10,10 +10,11 @@ const Quantity = ({
                       price,
                       addProductToBasket,
                       decreaseProductQuantity,
-                      category
+                      category,
+                      article
                   }) => {
     const handleAdd = () => {
-        addProductToBasket(category, {id, name, price, category})
+        addProductToBasket(category, {id, name, price, category, article})
     }
     const handleDecrease = () => {
         decreaseProductQuantity(category, id)

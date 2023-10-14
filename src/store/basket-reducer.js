@@ -86,6 +86,8 @@ const basketReducer = (state = initialState, action) => {
                     thresholds: [],
                     sealers: [],
                     profiles: [],
+                    pendulumSystems: [],
+                    shelfMounts: []
                 },
                 totalAmount: 0,
             };

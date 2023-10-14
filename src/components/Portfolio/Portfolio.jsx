@@ -66,7 +66,7 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                     }}>Портфоліо</Typography>
                 </Box>
                 <Box sx={{
-                    maxWidth: '1000px',
+                    maxWidth: '1001px',
                     margin: '24px auto'
                 }}>
                     <ToggleButtonGroup value={category}

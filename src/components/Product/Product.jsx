@@ -48,7 +48,9 @@ const Product = (props) => {
                 container
                 spacing={2}
                 sx={{
-                    padding: '24px'
+                    padding: '24px',
+                    maxWidth: '1250px',
+                    margin: 'auto'
                 }}
             >
                 <Grid item md={5} xs={12}>

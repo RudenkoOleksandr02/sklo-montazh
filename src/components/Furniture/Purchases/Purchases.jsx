@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Box, Drawer, IconButton, Typography} from '@mui/material';
-import Application from "../../common/Application/Application";
 import {connect} from 'react-redux';
 import Quantity from "../newQuantity/Quantity";
 import {addProductToBasket, decreaseProductQuantity} from "../../../store/basket-reducer";
 import CloseIcon from '@mui/icons-material/Close';
+import ApplicationFurniture from "./ApplicationFurniture/ApplicationFurniture";
 
 const Purchases = ({
                        openDrawer,
@@ -14,18 +14,18 @@ const Purchases = ({
                        decreaseProductQuantity,
                        totalAmount
                    }) => {
-    const [names, setNames] = useState([]);
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        const namesArray = [];
+        const productsArray = [];
         for (const category in basket) {
             for (const product of basket[category]) {
                 if (product.quantity > 0) {
-                    namesArray.push(`${product.name} * ${product.quantity}`);
+                    productsArray.push({name: product.name, article: product.article, price: product.price, quantity: product.quantity});
                 }
             }
         }
-        setNames(namesArray);
+        setProducts(productsArray);
     }, [basket]);
 
 
@@ -37,7 +37,7 @@ const Purchases = ({
                 <CloseIcon/>
             </IconButton>
             <Box>
-                {names.length === 0 ? <Box sx={{textAlign: 'center', margin: '16px', width: '170px'}}>
+                {totalAmount === 0 ? <Box sx={{textAlign: 'center', margin: '16px', width: '170px'}}>
                     Кошик порожній
                 </Box> : ''}
                 {Object.keys(basket).map((category) => {
@@ -46,7 +46,7 @@ const Purchases = ({
                             return (
                                 <Box key={product.id}
                                      sx={{margin: '5px 16px', textAlign: 'center', borderBottom: '1px solid grey', maxWidth: '200px'}}>
-                                    {product.name}{' '}
+                                    {product.name}{' '}{`(${product.article})`}
                                     <Box sx={{color: 'black'}} sx={{
                                         display: 'flex',
                                         justifyContent: 'center',
@@ -68,7 +68,7 @@ const Purchases = ({
                     });
                 })}
             </Box>
-            {names.length === 0 ? (
+            {totalAmount === 0 ? (
                 ''
             ) : (
                 <Box sx={{margin: '50px 16px 0', textAlign: 'center'}}>
@@ -77,10 +77,10 @@ const Purchases = ({
                 </Box>
             )}
             <Box sx={{margin: '16px auto'}}>
-                {names.length === 0 ? (
-                    <Application title={names.join(', ')} isDisabled={true}/>
+                {totalAmount === 0 ? (
+                    <ApplicationFurniture products={products} isDisabled={true} totalAmount={totalAmount}/>
                 ) : (
-                    <Application title={names.join(', ')} isDisabled={false}/>
+                    <ApplicationFurniture products={products} isDisabled={false} totalAmount={totalAmount}/>
                 )}
             </Box>
         </Drawer>

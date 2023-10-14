@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
-import {ToggleButton, ToggleButtonGroup} from "@mui/material";
+import React, { useState } from 'react';
+import {ToggleButton, ToggleButtonGroup, IconButton, Box} from "@mui/material";
+import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const ButtonsRequest = ({
                             openCategory,
@@ -14,166 +16,88 @@ const ButtonsRequest = ({
                             getPendulumSystems,
                             getShelfMounts
                         }) => {
-    const [formats, setFormats] = useState('barbells')
+    const [formats, setFormats] = useState('barbells');
+    const [page, setPage] = useState(1);
+    const buttonsPerPage = 5;
+    const totalButtons = 10;
+
+    const startIndex = (page - 1) * buttonsPerPage;
+    const endIndex = startIndex + buttonsPerPage;
+
     const handleFormatChange = (event, newFormats) => {
         if (newFormats !== null) {
             setFormats(newFormats);
         }
     }
 
+    const nextPage = () => {
+        setPage(page + 1);
+    };
+
+    const prevPage = () => {
+        setPage(page - 1);
+    };
+
+    const buttonsData = [
+        { value: 'barbells', label: 'Штанги', action: () => openCategory('barbells', getBarbells) },
+        { value: 'fastenings', label: 'Кріплення', action: () => openCategory('fastenings', getFastenings) },
+        { value: 'handles', label: 'Ручки', action: () => openCategory('handles', getHandles) },
+        { value: 'loops', label: 'Петлі', action: () => openCategory('loops', getLoops) },
+        { value: 'slidingSystems', label: 'Розсувні системи', action: () => openCategory('slidingSystems', getSlidingSystems) },
+        { value: 'thresholds', label: 'Пороги', action: () => openCategory('thresholds', getThresholds) },
+        { value: 'sealers', label: 'Ущільнювачі', action: () => openCategory('sealers', getSealers) },
+        { value: 'profiles', label: 'Профілі', action: () => openCategory('profiles', getProfiles) },
+        { value: 'pendulumSystems', label: 'Маятникові системи', action: () => openCategory('pendulumSystems', getPendulumSystems) },
+        { value: 'shelfMounts', label: 'Кріплення для полиць', action: () => openCategory('shelfMounts', getShelfMounts) }
+    ];
+
+    const visibleButtons = buttonsData
+        .slice(startIndex, endIndex)
+        .map((button) => (
+            <ToggleButton
+                key={button.value}
+                value={button.value}
+                onClick={button.action}
+                sx={{
+                    flex: '1',
+                    minWidth: '100px',
+                    borderLeft: '1px solid #D5D5D5 !important',
+                    borderRadius: '0',
+                    marginLeft: '0 !important',
+                }}
+                disabled={formats === button.value}
+            >
+                {button.label}
+            </ToggleButton>
+        ));
+
     return (
-        <ToggleButtonGroup
-            value={formats}
-            onChange={handleFormatChange}
-            exclusive
-            color='secondary'
-            size="small"
-            sx={{
-                display: 'flex',
-                flexWrap: 'wrap'
-            }}
-        >
-            <ToggleButton
-                value='barbells'
-                onClick={() => openCategory('barbells', getBarbells)}
+        <Box sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center'
+        }}>
+            <IconButton onClick={prevPage} disabled={page === 1}>
+                <KeyboardArrowLeftIcon />
+            </IconButton>
+            <ToggleButtonGroup
+                value={formats}
+                onChange={handleFormatChange}
+                exclusive
+                color='secondary'
+                size="small"
                 sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    width: '100%'
                 }}
-                disabled={formats === 'barbells'}
             >
-                Штанги
-            </ToggleButton>
-            <ToggleButton
-                value='fastenings'
-                onClick={() => openCategory('fastenings', getFastenings)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'fastenings'}
-            >
-                Кріплення
-            </ToggleButton>
-            <ToggleButton
-                value='handles'
-                onClick={() => openCategory('handles', getHandles)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'handles'}
-            >
-                Ручки
-            </ToggleButton>
-            <ToggleButton
-                value='loops'
-                onClick={() => openCategory('loops', getLoops)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'loops'}
-            >
-                Петлі
-            </ToggleButton>
-            <ToggleButton
-                value='slidingSystems'
-                onClick={() => openCategory('slidingSystems', getSlidingSystems)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'slidingSystems'}
-            >
-                Розсувні системи
-            </ToggleButton>
-            <ToggleButton
-                value='thresholds'
-                onClick={() => openCategory('thresholds', getThresholds)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'thresholds'}
-            >
-                Пороги
-            </ToggleButton>
-            <ToggleButton
-                value='sealers'
-                onClick={() => openCategory('sealers', getSealers)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'sealers'}
-            >
-                Ущільнювачі
-            </ToggleButton>
-            <ToggleButton
-                value='profiles'
-                onClick={() => openCategory('profiles', getProfiles)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'profiles'}
-            >
-                Профілі
-            </ToggleButton>
-            <ToggleButton
-                value='pendulumSystems'
-                onClick={() => openCategory('pendulumSystems', getPendulumSystems)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'pendulumSystems'}
-            >
-                Маятникові системи
-            </ToggleButton>
-            <ToggleButton
-                value='shelfMounts'
-                onClick={() => openCategory('shelfMounts', getShelfMounts)}
-                sx={{
-                    flex: '1',
-                    minWidth: '100px',
-                    borderLeft: '1px solid #D5D5D5 !important',
-                    borderRadius: '0',
-                    marginLeft: '0 !important'
-                }}
-                disabled={formats === 'shelfMounts'}
-            >
-                Кріплення для полиць
-            </ToggleButton>
-        </ToggleButtonGroup>
+                {visibleButtons}
+            </ToggleButtonGroup>
+            <IconButton onClick={nextPage} disabled={endIndex >= totalButtons}>
+                <KeyboardArrowRightIcon />
+            </IconButton>
+        </Box>
     );
 };
 

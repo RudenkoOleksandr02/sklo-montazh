@@ -47,7 +47,9 @@ const Order = ({content, getContent}) => {
                         margin: '16px auto'
                     }}/>
                     : <Paper elevation={2} sx={{
-                        padding: '2px 6px'
+                        padding: '2px 6px',
+                        maxWidth: '1250px',
+                        margin: 'auto'
                     }}>
                         <ReactMarkdown>{content}</ReactMarkdown>
                     </Paper>

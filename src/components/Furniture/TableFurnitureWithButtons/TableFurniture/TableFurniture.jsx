@@ -61,6 +61,7 @@ const TableFurniture = ({isLoading, furniture, handleOpenModal, basket, addProdu
                                                          addProductToBasket={addProductToBasket}
                                                          decreaseProductQuantity={decreaseProductQuantity}
                                                          category={category}
+                                                         article={row.article}
                                 /> : 'Немає в наявності'
                                 }
                             </TableCell>

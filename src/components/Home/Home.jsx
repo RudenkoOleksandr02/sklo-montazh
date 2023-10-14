@@ -23,7 +23,9 @@ const Home = () => {
 
 
     return <Box sx={{
-        padding: '24px'
+        padding: '24px',
+        maxWidth: '1250px',
+        margin: 'auto'
     }}>
         <Grid container spacing={2}>
             <Grid item md={6} xs={12}>

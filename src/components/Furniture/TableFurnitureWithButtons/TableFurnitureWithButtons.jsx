@@ -11,6 +11,7 @@ import {
     getSealers, getShelfMounts, getSlidingSystems, getThresholds
 } from "../../../store/furniture-reducer";
 import ButtonsRequest from "./ButtonsRequest/ButtonsRequest";
+import {Box} from "@mui/material";
 
 const TableFurnitureWithButtons = ({
                                        furniture,
@@ -40,7 +41,10 @@ const TableFurnitureWithButtons = ({
         getCategory();
     }
 
-    return <>
+    return <Box sx={{
+        maxWidth: '1001px',
+        margin: '24px auto'
+    }}>
         <ButtonsRequest openCategory={openCategory}
                         getBarbells={getBarbells}
                         getFastenings={getFastenings}
@@ -62,7 +66,7 @@ const TableFurnitureWithButtons = ({
             addProductToBasket={addProductToBasket}
             decreaseProductQuantity={decreaseProductQuantity}
         />
-    </>
+    </Box>
 };
 
 const mapStateToProps = (state) => {

@@ -7,7 +7,7 @@ const ContactForm = ({name, setName, tel, setTel}) => {
     };
 
     return <Stack direction='column' spacing={2} sx={{
-        marginTop: '16px'
+        margin: '5px 0'
     }}>
         <TextField
             label="Ім'я"
