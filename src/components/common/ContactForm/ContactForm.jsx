@@ -1,7 +1,7 @@
-import {Stack, TextField} from "@mui/material";
+import {FormControl, FormControlLabel, Radio, RadioGroup, Stack, TextField} from "@mui/material";
 import InputMask from 'react-input-mask';
 
-const ContactForm = ({name, setName, tel, setTel}) => {
+const ContactForm = ({name, setName, tel, setTel, radioValue, setRadioValue, appointment, setAppointment, furniture = false}) => {
     const handleTelChange = (e) => {
         setTel(e.target.value);
     };
@@ -33,6 +33,20 @@ const ContactForm = ({name, setName, tel, setTel}) => {
                 />
             )}
         </InputMask>
+        {furniture ? <FormControl>
+            <RadioGroup name='choice' value={radioValue} onChange={(e) => setRadioValue(e.target.value)}>
+                <FormControlLabel control={<Radio/>} label='Самовивіз' value='pickup'/>
+                <FormControlLabel control={<Radio/>} label='Нова Пошта' value='email'/>
+            </RadioGroup>
+        </FormControl> : null}
+        {furniture ? <TextField
+            label="Пункт призначення"
+            type='text'
+            value={appointment}
+            disabled={radioValue === 'pickup'}
+            onChange={e => setAppointment(e.target.value)}
+            size='small'
+        /> : null}
     </Stack>
 };
 

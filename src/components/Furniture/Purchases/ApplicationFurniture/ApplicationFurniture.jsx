@@ -14,6 +14,8 @@ const ApplicationFurniture = ({products, isDisabled = false, clearBasket, totalA
     const SERVICE_ID = 'service_emk8qsh';
     const TEMPLATE_ID = 'template_bttyo57';
     const PUBLIC_KEY = 'pdEXm-DmTqi493iQu';
+    const [radioValue, setRadioValue] = useState('pickup');
+    const [appointment, setAppointment] = useState('')
     const sendEmail = () => {
         let productsTable = `<table style="border-collapse: collapse; width: 100%;">
   <tr>
@@ -31,12 +33,14 @@ const ApplicationFurniture = ({products, isDisabled = false, clearBasket, totalA
     </tr>`;
         })}
 </table>`;
+        const delivery = radioValue === 'email' ? `Нова Пошта ${appointment}` : 'Самовивіз';
         const templateParams = {
             title: 'Фурнітура',
             productsTable,
             name,
             phoneNumber: tel,
-            totalAmount: totalAmount
+            totalAmount: totalAmount,
+            delivery
         };
         const isTelCorrect = () => {
             return tel.split('').every(el => el !== '_');
@@ -79,6 +83,11 @@ const ApplicationFurniture = ({products, isDisabled = false, clearBasket, totalA
                     <ContactForm name={name} tel={tel}
                                  setName={setName}
                                  setTel={setTel}
+                                 furniture={true}
+                                 radioValue={radioValue}
+                                 setRadioValue={setRadioValue}
+                                 appointment={appointment}
+                                 setAppointment={setAppointment}
                     />
                     {isError &&
                         <DialogContentText color='error' sx={{
