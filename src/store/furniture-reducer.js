@@ -57,7 +57,7 @@ const setLoaded = () => {
 }
 
 const getFurniture = async (dispatch, method) => {
-    dispatch(setLoading()); // Устанавливаем состояние загрузки в true перед запросом
+    dispatch(setLoading());
     try {
         deleteFurniture()
         const data = await method();
