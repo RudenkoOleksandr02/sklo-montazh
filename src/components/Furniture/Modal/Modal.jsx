@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Box, Dialog, DialogContent, DialogContentText, DialogTitle, Typography} from "@mui/material";
 import Slider from "../Slider/Slider";
+import ReactMarkdown from "react-markdown";
 
 const Modal = ({images, description, name, open, setModalData}) => {
     return (
@@ -30,7 +31,7 @@ const Modal = ({images, description, name, open, setModalData}) => {
                 <DialogContentText sx={{
                     color: 'black'
                 }}>
-                    {description ? description : ''}
+                    {description ? <ReactMarkdown>{description}</ReactMarkdown> : ''}
                 </DialogContentText>
             </DialogContent>
         </Dialog>

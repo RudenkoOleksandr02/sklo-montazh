@@ -1,27 +1,31 @@
-import React, {useState} from 'react';
+import React, { useEffect } from 'react';
 import {Autocomplete, TextField} from "@mui/material";
 import axios from "axios";
 
-const CityField = ({locality, setLocality, setLocalityRef}) => {
+const CityField = ({locality, setLocality, setLocalityRef, cityValue, setCityValue, handleChangesCity}) => {
     const handleLocalitySelect = (newValue) => {
+        setCityValue(newValue)
+
         if (newValue) {
             const selectedLocal = locality.find(local => {
                 return local.id === newValue.id
             })
             setLocalityRef(selectedLocal.id)
+            handleChangesCity(newValue.label)
         } else {
             setLocalityRef(null)
+            handleChangesCity(null)
         }
     }
     const fetchBranches = async (searchText) => {
-        const commaIndex = searchText.indexOf(',')
+        const commaIndex = searchText.indexOf(',');
 
         const data = {
             "apiKey": "a030db66aabe1b33b3667ba05933379a",
             "modelName": "Address",
             "calledMethod": "getSettlements",
             "methodProperties": {
-                "FindByString": searchText === '' ? 'а' : (commaIndex !== 0 ? searchText.slice(0, commaIndex) : searchText),
+                "FindByString": commaIndex !== 0 ? searchText.slice(0, commaIndex) : searchText,
                 "Warehouse": "1",
                 "Limit": "20"
             }
@@ -45,7 +49,11 @@ const CityField = ({locality, setLocality, setLocalityRef}) => {
     }
 
     return <Autocomplete
+        sx={{
+            margin: '10px 0'
+        }}
         options={locality}
+        value={cityValue}
         onChange={(e, newValue) => handleLocalitySelect(newValue)}
         noOptionsText="Немає результату"
         renderInput={params => (
