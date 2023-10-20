@@ -3,15 +3,11 @@ import {
     FormControlLabel,
     Radio,
     RadioGroup,
-    Select,
-    MenuItem,
     Stack,
     TextField
 } from "@mui/material";
 import InputMask from 'react-input-mask';
-import axios from 'axios';
-import { useEffect, useState } from "react";
-import NP from "./NP/NP";
+import NovaPoshta from "./NovaPoshta/NovaPoshta";
 
 const ContactForm = ({
                          name,
@@ -68,7 +64,7 @@ const ContactForm = ({
                 </FormControl>
             ) : null}
             {furniture && radioValue === 'email' ? (
-                <NP radioValue={radioValue}/>
+                <NovaPoshta/>
             ) : null}
             {/*<TextField
                 label="Пункт призначення"
