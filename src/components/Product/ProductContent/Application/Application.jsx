@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {Button, Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText, Alert} from "@mui/material";
-import ContactForm from "../../../common/ContactForm/ContactForm";
+import ContactForm from "./ContactForm/ContactForm";
 import emailjs from "emailjs-com";
 
 const Application = ({title}) => {
