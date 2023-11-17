@@ -6,6 +6,7 @@ import portfolioReducer from "./portfolio-reducer";
 import orderReducer from './order-reducer';
 import furnitureReducer from "./furniture-reducer";
 import basketReducer from "./basket-reducer";
+import exchangeRateReducer from "./exchangeRate-reducer";
 
 let reducers = combineReducers({
     catalog: catalogReducer,
@@ -13,7 +14,8 @@ let reducers = combineReducers({
     portfolio: portfolioReducer,
     order: orderReducer,
     furniture: furnitureReducer,
-    basket: basketReducer
+    basket: basketReducer,
+    exchangeRate: exchangeRateReducer
 })
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddle)));

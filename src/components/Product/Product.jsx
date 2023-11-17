@@ -8,9 +8,11 @@ import ProductImages from "./ProductImages/ProductImages";
 import ProductContent from "./ProductContent/ProductContent";
 import ProductDescription from "./ProductDescription/ProductDescription";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import {BaseURL} from "../common/BaseURL/BaseURL";
 
 const Product = (props) => {
     const productId = props.match.params.productId
+    const categoryById = props.match.params.category + '_by_id'
     const category = props.match.params.category
     const {
         name,
@@ -24,7 +26,7 @@ const Product = (props) => {
         metaKeys
     } = props.product
     useEffect(() => {
-        props.getProduct(productId, category);
+        props.getProduct(productId, categoryById);
     }, []);
 
     if (name === '') {
@@ -56,7 +58,10 @@ const Product = (props) => {
                     }}
                 >
                     <Grid item md={5} xs={12}>
-                        <ProductImages mainImage={mainImage} otherImage={otherImage}/>
+                        <ProductImages
+                            mainImage={BaseURL + '/assets/' + mainImage}
+                            otherImage={otherImage.map(img => BaseURL + '/assets/' + img.id)}
+                        />
                     </Grid>
                     <Grid item md={7} xs={12}>
                         <ProductContent article={article}

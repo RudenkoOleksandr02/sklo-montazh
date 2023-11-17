@@ -20,7 +20,7 @@ const Doors = ({getDoors, doors}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Скляні двері'
-                     category='door'
+                     category='doors'
                      alt='Двері'
                      products={doors}
             />

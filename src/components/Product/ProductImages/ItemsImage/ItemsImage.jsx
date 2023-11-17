@@ -1,6 +1,7 @@
 import {Box, Skeleton} from "@mui/material";
 import s from './ItemsImage.module.css'
 import {useState} from "react";
+import {BaseURL} from "../../../common/BaseURL/BaseURL";
 
 const ItemsImage = ({images, setCounter, counter}) => {
     const [loading, setLoading] = useState(true)
@@ -32,6 +33,7 @@ const ItemsImage = ({images, setCounter, counter}) => {
                 />}
                 <img src={img}
                      width='100' alt='other image'
+                     height='130'
                      onClick={() => handleClick(index)}
                      className={index === counter ? s.selected : ''}
                      onLoad={handleImageLoad}

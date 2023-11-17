@@ -5,6 +5,7 @@ import {IconButton, Box, useMediaQuery, Skeleton} from "@mui/material";
 import ItemsImage from "./ItemsImage/ItemsImage";
 import ImageModal from "../../common/ImageModal/ImageModal";
 import s from './ProductImages.module.css';
+import {BaseURL} from "../../common/BaseURL/BaseURL";
 
 const ProductImages = ({mainImage, otherImage}) => {
     const [selectedImage, setSelectedImage] = useState(mainImage);
@@ -56,7 +57,7 @@ const ProductImages = ({mainImage, otherImage}) => {
                 <ArrowBackIcon/>
             </IconButton>
             {loading && <Skeleton width={isMobileScreen ? 200 : 300}
-                                  height={250}
+                                  height={350}
                                   className={s.image}
                                   variant='rectangular'
                                   animation='wave'
@@ -65,6 +66,7 @@ const ProductImages = ({mainImage, otherImage}) => {
                  alt="product"
                  onClick={handleImageClick}
                  className={s.mainImage}
+                 height={isMobileScreen ? 280 : 350}
                  width={isMobileScreen ? 200 : 300}
                  style={{display: loading ? 'none' : 'block'}}
                  onLoad={handleImageLoad}

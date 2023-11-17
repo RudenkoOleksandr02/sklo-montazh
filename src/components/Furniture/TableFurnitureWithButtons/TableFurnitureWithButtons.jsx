@@ -2,62 +2,32 @@ import React, {useEffect, useState} from 'react';
 import TableFurniture from "./TableFurniture/TableFurniture";
 import {connect} from "react-redux";
 import {addProductToBasket, decreaseProductQuantity} from "../../../store/basket-reducer";
-import {
-    getBarbells,
-    getFastenings,
-    getHandles,
-    getLoops, getPendulumSystems,
-    getProfiles,
-    getSealers, getShelfMounts, getSlidingSystems, getThresholds
-} from "../../../store/furniture-reducer";
+import {getFurniture} from "../../../store/furniture-reducer";
 import ButtonsRequest from "./ButtonsRequest/ButtonsRequest";
 import {Box} from "@mui/material";
+import {useParams} from "react-router-dom";
 
 const TableFurnitureWithButtons = ({
                                        furniture,
                                        basket,
                                        handleOpenModal,
-                                       getBarbells,
-                                       getFastenings,
-                                       getHandles,
-                                       getLoops,
-                                       getProfiles,
-                                       getSealers,
-                                       getSlidingSystems,
-                                       getThresholds,
+                                       getFurniture,
                                        addProductToBasket,
-                                       decreaseProductQuantity,
-                                       getPendulumSystems,
-                                       getShelfMounts
+                                       decreaseProductQuantity
                                    }) => {
+    const params = useParams()
+
     useEffect(() => {
-        getBarbells();
-    }, []);
+        getFurniture(params.category)
+    }, [params.category]);
 
-    const [category, setCategory] = useState('barbells');
-
-    const openCategory = (newCategory, getCategory) => {
-        setCategory(newCategory);
-        getCategory();
-    }
+    const category = params.category;
 
     return <Box sx={{
         maxWidth: '1001px',
         margin: '24px auto'
     }}>
-        <ButtonsRequest openCategory={openCategory}
-                        getBarbells={getBarbells}
-                        getFastenings={getFastenings}
-                        getHandles={getHandles}
-                        getLoops={getLoops}
-                        getProfiles={getProfiles}
-                        getSealers={getSealers}
-                        getSlidingSystems={getSlidingSystems}
-                        getThresholds={getThresholds}
-                        getPendulumSystems={getPendulumSystems}
-                        getShelfMounts={getShelfMounts}
-        />
-
+        <ButtonsRequest category={params.category}/>
         <TableFurniture
             furniture={furniture}
             handleOpenModal={handleOpenModal}
@@ -78,14 +48,5 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
     addProductToBasket,
     decreaseProductQuantity,
-    getBarbells,
-    getFastenings,
-    getHandles,
-    getLoops,
-    getProfiles,
-    getSealers,
-    getSlidingSystems,
-    getThresholds,
-    getPendulumSystems,
-    getShelfMounts
+    getFurniture
 })(TableFurnitureWithButtons);

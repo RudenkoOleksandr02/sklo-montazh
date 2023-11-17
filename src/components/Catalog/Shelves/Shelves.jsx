@@ -20,7 +20,7 @@ const Shelves = ({getShelves, shelves}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Скляні полиці'
-                     category='shelf'
+                     category='shelves'
                      alt='Полка'
                      products={shelves}
             />

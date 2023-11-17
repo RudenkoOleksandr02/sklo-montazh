@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import s from '../../common/Link/Link.module.css';
 
 const ProductContent = ({category, name, price, article, preDescription}) => {
+
     return <Box>
         <Box>
             <Breadcrumbs aria-label='breadcrumbs' sx={{
@@ -12,13 +13,13 @@ const ProductContent = ({category, name, price, article, preDescription}) => {
             }}>
                 <Link to='/home' className={s.item}>Головна</Link>
                 <Link to={`/${category}`} className={s.item}>
-                    {category === 'shower' && 'Душові кабіни та огорожі'}
-                    {category === 'mirror' && 'Дзеркала'}
-                    {category === 'door' && 'Двері'}
-                    {category === 'shelf' && 'Полиці'}
-                    {category === 'photoPrinting' && 'Фотодрук'}
-                    {category === 'partition' && 'Перегородки'}
-                    {category === 'railing' && 'Перила'}
+                    {category === 'showers' && 'Душові кабіни та огорожі'}
+                    {category === 'mirrors' && 'Дзеркала'}
+                    {category === 'doors' && 'Двері'}
+                    {category === 'shelves' && 'Полиці'}
+                    {category === 'photo_printings' && 'Фотодрук'}
+                    {category === 'partitions' && 'Перегородки'}
+                    {category === 'railings' && 'Перила'}
                 </Link>
                 <Typography color='text.primary' sx={{
                     fontSize: '14px'

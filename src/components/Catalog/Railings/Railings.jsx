@@ -20,7 +20,7 @@ const Railings = ({getRailings, railings}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Скляні перила'
-                     category='railing'
+                     category='railings'
                      alt='Перила'
                      products={railings}
             />

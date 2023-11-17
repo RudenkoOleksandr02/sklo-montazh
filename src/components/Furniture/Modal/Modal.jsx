@@ -6,12 +6,12 @@ import ReactMarkdown from "react-markdown";
 const Modal = ({images, description, name, open, setModalData}) => {
     return (
         <Dialog open={open}
-               onClose={() => setModalData({
-                   open: false,
-                   name,
-                   images,
-                   description
-               })}
+                onClose={() => setModalData({
+                    open: false,
+                    name,
+                    images,
+                    description
+                })}
         >
             <DialogTitle sx={{
                 textAlign: 'center'
@@ -28,11 +28,7 @@ const Modal = ({images, description, name, open, setModalData}) => {
                     textAlign: 'center',
                     margin: '16px 0'
                 }}>Опис</Typography>
-                <DialogContentText sx={{
-                    color: 'black'
-                }}>
-                    {description ? <ReactMarkdown>{description}</ReactMarkdown> : ''}
-                </DialogContentText>
+                {description ? <ReactMarkdown>{description}</ReactMarkdown> : ''}
             </DialogContent>
         </Dialog>
     );

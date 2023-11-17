@@ -25,8 +25,8 @@ export default portfolioReducer;
 
 const setPhotos = (gallery) => ({type: ADD_PHOTOS, gallery});
 const removePhotos = () => ({type: REMOVE_PHOTOS})
-export const getProductGallery = (id) => async (dispatch) => {
-    dispatch(removePhotos())
-    const gallery = await portfolioAPI.getGallery(id);
+export const getProductGallery = ({ id, limit, page }) => async (dispatch) => {
+    dispatch(removePhotos());
+    const gallery = await portfolioAPI.getGallery(id, limit, page);
     dispatch(setPhotos(gallery));
 }

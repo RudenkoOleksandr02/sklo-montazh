@@ -20,7 +20,7 @@ const Partitions = ({getPartitions, partitions}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Скляні перегородки'
-                     category='partition'
+                     category='partitions'
                      alt='перегородка'
                      products={partitions}
             />

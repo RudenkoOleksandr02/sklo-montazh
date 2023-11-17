@@ -15,7 +15,7 @@ import s from './Catalog.module.css';
 import {useEffect, useState} from "react";
 
 
-const CardProduct = ({mainImage, name, price, alt, id, category}) => {
+const CardProduct = ({mainImage, name, price, alt, id, category, article}) => {
     const isMobileScreen = useMediaQuery('(max-width: 899px)')
     const [loaded, setLoaded] = useState(true);
     const handleImageLoad = () => {
@@ -41,7 +41,7 @@ const CardProduct = ({mainImage, name, price, alt, id, category}) => {
                     objectFit: 'contain',
                     margin: '0 auto 0 auto'
                 }}
-                image={mainImage}
+                image={BaseURL + '/assets/' + mainImage}
                 alt={alt}
                 style={{display: loaded ? 'none' : 'block'}}
                 onLoad={handleImageLoad}
@@ -59,6 +59,11 @@ const CardProduct = ({mainImage, name, price, alt, id, category}) => {
                         textAlign: 'center'
                     }}>{price ? `Ціна товару: ${price} грн` : 'Ціна залежить від ваших уподобань'}
                 </Typography>
+                {article && <Typography sx={{
+                    textAlign: 'center'
+                }}>Артикул:
+                    <Typography color='secondary' component='span'> {article}</Typography>
+                </Typography>}
             </CardContent>
             <CardActions>
                 <Button

@@ -1,23 +1,27 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {ToggleButton, ToggleButtonGroup, IconButton, Box} from "@mui/material";
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import {useNavigate, useParams} from "react-router-dom";
 
-const ButtonsRequest = ({
-                            openCategory,
-                            getBarbells,
-                            getFastenings,
-                            getHandles,
-                            getLoops,
-                            getSlidingSystems,
-                            getThresholds,
-                            getSealers,
-                            getProfiles,
-                            getPendulumSystems,
-                            getShelfMounts
-                        }) => {
-    const [formats, setFormats] = useState('barbells');
-    const [page, setPage] = useState(1);
+const ButtonsRequest = ({category}) => {
+    const params= useParams()
+    const route = useNavigate()
+    const [formats, setFormats] = useState(category);
+    const [page, setPage] = useState(parseInt(localStorage.getItem('currentPage')) || 1);
+
+    useEffect(() => {
+        localStorage.setItem('currentPage', page.toString());
+
+        return () => {
+            localStorage.removeItem('currentPage')
+        }
+    }, [page]);
+
+    useEffect(() => {
+        setFormats(params.category)
+    }, [params.category])
+
     const buttonsPerPage = 5;
     const totalButtons = 10;
 
@@ -39,24 +43,24 @@ const ButtonsRequest = ({
     };
 
     const buttonsData = [
-        {value: 'barbells', label: 'Штанги', action: () => openCategory('barbells', getBarbells)},
-        {value: 'fastenings', label: 'Кріплення', action: () => openCategory('fastenings', getFastenings)},
-        {value: 'handles', label: 'Ручки', action: () => openCategory('handles', getHandles)},
-        {value: 'loops', label: 'Петлі', action: () => openCategory('loops', getLoops)},
+        {value: 'furniture_barbells', label: 'Штанги', action: () => route('/furniture_barbells')},
+        {value: 'furniture_fastenings', label: 'Кріплення', action: () => route('/furniture_fastenings')},
+        {value: 'furniture_handles', label: 'Ручки', action: () => route('/furniture_handles')},
+        {value: 'furniture_loops', label: 'Петлі', action: () => route('/furniture_loops')},
         {
-            value: 'slidingSystems',
+            value: 'furniture_sliding_systems',
             label: 'Розсувні системи',
-            action: () => openCategory('slidingSystems', getSlidingSystems)
+            action: () => route('/furniture_sliding_systems')
         },
-        {value: 'thresholds', label: 'Пороги', action: () => openCategory('thresholds', getThresholds)},
-        {value: 'sealers', label: 'Ущільнювачі', action: () => openCategory('sealers', getSealers)},
-        {value: 'profiles', label: 'Профілі', action: () => openCategory('profiles', getProfiles)},
+        {value: 'furniture_thresholds', label: 'Пороги', action: () => route('/furniture_thresholds')},
+        {value: 'furniture_sealers', label: 'Ущільнювачі', action: () => route('/furniture_sealers')},
+        {value: 'furniture_profiles', label: 'Профілі', action: () => route('/furniture_profiles')},
         {
-            value: 'pendulumSystems',
+            value: 'furniture_pendulum_systems',
             label: 'Маятникові системи',
-            action: () => openCategory('pendulumSystems', getPendulumSystems)
+            action: () => route('/furniture_pendulum_systems')
         },
-        {value: 'shelfMounts', label: 'Кріплення для полиць', action: () => openCategory('shelfMounts', getShelfMounts)}
+        {value: 'furniture_shelf_mounts', label: 'Кріплення для полиць', action: () => route('/furniture_shelf_mounts')}
     ];
 
     const visibleButtons = buttonsData

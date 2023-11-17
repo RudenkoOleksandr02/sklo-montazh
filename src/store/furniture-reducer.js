@@ -1,4 +1,4 @@
-import {furnitureAPI} from "../api/api";
+import {getFurnitureAPI} from "../api/api";
 
 const SET_FURNITURE = 'SET_FURNITURE';
 const DELETE_FURNITURE = 'DELETE_FURNITURE';
@@ -56,49 +56,15 @@ const setLoaded = () => {
     }
 }
 
-const getFurniture = async (dispatch, method) => {
-    dispatch(setLoading());
+export const getFurniture = (type) =>  async (dispatch) => {
     try {
+        dispatch(setLoading());
         deleteFurniture()
-        const data = await method();
+        const data = await getFurnitureAPI(type)
         dispatch(setFurniture(data));
     } catch (error) {
         console.error("Произошла ошибка при получении данных:", error);
     } finally {
         dispatch(setLoaded());
     }
-}
-
-export const getBarbells = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getBarbells)
-}
-
-export const getFastenings = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getFastenings)
-}
-
-export const getHandles = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getHandles)
-}
-
-export const getLoops = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getLoops)
-}
-export const getProfiles = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getProfiles)
-}
-export const getSealers = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getSealers)
-}
-export const getSlidingSystems = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getSlidingSystems)
-}
-export const getThresholds = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getThresholds)
-}
-export const getPendulumSystems = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getPendulumSystems)
-}
-export const getShelfMounts = () => async (dispatch) => {
-    getFurniture(dispatch, furnitureAPI.getShelfMounts)
 }

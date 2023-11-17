@@ -20,7 +20,7 @@ const Showers = ({getShowers, showers}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Душові кабіни та огорожі'
-                     category='shower'
+                     category='showers'
                      alt='Душова'
                      products={showers}
             />

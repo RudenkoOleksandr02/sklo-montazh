@@ -49,16 +49,16 @@ function App() {
                     <Navbar/>
                     <Routes>
                         <Route path='/home' element={<Home/>}/>
-                        <Route path='/shower' element={<Showers/>}/>
-                        <Route path='/mirror' element={<Mirrors/>}/>
-                        <Route path='/partition' element={<Partitions/>}/>
-                        <Route path='/door' element={<Doors/>}/>
-                        <Route path='/shelf' element={<Shelves/>}/>
-                        <Route path='/photoPrinting' element={<PhotoPrintings/>}/>
-                        <Route path='/railing' element={<Railings/>}/>
+                        <Route path='/showers' element={<Showers/>}/>
+                        <Route path='/mirrors' element={<Mirrors/>}/>
+                        <Route path='/partitions' element={<Partitions/>}/>
+                        <Route path='/doors' element={<Doors/>}/>
+                        <Route path='/shelves' element={<Shelves/>}/>
+                        <Route path='/photo_printings' element={<PhotoPrintings/>}/>
+                        <Route path='/railings' element={<Railings/>}/>
                         <Route path='/portfolio' element={<Portfolio/>}/>
                         <Route path='/delivery' element={<Order/>}/>
-                        <Route path='/furniture' element={<Furniture/>}/>
+                        <Route path='/:category' element={<Furniture/>}/>
                         <Route path={'/:category/:productId'} element={<Product/>}/>
                         <Route path='/' element={<Navigate to='/home'/>}/>
                         <Route path={'*'} element={<NotFound/>}/>

@@ -36,6 +36,7 @@ const Catalog = ({titleCategory, products, category, alt}) => {
                 : products.map((product, index) => {
                     return <CardProduct category={category}
                                         id={product.id}
+                                        article={product.article}
                                         mainImage={product.mainImage}
                                         name={product.name}
                                         price={product.price}

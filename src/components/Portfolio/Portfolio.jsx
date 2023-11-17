@@ -7,7 +7,9 @@ import {
     CircularProgress,
     Typography,
     Breadcrumbs,
-    Box
+    Box,
+    Pagination,
+    PaginationItem
 } from "@mui/material";
 import {getProductGallery} from "../../store/portfolio-reducer";
 import {useEffect, useState} from "react";
@@ -16,25 +18,39 @@ import Image from './Image/Image';
 import {Link} from "react-router-dom";
 import s from "../common/Link/Link.module.css";
 import {Helmet, HelmetProvider} from "react-helmet-async";
+import {getPagesCount} from "../../utils/pages";
 
-const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
+const limit = 12;
+
+const Portfolio = ({getProductGallery, gallery: {images, title, count}}) => {
     const [photos, setPhotos] = useState(null);
-    const [category, setCategory] = useState('door');
+    const [category, setCategory] = useState("door");
+    const [currentPage, setCurrentPage] = useState(1);
+    const [categoryId, setCategoryId] = useState(1)
+
     const handleClick = (id) => {
-        getProductGallery(id);
-    }
+        getProductGallery({id, limit, page: 1});
+        setCategoryId(id)
+    };
     const handleCategoryChange = (e, update) => {
         if (update !== null) {
             setCategory(update);
+            setCurrentPage(1);
         }
-    }
-
+    };
     useEffect(() => {
-        getProductGallery(1);
+        getProductGallery({id: categoryId, limit, page: 1});
     }, []);
+    useEffect(() => {
+        getProductGallery({id: categoryId, limit, page: currentPage});
+    }, [currentPage]);
+
     useEffect(() => {
         setPhotos(images);
     }, [images]);
+    const changePage = (event, page) => {
+        setCurrentPage(page)
+    }
 
     return <HelmetProvider>
         <>
@@ -50,9 +66,7 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                 padding: '24px'
             }}>
                 <Breadcrumbs aria-label='breadcrumbs' sx={{
-                    display: 'flex',
-                    justifyContent: 'right',
-                    fontSize: '14px'
+                    display: 'flex', justifyContent: 'right', fontSize: '14px'
                 }}>
                     <Link to='/home' className={s.item}>Головна</Link>
                     <Typography sx={{
@@ -61,13 +75,11 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                 </Breadcrumbs>
                 <Box>
                     <Typography variant='h5' component='h2' sx={{
-                        textAlign: 'center',
-                        margin: '16px 0'
+                        textAlign: 'center', margin: '16px 0'
                     }}>Портфоліо</Typography>
                 </Box>
                 <Box sx={{
-                    maxWidth: '1001px',
-                    margin: '24px auto'
+                    maxWidth: '1001px', margin: '24px auto'
                 }}>
                     <ToggleButtonGroup value={category}
                                        onChange={handleCategoryChange}
@@ -76,8 +88,7 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                                        color='secondary'
                                        exclusive
                                        sx={{
-                                           display: 'flex',
-                                           flexWrap: 'wrap'
+                                           display: 'flex', flexWrap: 'wrap'
                                        }}
                     >
                         <ToggleButton value='door'
@@ -165,27 +176,42 @@ const Portfolio = ({getProductGallery, gallery: {images, title}}) => {
                                       }}
                         >Душові кабіни</ToggleButton>
                     </ToggleButtonGroup>
-                    <Paper
-                        elevation={1}
-                        sx={{
-                            padding: '16px 0',
-                            borderRadius: '0'
-                        }}>
-                        {!images
-                            ? <CircularProgress sx={{
-                                display: 'block',
-                                margin: '16px auto'
-                            }}/>
-                            : <Grid container rowSpacing={2}>
-                                {photos && photos.map((image, index) => {
-                                    return <Image
-                                        key={index}
-                                        image={image}
-                                        title={title}
-                                    />
-                                })}
+                    <Paper elevation={1} sx={{padding: '16px 0', borderRadius: '0'}}>
+                        {!images ? (
+                            <CircularProgress sx={{display: 'block', margin: '16px auto'}}/>
+                        ) : (
+                            <Grid container rowSpacing={2}>
+                                {images.map(image => (
+                                    <Image key={image} image={image} title={title}/>
+                                ))}
                             </Grid>
-                        }
+                        )}
+                        <Box
+                            sx={{
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginTop: 2,
+                            }}
+                        >
+                            {images && images.length > 0 && (
+                                <Pagination
+                                    count={getPagesCount(count, limit)}
+                                    page={currentPage}
+                                    onChange={changePage}
+                                    renderItem={(item) => (
+                                        <PaginationItem
+                                            {...item}
+                                            disabled={item.type === 'page' ? item.selected : item.disabled}
+                                            sx={{
+                                                color: item.selected ? 'white !important' : '',
+                                                background: item.selected ? 'blue !important' : '',
+                                            }}
+                                        />
+                                    )}
+                                    color='secondary'
+                                />
+                            )}
+                        </Box>
                     </Paper>
                 </Box>
             </Box>

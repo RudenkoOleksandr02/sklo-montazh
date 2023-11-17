@@ -13,6 +13,7 @@ const Quantity = ({
                       category,
                       article
                   }) => {
+    
     const handleAdd = () => {
         addProductToBasket(category, {id, name, price, category, article})
     }

@@ -22,7 +22,7 @@ const Navigation = ({open, handleClick, handleClose, anchorEl, direction, setIsO
                 aria-expanded={open ? 'true' : undefined}
                 endIcon={!open ? <KeyboardArrowDownIcon/> : <KeyboardArrowUpIcon/>}
             >Каталог продукції</Button>
-            <NavigationItem path='/furniture' name='Фурнітура' setIsOpenDrawer={setIsOpenDrawer}/>
+            <NavigationItem path='/furniture_barbells' name='Фурнітура' setIsOpenDrawer={setIsOpenDrawer}/>
             <NavigationItem path='/portfolio' name='Портфоліо' setIsOpenDrawer={setIsOpenDrawer}/>
             <NavigationItem path='/delivery' name='Оплата і доставка' setIsOpenDrawer={setIsOpenDrawer}/>
         </Stack>
@@ -43,13 +43,13 @@ const Navigation = ({open, handleClick, handleClose, anchorEl, direction, setIsO
                 horizontal: 'right'
             }}
         >
-            <MenuNavigationItem name='Душові кабіни та огорожі' path='/shower' handleClose={handleClose}/>
-            <MenuNavigationItem name='Дзеркала' path='/mirror' handleClose={handleClose}/>
-            <MenuNavigationItem name='Скляні перегородки' path='/partition' handleClose={handleClose}/>
-            <MenuNavigationItem name='Скляні двері' path='/door' handleClose={handleClose}/>
-            <MenuNavigationItem name='Полиці зі скла' path='/shelf' handleClose={handleClose}/>
-            <MenuNavigationItem name='Фотодрук на склі' path='/photoPrinting' handleClose={handleClose}/>
-            <MenuNavigationItem name='Перила' path='/railing' handleClose={handleClose}/>
+            <MenuNavigationItem name='Душові кабіни та огорожі' path='/showers' handleClose={handleClose}/>
+            <MenuNavigationItem name='Дзеркала' path='/mirrors' handleClose={handleClose}/>
+            <MenuNavigationItem name='Скляні перегородки' path='/partitions' handleClose={handleClose}/>
+            <MenuNavigationItem name='Скляні двері' path='/doors' handleClose={handleClose}/>
+            <MenuNavigationItem name='Полиці зі скла' path='/shelves' handleClose={handleClose}/>
+            <MenuNavigationItem name='Фотодрук на склі' path='/photo_printings' handleClose={handleClose}/>
+            <MenuNavigationItem name='Перила' path='/railings' handleClose={handleClose}/>
         </Menu>
     </>
 

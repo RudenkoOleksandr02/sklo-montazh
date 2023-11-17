@@ -7,20 +7,13 @@ const instance = axios.create({
 })
 const productsQl = (products) => {
     return `query getCatalog {
-        ${products}(pagination: {limit: 1000}) {
-            data {
-                id
-                attributes {
-                    name
-                    price
-                    mainImage {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
+        ${products} {
+            id
+            name
+            article
+            price
+            mainImage {
+              id
             }
         }
     }
@@ -28,20 +21,24 @@ const productsQl = (products) => {
 }
 const getCatalog = (query, category) => {
     return instance.post('', {query})
-        .then(response => response.data.data[category].data.map((product) => {
-            return {
-                id: product.id,
-                ...product.attributes,
-                mainImage: product.attributes.mainImage.data.attributes.url
-            }
-        }))
+        .then(response => {
+            const data = response.data.data[category].map(product => {
+                return {
+                    id: product.id,
+                    ...product,
+                    mainImage: product.mainImage.id
+                }
+            })
+
+            return data
+        })
 }
 
 const showersQuery = productsQl('showers');
 const mirrorsQuery = productsQl('mirrors');
 const doorsQuery = productsQl('doors');
 const partitionsQuery = productsQl('partitions');
-const photoPrintingsQuery = productsQl('photoPrintings');
+const photoPrintingsQuery = productsQl('photo_printings');
 const railingsQuery = productsQl('railings');
 const shelvesQuery = productsQl('shelves');
 
@@ -59,7 +56,7 @@ export const categoryAPI = {
         return getCatalog(partitionsQuery, 'partitions')
     },
     getPhotoPrintings() {
-        return getCatalog(photoPrintingsQuery, 'photoPrintings')
+        return getCatalog(photoPrintingsQuery, 'photo_printings')
     },
     getRailings() {
         return getCatalog(railingsQuery, 'railings')
@@ -71,34 +68,24 @@ export const categoryAPI = {
 }
 
 const productQl = (product) => {
-    return `query getProduct($id: ID) {
-        ${product}(id: $id) {
-            data {
-                attributes {
-                    name
-                    price
-                    mainImage {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    otherImage {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                    article
-                    preDescription
-                    description
-                    metaDescription
-                    metaKeys
-                }
-            }
+    return `query getProduct($id: ID!) {
+      ${product}(id: $id) {
+        name
+        price
+        article
+        pre_description
+        description
+        meta_description
+        meta_keys
+        mainImage {
+          id
         }
+        otherImage {
+          directus_files_id {
+            id
+          }
+        }
+      }
     }
 `
 }
@@ -108,16 +95,16 @@ export const productAPI = {
         let productQuery = productQl(category)
         return instance.post('', {query: productQuery, variables: {"id": id}})
             .then(response => {
-                const attr = response.data.data[category].data.attributes
-                const mainImage = attr.mainImage.data.attributes.url
+                const attr = response.data.data[category]
+                const mainImage = attr.mainImage.id
                 let otherImage
 
-                if (Array.isArray(attr.otherImage.data)) {
-                    otherImage = attr.otherImage.data.map(el => {
-                        return el.attributes.url
+                if (Array.isArray(attr.otherImage)) {
+                    otherImage = attr.otherImage.map(el => {
+                        return el['directus_files_id']
                     })
                 } else {
-                    otherImage = attr.otherImage.data.attributes.url
+                    otherImage = attr.otherImage['directus_files_id']
                 }
                 return {...attr, mainImage, otherImage}
             })
@@ -128,164 +115,99 @@ export const productAPI = {
     }
 }
 
-const portfolioQl = () => {
-    return `query getPhotos($id: ID) {
-        portfolio(id: $id) {
-  	        data {
-                attributes {
-                    title
-                    images(pagination: {
-                        limit: 1000
-                    }) {
-                        data {
-                            attributes {
-                                url
-                            }
-                        }
-                    }
-                }
-            }
-        } 
+const portfolioQl = (limit, page) => {
+    return `
+    query getPhotos($id: ID!) {
+      portfolios_by_id(id: $id) {
+        title
+        images(limit: ${limit}, page: ${page}) {
+          directus_files_id {
+            id
+          }
+        }
+        images_func {
+            count
+        }
+      }
     }
-`
-}
-export const portfolioAPI = {
-    getGallery(id) {
-        return instance.post('', {query: portfolioQl(), variables: {"id": id}})
-            .then(response => {
-                const attributes = response.data.data.portfolio.data.attributes
-                const title = attributes.title
-                const images = attributes.images.data.map(img => {
-                    return img.attributes.url
-                })
+  `;
+};
 
-                return {title, images}
-            })
-    }
-}
+export const portfolioAPI = {
+    getGallery(id, limit, page) {
+        return instance
+            .post('', { query: portfolioQl(limit, page), variables: { id } })
+            .then((response) => {
+                const attributes = response.data.data['portfolios_by_id'];
+                const title = attributes.title;
+                const images = attributes.images.map((img) => img['directus_files_id'].id);
+                const count = attributes["images_func"].count
+                return { title, images, count };
+            });
+    },
+};
 
 const orderQl = `
     query getContent {
-  orders {
-    data {
-      attributes {
+      orders {
         content
-      }
+      }      
     }
-  }      
-}
 `
 export const orderAPI = {
     getContent() {
         return instance.post('', {query: orderQl})
-            .then(response => response.data.data.orders.data[0].attributes.content)
+            .then(response => {
+                return response.data.data.orders[0].content
+            })
     }
 }
 
 
 
-
-
-const FurnitureBarbellsQl = `
-query getFurniture {
-  barbells(pagination: {limit: 1000}) {
-    data {
-      id
-      attributes {
-        name
-        article
-        description
-        inStock
-        price
-        images {
-          data {
-            attributes {
-              url
-            }
-          }
-        }
-      }
-    }
-  }
-}
-`;
 const furnitureQl = (type) => {
     return `query getFurniture {
-  ${type}(pagination: {limit: 1000}) {
-    data {
-      id
-      attributes {
+      ${type} {
+        id
         name
         article
         description
-        inStock
-        price
+        in_stock
+        price_dollars
         images {
-          data {
-            attributes {
-              url
-            }
+          directus_files_id {
+            id
           }
         }
       }
-    }
-  }
-}`
+    }`
 }
-
-const getFurniture = (type) => {
+export const getFurnitureAPI = (type) => {
     let furnitureQuery = furnitureQl(type);
     return instance.post('', {query: furnitureQuery})
-        .then(response => response.data.data[type].data.map(furniture => {
+        .then(response => response.data.data[type].map(furniture => {
             return {
+                ...furniture,
+                price: Number(furniture.price),
                 id: furniture.id,
-                ...furniture.attributes,
-                images: furniture.attributes.images.data.map(image => {
-                    return image.attributes.url
+                images: furniture.images.map(image => {
+                    return image["directus_files_id"].id
                 })
             }
         }))
 }
-export const furnitureAPI = {
-    getBarbells() {
-        return instance.post('', {query: FurnitureBarbellsQl})
-            .then(response => response.data.data.barbells.data.map(furniture => {
-                return {
-                    id: furniture.id,
-                    ...furniture.attributes,
-                    images: furniture.attributes.images.data.map(image => {
-                        return image.attributes.url
-                    })
-                }
-            }))
-    },
-    getFastenings() {
-        return getFurniture('furnitureFastenings')
-    },
-    getLoops() {
-        return getFurniture('furnitureLoops')
-    },
-    getProfiles() {
-        return getFurniture('furnitureProfiles')
-    },
-    getSealers() {
-        return getFurniture('furnitureSealers')
-    },
-    getSlidingSystems() {
-        return getFurniture('furnitureSlidingSystems')
-    },
-    getThresholds() {
-        return getFurniture('furnitureThresholds')
-    },
-    getHandles() {
-        return getFurniture('furnitureHandles')
-    },
-    getPendulumSystems() {
-        return getFurniture('furniturePendulumSystems')
-    },
-    getShelfMounts() {
-        return getFurniture('furnitureShelfMounts')
+
+
+const getExchangeRateAPI = `
+    query getProduct {
+      dollar_exchange_rate {
+        hryvnia 
+      }
     }
+`
+export const getDollarExchangeRate = () => {
+    return instance.post('', {query: getExchangeRateAPI})
+        .then(response => response.data.data["dollar_exchange_rate"][0].hryvnia)
 }
 
 

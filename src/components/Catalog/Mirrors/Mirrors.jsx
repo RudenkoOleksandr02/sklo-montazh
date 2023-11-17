@@ -20,7 +20,7 @@ const Mirrors = ({getMirrors, mirrors}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Дзеркала'
-                     category='mirror'
+                     category='mirrors'
                      alt='Дзеркало'
                      products={mirrors}
             />

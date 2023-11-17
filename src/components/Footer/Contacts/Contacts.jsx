@@ -14,7 +14,11 @@ const Contacts = () => {
             <LocalPhoneIcon sx={{
                 marginRight: '5px'
             }}/>
-            <Typography>+380 67 384 31 81</Typography>
+            <Typography>
+                <a href="tel:+380673843181" style={{
+                    color: '#3f51b5'
+                }}>+380 67 384 31 81</a>
+            </Typography>
         </Stack>
         <Stack direction='row'>
             <InstagramIcon sx={{

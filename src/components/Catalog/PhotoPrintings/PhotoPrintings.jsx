@@ -20,7 +20,7 @@ const PhotoPrintings = ({getPhotoPrintings, photoPrintings}) => {
                 />
             </Helmet>
             <Catalog titleCategory='Фотодрук на склі'
-                     category='photoPrinting'
+                     category='photo_printings'
                      alt='Фотодрук на склі'
                      products={photoPrintings}
             />

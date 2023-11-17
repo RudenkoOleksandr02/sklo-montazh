@@ -1,15 +1,15 @@
 const initialState = {
     furniture: {
-        barbells: [],
-        fastenings: [],
-        handles: [],
-        loops: [],
-        slidingSystems: [],
-        thresholds: [],
-        sealers: [],
-        profiles: [],
-        pendulumSystems: [],
-        shelfMounts: []
+        furniture_barbells: [],
+        furniture_fastenings: [],
+        furniture_handles: [],
+        furniture_loops: [],
+        furniture_sliding_systems: [],
+        furniture_thresholds: [],
+        furniture_sealers: [],
+        furniture_profiles: [],
+        furniture_pendulum_systems: [],
+        furniture_shelf_mounts: []
     },
     totalAmount: 0,
 };
@@ -78,16 +78,16 @@ const basketReducer = (state = initialState, action) => {
             return {
                 ...state,
                 furniture: {
-                    barbells: [],
-                    fastenings: [],
-                    handles: [],
-                    loops: [],
-                    slidingSystems: [],
-                    thresholds: [],
-                    sealers: [],
-                    profiles: [],
-                    pendulumSystems: [],
-                    shelfMounts: []
+                    furniture_barbells: [],
+                    furniture_fastenings: [],
+                    furniture_handles: [],
+                    furniture_loops: [],
+                    furniture_sliding_systems: [],
+                    furniture_thresholds: [],
+                    furniture_sealers: [],
+                    furniture_profiles: [],
+                    furniture_pendulum_systems: [],
+                    furniture_shelf_mounts: []
                 },
                 totalAmount: 0,
             };

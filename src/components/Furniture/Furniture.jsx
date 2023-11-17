@@ -19,7 +19,6 @@ const Furniture = ({totalAmount}) => {
         images: [],
         description: ''
     });
-    const [openDrawer, setOpenDrawer] = useState(false);
 
     const handleOpenModal = (open, name, images, description) => {
         setModalData({
@@ -55,22 +54,6 @@ const Furniture = ({totalAmount}) => {
         />
         <TableFurnitureWithButtons
             handleOpenModal={handleOpenModal}
-        />
-        <IconButton className={totalAmount !== 0 ? styles.blink_animation : ''} onClick={() => setOpenDrawer(true)} sx={{
-            position: 'sticky',
-            bottom: '10%',
-        }}>
-            <ShoppingCartIcon sx={{
-                fontSize: '45px',
-                padding: '3px',
-                color: totalAmount === 0 ? 'rgba(0, 0, 0, 0.5)' : '#1565C0',
-                border: totalAmount === 0 ? '2px inset rgba(0, 0, 0, 0.5)' : '2px inset #1565C0',
-                transition: '0.5s',
-                borderRadius: '50%'
-            }}/>
-        </IconButton>
-        <Purchases openDrawer={openDrawer}
-                   setOpenDrawer={setOpenDrawer}
         />
     </Box>
 };

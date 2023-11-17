@@ -2,6 +2,7 @@ import {Grid, Stack, Skeleton, useMediaQuery} from "@mui/material"
 import {useState} from 'react'
 import s from './Image.module.css'
 import ImageModal from "../../common/ImageModal/ImageModal"
+import {BaseURL} from "../../common/BaseURL/BaseURL";
 
 const Image = ({image, title}) => {
     const [loading, setLoading] = useState(true)
@@ -34,7 +35,7 @@ const Image = ({image, title}) => {
                                   height={height}
                                   variant='rectangular'
                                   animation='wave'/>}
-            <img src={image}
+            <img src={BaseURL + '/assets/' + image}
                  alt={title}
                  width={width}
                  height={height}
@@ -45,7 +46,7 @@ const Image = ({image, title}) => {
             />
             <ImageModal
                 isOpen={modalOpen}
-                imageUrl={image}
+                imageUrl={BaseURL + '/assets/' + image}
                 onClose={handleCloseModal}
             />
         </Stack>
