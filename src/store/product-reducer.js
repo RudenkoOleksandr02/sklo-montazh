@@ -9,10 +9,10 @@ const initialState = {
     name: '',
     price: null,
     article: null,
-    preDescription: '',
+    pre_description: '',
     description: '',
-    metaDescription: '',
-    metaKeys: ''
+    meta_description: '',
+    meta_keys: ''
 }
 
 
@@ -20,17 +20,17 @@ const initialState = {
 const productReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_PRODUCT:
-            const {name, price, article, description, preDescription, mainImage, otherImage, metaDescription, metaKeys} = action.product
+            const {name, price, article, description, pre_description, mainImage, otherImage, meta_description, meta_keys} = action.product
             return {
                 name,
                 price,
                 article,
                 description,
-                preDescription,
+                pre_description,
                 mainImage,
                 otherImage,
-                metaDescription,
-                metaKeys
+                meta_description,
+                meta_keys
             }
         case REMOVE_PRODUCT:
             return {
@@ -39,10 +39,10 @@ const productReducer = (state = initialState, action) => {
                 name: '',
                 price: null,
                 article: null,
-                preDescription: '',
+                pre_description: '',
                 description: '',
-                metaDescription: '',
-                metaKeys: ''
+                meta_description: '',
+                meta_keys: ''
             }
         default:
             return state

@@ -4,7 +4,7 @@ import Application from "./Application/Application";
 import ReactMarkdown from 'react-markdown';
 import s from '../../common/Link/Link.module.css';
 
-const ProductContent = ({category, name, price, article, preDescription}) => {
+const ProductContent = ({category, name, price, article, pre_description}) => {
 
     return <Box>
         <Box>
@@ -52,7 +52,7 @@ const ProductContent = ({category, name, price, article, preDescription}) => {
             <Application title={name}/>
         </Box>
         <Box>
-            {preDescription && <ReactMarkdown>{preDescription}</ReactMarkdown>}
+            {pre_description && <ReactMarkdown>{pre_description}</ReactMarkdown>}
         </Box>
     </Box>
 }

@@ -19,11 +19,11 @@ const Product = (props) => {
         price,
         article,
         description,
-        preDescription,
+        pre_description,
         mainImage,
         otherImage,
-        metaDescription,
-        metaKeys
+        meta_description,
+        meta_keys
     } = props.product
     useEffect(() => {
         props.getProduct(productId, categoryById);
@@ -40,10 +40,10 @@ const Product = (props) => {
         <>
             <Helmet>
                 <meta name="description"
-                      content={metaDescription}
+                      content={meta_description}
                 />
                 <meta name="keywords"
-                      content={metaKeys}
+                      content={meta_keys}
                 />
             </Helmet>
             <Box sx={{
@@ -68,7 +68,7 @@ const Product = (props) => {
                                         name={name}
                                         price={price}
                                         category={category}
-                                        preDescription={preDescription}
+                                        pre_description={pre_description}
                         />
                     </Grid>
                     <Grid item xs={12}>
