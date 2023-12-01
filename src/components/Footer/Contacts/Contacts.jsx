@@ -1,6 +1,7 @@
 import {Stack, Typography, Box, Link} from "@mui/material";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MailIcon from '@mui/icons-material/Mail';
 import s from '../../common/Link/Link.module.css';
 
 const Contacts = () => {
@@ -25,6 +26,14 @@ const Contacts = () => {
                 marginRight: '5px'
             }}/>
             <Link href='https://www.instagram.com/sklomontazh.kiev/' color='secondary'>Наш інстаграм</Link>
+        </Stack>
+        <Stack direction='row' sx={{
+            margin: '5px 0'
+        }}>
+            <MailIcon sx={{
+                marginRight: '5px'
+            }}/>
+            <Typography>sklomontag@gmail.com</Typography>
         </Stack>
         <Box sx={{
             margin: '5px 0'
