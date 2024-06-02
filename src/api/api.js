@@ -158,7 +158,7 @@ export const orderAPI = {
     getContent() {
         return instance.post('', {query: orderQl})
             .then(response => {
-                return response.data.data.orders[0].content
+                return response.data.data.orders.content
             })
     }
 }
@@ -207,7 +207,7 @@ const getExchangeRateAPI = `
 `
 export const getDollarExchangeRate = () => {
     return instance.post('', {query: getExchangeRateAPI})
-        .then(response => response.data.data["dollar_exchange_rate"][0].hryvnia)
+        .then(response => response.data.data["dollar_exchange_rate"].hryvnia)
 }
 
 

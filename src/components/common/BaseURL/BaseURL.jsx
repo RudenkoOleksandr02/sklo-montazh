@@ -1,1 +1,1 @@
-export const BaseURL = 'https://directus-production-2f80.up.railway.app';
+export const BaseURL = 'https://directus-production-6a5d.up.railway.app';
