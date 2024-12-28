@@ -5,6 +5,8 @@ import ReviewCard from './ReviewCard';
 import cl from './SwiperReviews.module.css';
 import {useFetchReviewsQuery} from "../../../services/ReviewService";
 import Preloader from "../../ui/Preloader/Preloader";
+import 'swiper/css/pagination';
+import 'swiper/css/free-mode';
 
 const SwiperReviews: FC = () => {
     const swiperParams = {
