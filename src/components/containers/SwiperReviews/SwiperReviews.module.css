@@ -8,7 +8,7 @@
 }
 
 /* SWIPER */
-.cardList {
+.wrapper {
     :global(.swiper) {
         overflow: visible !important;
     }
@@ -29,7 +29,7 @@
     }
 }
 @media (max-width: 999px) {
-    .cardList {
+    .wrapper {
         :global(.swiper-pagination-bullets) {
             width: 85px !important;
         }
