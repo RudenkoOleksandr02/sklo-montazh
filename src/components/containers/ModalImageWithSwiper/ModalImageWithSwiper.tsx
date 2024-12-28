@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useRef, useState} from 'react';
 import cl from './ModalImageWithSwiper.module.css';
-import Preloader from "../Preloader/Preloader";
+import Preloader from "../../ui/Preloader/Preloader";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
-import {ReactComponent as Arrow} from './../../../assets/images/arrowBottom2.svg'
+import {ReactComponent as Arrow} from '../../../assets/images/arrowBottom2.svg'
 
 interface ModalImageProps {
     onClose: () => void;

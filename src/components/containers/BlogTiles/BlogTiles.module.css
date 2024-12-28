@@ -1,0 +1,103 @@
+.wrapper {
+    color: var(--white);
+    padding: 72px 0;
+    cursor: pointer;
+}
+
+.grid {
+    margin-top: 40px;
+    gap: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(200px, auto);
+}
+
+.tile {
+    border: 1px solid var(--white);
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+.tile .animateSpan {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: block;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: var(--white);
+    transition: width 0.5s ease-in-out, height 0.5s ease-in-out;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+.tile svg path {
+    transition: .5s ease-in-out;
+}
+.tile .inner {
+    z-index: 2;
+}
+.tile h4 {
+    font-size: 34px;
+    font-weight: 400;
+}
+.tile p {
+    line-height: 18.75px;
+    margin-top: 10px;
+    max-width: 315px;
+}
+.tile .dateWithArrow {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+}
+.tile:nth-child(4n + 1),
+.tile:nth-child(4n + 4) {
+    grid-column: span 2;
+}
+.tile:nth-child(4n + 2),
+.tile:nth-child(4n + 3) {
+    grid-column: span 1;
+}
+@media (max-width: 999px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+    }
+    .tile {
+        grid-column: 1 / -1 !important;
+    }
+}
+
+@media (hover: hover) {
+    .tile:hover {
+        color: var(--dark);
+    }
+    .tile:hover svg path {
+        fill: var(--dark);
+    }
+    .tile:hover .animateSpan {
+        width: 225%;
+        height: calc(225% * 2.25);
+    }
+}
+@media (hover: none) {
+    .tile {
+        transition: none;
+    }
+    .tile:active {
+        background-color: var(--white);
+        color: var(--dark);
+    }
+    .tile svg path {
+        transition: none;
+    }
+    .tile:active svg path {
+        fill: var(--dark);
+    }
+}

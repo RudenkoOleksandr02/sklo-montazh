@@ -1,4 +1,8 @@
 import React, {FC} from 'react';
+import {ReactComponent as MenuWhite} from './../../../../assets/images/menu_white.svg';
+import {ReactComponent as MenuDark} from './../../../../assets/images/menu_dark.svg';
+import cl from './MenuButton.module.css';
+
 
 export enum MenuVariant {
     white = 'white',
@@ -7,14 +11,16 @@ export enum MenuVariant {
 
 interface MenuProps {
     variant: MenuVariant;
+    onClick: () => void;
 }
 
-const Menu: FC<MenuProps> = ({variant}) => {
+const MenuButton: FC<MenuProps> = ({variant, onClick}) => {
     return (
-        <div>
-            
-        </div>
+        <button className={cl.button} onClick={onClick}>
+            {variant === MenuVariant.white && <MenuWhite/>}
+            {variant === MenuVariant.dark && <MenuDark/>}
+        </button>
     );
 };
 
-export default Menu;
+export default MenuButton;

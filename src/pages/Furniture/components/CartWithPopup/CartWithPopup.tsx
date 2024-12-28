@@ -1,27 +1,37 @@
 import React, {FC, useEffect} from 'react';
-import cl from "../Furniture.module.css";
-import CartButton from "../../../components/ui/buttons/CartButton/CartButton";
-import Popup from "../../../components/ui/Popup/Popup";
-import {IProduct} from "../../../types";
+import cl from "./CartWithPopup.module.css";
+import CartButton from "../../../../components/ui/buttons/CartButton/CartButton";
+import Popup from "../../../../components/ui/Popup/Popup";
+import {IProduct} from "../../../../types";
+import Products from "./Products/Products";
+import DeliveryData from "./PlacingOrder/DeliveryData";
+import PlacingOrder from "./PlacingOrder/PlacingOrder";
 
-interface CartWithPopupProps {
+export interface ProductsState {
     products: IProduct[];
-    generalQuantity: number;
     addProduct: (product: IProduct) => void;
     reduceQuantityOfProductById: (id: number | string) => void;
     deleteProductById: (id: number | string) => void;
+}
+
+interface CartWithPopupProps extends ProductsState {
+    generalQuantity: number;
+    generalPrice: number;
     isOpenCart: boolean;
     setIsOpenCart: (isOpenCart: boolean) => void;
+    cleanCart: () => void;
 }
 
 const CartWithPopup: FC<CartWithPopupProps> = ({
                                                    generalQuantity,
+                                                   generalPrice,
                                                    products,
                                                    addProduct,
                                                    reduceQuantityOfProductById,
                                                    deleteProductById,
                                                    isOpenCart,
-                                                   setIsOpenCart
+                                                   setIsOpenCart,
+                                                   cleanCart
                                                }) => {
     useEffect(() => {
         if (!generalQuantity) {
@@ -34,34 +44,23 @@ const CartWithPopup: FC<CartWithPopupProps> = ({
             <div className={cl.cart}>
                 <CartButton countProduct={generalQuantity} onClick={() => setIsOpenCart(true)}/>
             </div>
-            <Popup active={isOpenCart} setActive={setIsOpenCart}>
+            <Popup active={isOpenCart} setActive={setIsOpenCart} isCustomClose={true}>
                 <div className={cl.popupForCart}>
-                    <h3>Кошик</h3>
-                    <div className={cl.products}>
-                        {products.map((product, index) => (
-                            <div key={product.id} className={cl.product}>
-                                <div className={cl.inner}>
-                                    <div className={cl.imageContainer}>
-                                        <img src={product.image.url}
-                                             alt={product.image.alternativeText || 'furniture ' + index}/>
-                                    </div>
-                                    <div className={cl.articleWithName}>
-                                        <p>{product.name}</p>
-                                        <p>Артикул: {product.article}</p>
-                                    </div>
-                                </div>
-                                <div className={cl.inner}>
-                                    <p>{product.price * product.quantity}₴</p>
-                                    <div className={cl.buttonsAndQuantity}>
-                                        <button onClick={() => reduceQuantityOfProductById(product.id)}>-</button>
-                                        {product.quantity}
-                                        <button onClick={() => addProduct(product)}>+</button>
-                                    </div>
-                                    <button onClick={() => deleteProductById(product.id)}>delete</button>
-                                </div>
-                            </div>
-                        ))}
+                    <div className={cl.closeWithH3}>
+                        <h3>Кошик</h3>
+                        <div className={cl.close} onClick={() => setIsOpenCart(false)}>
+                            <span/>
+                            <span/>
+                        </div>
                     </div>
+                    <Products
+                        products={products}
+                        addProduct={addProduct}
+                        reduceQuantityOfProductById={reduceQuantityOfProductById}
+                        deleteProductById={deleteProductById}
+                    />
+                    <div className={cl.generalPrice}>Загальна ціна: <span>{generalPrice}₴</span></div>
+                    <PlacingOrder cleanCart={cleanCart} products={products} generalPrice={generalPrice}/>
                 </div>
             </Popup>
         </>

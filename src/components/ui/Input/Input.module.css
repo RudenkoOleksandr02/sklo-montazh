@@ -1,0 +1,47 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-top: 10px;
+}
+.wrapper input {
+    height: 63px;
+    width: 100%;
+    border: 1px solid var(--dark);
+    padding: 22px 20px;
+    outline: none;
+    border-radius: 49px;
+    color: var(--dark);
+    background: transparent;
+    font-size: 16px;
+}
+.wrapper input:disabled {
+    border-color: rgba(36, 36, 36, 0.5);
+}
+.wrapper label {
+    display: block;
+    background: var(--white);
+    position: absolute;
+    top: -10px;
+    left: 15px;
+    padding: 0 5px;
+}
+.wrapper label span {
+    font-family: "Montserrat", sans-serif;
+    opacity: 40%;
+    color: var(--dark);
+}
+
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+.wrapper.error {
+    animation: shake 0.3s ease-in-out;
+}
+.wrapper.error input {
+    border: 1px solid #E32636;
+}

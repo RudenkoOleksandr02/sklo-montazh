@@ -1,0 +1,21 @@
+/* callToAction */
+.callToAction {
+    padding: 60px;
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    justify-content: space-between;
+}
+.callToAction p {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 42px;
+    color: var(--white);
+}
+@media (max-width: 999px) {
+    .callToAction {
+        padding: 60px 30px;
+        flex-direction: column;
+        gap: 30px;
+    }
+}

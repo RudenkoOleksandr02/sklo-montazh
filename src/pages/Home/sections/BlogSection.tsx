@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import BlogTiles from "../../../components/containers/BlogTiles/BlogTiles";
 
-const Blog: FC = () => {
+const BlogSection: FC = () => {
     return (
         <section>
             <BlogTiles/>
@@ -9,4 +9,4 @@ const Blog: FC = () => {
     );
 };
 
-export default Blog;
+export default BlogSection;

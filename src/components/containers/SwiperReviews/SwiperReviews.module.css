@@ -1,3 +1,99 @@
+.wrapper {
+    padding: 80px 0;
+    color: var(--white);
+}
+
+.cardList {
+    margin-top: 40px;
+}
+
+/* SWIPER */
+.cardList {
+    :global(.swiper) {
+        overflow: visible !important;
+    }
+    :global(.swiper-slide) {
+        width: 300px !important;
+    }
+    :global(.swiper-pagination-bullets) {
+        top: -70px !important; right: 0 !important; left: auto !important;
+        height: fit-content !important; width: auto !important;
+    }
+    :global(.swiper-pagination-bullet) {
+        width: 9px !important; height: 9px !important;
+        background: var(--white) !important;
+        opacity: 1 !important;
+    }
+    :global(.swiper-pagination-bullet-active) {
+        background: var(--orange) !important;
+    }
+}
+@media (max-width: 999px) {
+    .cardList {
+        :global(.swiper-pagination-bullets) {
+            width: 85px !important;
+        }
+    }
+}
+
+/* reviewCard */
 .reviewCard {
     padding: 30px;
+    border: 1px solid var(--white);
+    width: 300px;
+    min-height: 376px;
+    overflow: hidden;
+    position: relative;
+    transition: .5s;
 }
+.reviewCard h4 {
+    font-size: 24px;
+    font-weight: 600;
+}
+.reviewCard p {
+    line-height: 18.75px;
+    display: -webkit-box;
+    -webkit-line-clamp: 11;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 18px;
+}
+.reviewCard .stars {
+    margin: 10px 0 20px;
+}
+.reviewCard .showMore, .reviewCard .showMore svg {
+    position: absolute;
+    bottom: -1px; right: -1px;
+    cursor: pointer;
+}
+.reviewCard .showMore svg * {
+    transition: .2s;
+}
+@media (hover: hover) {
+    .reviewCard .showMore:hover svg circle {
+        fill: var(--white);
+    }
+    .reviewCard .showMore:hover svg path {
+        fill: var(--dark);
+    }
+}
+@media (hover: none) {
+    .reviewCard .showMore svg * {
+        transition: none;
+    }
+    .reviewCard .showMore:active svg circle {
+        fill: var(--white);
+    }
+    .reviewCard .showMore:active svg path {
+        fill: var(--dark);
+    }
+}
+.reviewCard p.showMoreText {
+    -webkit-line-clamp: none;
+}
+.dropdownAnimationEnterActive,
+.dropdownAnimationExitActive {
+    transition: height 500ms ease;
+}
+

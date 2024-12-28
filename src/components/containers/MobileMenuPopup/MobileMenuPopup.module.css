@@ -1,0 +1,50 @@
+.modal {
+    position: fixed;
+    top: 0; bottom: 0; right: 0; left: 0;
+    z-index: 101;
+    background: rgba(0,0,0,0.2);
+    pointer-events: none;
+    opacity: 0;
+}
+.modal.isOpen {
+    pointer-events: all;
+    opacity: 1;
+}
+.modal_content {
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    transform: scale(0.7);
+    transition: 0.2s all;
+}
+.modal_content.isOpen {
+    transform: scale(1);
+}
+.modal_content.isClosing {
+    transform: scale(0.7);
+    opacity: 0;
+}
+.button {
+    background: none;
+    border: none;
+    padding: 10px;
+    margin: -10px;
+    align-self: flex-end;
+}
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    margin-top: 20px;
+}
+.links a {
+    color: var(--dark);
+    text-decoration: none;
+}
+@media (hover: none) {
+    .links a:active {
+        color: var(--orange);
+    }
+}

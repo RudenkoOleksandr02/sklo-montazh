@@ -1,9 +1,8 @@
 import React, {FC, useState} from 'react';
-import cl from '../Furniture.module.css';
-import {IFurniture, IProduct} from "../../../types";
-import Card from "../../../components/ui/Card/Card";
-import Popup from "../../../components/ui/Popup/Popup";
-import PopupForFurniture from "./PopupForFurniture";
+import cl from './FurnitureList.module.css';
+import {IFurniture, IProduct} from "../../../../types";
+import Card from "../../../../components/ui/Card/Card";
+import PopupForFurniture from "../PopupForFurniture/PopupForFurniture";
 
 interface FurnitureListProps {
     furniture: IFurniture[];

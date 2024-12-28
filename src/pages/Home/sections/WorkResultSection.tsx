@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
 import cl from "../Home.module.css";
-import BlockBlurredBackground from "../../../components/ui/BlockBlurredBackground/BlockBlurredBackground";
+import BlockBlurredBackground from "../../../components/ui/BlockContent/BlockContent";
 
-const WorkResult: FC = () => {
+const WorkResultSection: FC = () => {
     const workResult: {id: number, count: string, desc: string}[] = [
         {id: 1, count: '1k', desc: 'Виконаних проектів'},
         {id: 2, count: '12', desc: 'Років роботи'},
@@ -26,4 +26,4 @@ const WorkResult: FC = () => {
     );
 };
 
-export default WorkResult;
+export default WorkResultSection;

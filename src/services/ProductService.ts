@@ -1,17 +1,17 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {baseUrl} from "../constants";
-import {IMirrorCard, IMirrorPage} from "../types";
+import {IProductCard, IProductPage} from "../types";
 
-export const mirrorApi = createApi({
-    reducerPath: "mirrorApi",
+export const productApi = createApi({
+    reducerPath: "productApi",
     baseQuery: fetchBaseQuery({baseUrl}),
     endpoints: (build) => ({
-        fetchAllMirrors: build.query<IMirrorCard[], ''>({
-            query: () => ({
-                url: `/mirrors?populate=*`
+        fetchAllProducts: build.query<IProductCard[], string>({
+            query: (products) => ({
+                url: `/${products}?populate=*`
             }),
-            transformResponse: (response: any): IMirrorCard[] => {
-                return response.data.map(((mirrorCard: any): IMirrorCard => {
+            transformResponse: (response: any): IProductCard[] => {
+                return response.data.map(((mirrorCard: any): IProductCard => {
                     const attr = mirrorCard.attributes;
                     const image = attr.images.data[0];
                     return {
@@ -28,11 +28,11 @@ export const mirrorApi = createApi({
                 }))
             }
         }),
-        fetchShowerById: build.query<IMirrorPage, number>({
-            query: (id) => ({
-                url: `/showers/${id}?populate=*`
+        fetchProductById: build.query<IProductPage, {products: string, id: number}>({
+            query: ({products, id}) => ({
+                url: `/${products}/${id}?populate=*`
             }),
-            transformResponse: (response: any): IMirrorPage => {
+            transformResponse: (response: any): IProductPage => {
                 const attr = response.data.attributes;
 
                 return {
@@ -51,4 +51,4 @@ export const mirrorApi = createApi({
     })
 })
 
-export const {useFetchAllMirrorsQuery, useFetchShowerByIdQuery} = mirrorApi;
+export const {useFetchAllProductsQuery, useFetchProductByIdQuery} = productApi;

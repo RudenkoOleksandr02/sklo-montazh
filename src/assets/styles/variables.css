@@ -1,3 +1,5 @@
-.app {
-
+#root {
+    --white: rgba(238, 238, 238, 1);
+    --orange:  rgba(233, 114, 43, 1);
+    --dark:  rgba(36, 36, 36, 1);
 }

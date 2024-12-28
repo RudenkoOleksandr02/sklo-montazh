@@ -1,0 +1,7 @@
+.button {
+    height: 74px; width: 74px;
+    display: flex; align-items: center; justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+}

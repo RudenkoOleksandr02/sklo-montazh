@@ -1,0 +1,73 @@
+.wrapper {
+    cursor: pointer;
+    transition: .2s;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.wrapper:hover {
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1),
+    0px 10px 10px 0px rgba(0, 0, 0, 0.09);
+
+}
+.skeleton, .image {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+}
+.content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    height: 100%;
+}
+.content .inner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.content .name {
+    font-size: 20px;
+}
+.content .name span {
+    font-size: 18px;
+    color: rgb(75, 85, 99)
+}
+.price {
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--orange);
+    white-space: nowrap;
+}
+.descriptionWithPrice {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+.description {
+    color: rgb(75, 85, 99)
+}
+.toGo {
+    display: flex;
+    justify-content: center;
+}
+.toGo span {
+    transition: .1s;
+    position: relative;
+    padding-bottom: 3px;
+}
+.toGo span::before {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    transition: width .2s ease;
+    background-color: var(--dark);
+}
+.wrapper:hover .toGo span::before {
+    width: 100%;
+}

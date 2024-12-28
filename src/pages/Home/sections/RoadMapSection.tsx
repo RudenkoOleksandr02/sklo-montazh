@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import cl from "../Home.module.css";
 import Roadmap from "../../../components/ui/Roadmap/Roadmap";
 
-const RoadMap: FC = () => {
+const RoadMapSection: FC = () => {
     return (
         <section className={cl.roadMap}>
             <Roadmap/>
@@ -10,4 +10,4 @@ const RoadMap: FC = () => {
     );
 };
 
-export default RoadMap;
+export default RoadMapSection;

@@ -1,0 +1,21 @@
+.groupButtons .desktop {
+    width: 350px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border: 1px solid var(--white);
+    position: sticky;
+    top: 15px;
+}
+.groupButtons .mobile {
+    display: none;
+}
+@media (max-width: 999px) {
+    .groupButtons .desktop {
+        display: none;
+    }
+    .groupButtons .mobile {
+        display: block;
+    }
+}

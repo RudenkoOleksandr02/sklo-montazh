@@ -1,0 +1,11 @@
+.content {
+    color: var(--white);
+    padding: 80px 0;
+    font-size: 18px;
+}
+.content *:not(:first-child) {
+    margin-top: 16px;
+}
+.content li {
+    margin-top: 8px !important;
+}

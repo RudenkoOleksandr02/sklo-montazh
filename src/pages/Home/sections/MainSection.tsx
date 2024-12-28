@@ -1,19 +1,16 @@
 import React, {FC, useState} from 'react';
 import cl from "../Home.module.css";
-import Header, {HeaderVariant} from "../../../components/containers/Header/Header";
-import BlockBlurredBackground from "../../../components/ui/BlockBlurredBackground/BlockBlurredBackground";
+import BlockBlurredBackground from "../../../components/ui/BlockContent/BlockContent";
 import PrimaryButton from "../../../components/ui/buttons/PrimaryButton/PrimaryButton";
 import {ReactComponent as Quadrants} from '../../../assets/images/quadrants.svg';
-import Feedback from "../../../components/containers/Feedback/Feedback";
-import Popup from "../../../components/ui/Popup/Popup";
+import FeedbackPopup from "../../../components/containers/FeedbackPopup/FeedbackPopup";
 
-const HeaderWithMainSection: FC = () => {
+const MainSection: FC = () => {
     const [active, setActive] = useState<boolean>(false);
 
     return (
         <>
             <div className={cl.headerWithMain}>
-               {/* <Header variant={HeaderVariant.variant1}/>*/}
                 <main className={cl.main}>
                     <BlockBlurredBackground>
                         <div className={cl.top_main}>
@@ -41,14 +38,11 @@ const HeaderWithMainSection: FC = () => {
                         </div>
                     </BlockBlurredBackground>
                 </main>
+                <FeedbackPopup active={active} setActive={setActive}/>
             </div>
-            <Popup active={active} setActive={setActive}>
-                <div className={cl.feedback}>
-                    <Feedback closePopup={() => setActive(false)}/>
-                </div>
-            </Popup>
+
         </>
     );
 };
 
-export default HeaderWithMainSection;
+export default MainSection;

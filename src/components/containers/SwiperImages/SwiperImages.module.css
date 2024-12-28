@@ -1,0 +1,100 @@
+.swiper1 img, .swiper2 img {
+    object-fit: contain;
+}
+
+/* SWIPER 1 */
+    .wrapperForSwiper1 {
+        margin-bottom: 15px;
+
+        :global(.swiper-slide) {
+            display: flex;
+            justify-content: center;
+        }
+        :global(button.swiper-button-disabled) {
+            cursor: default !important;
+            background: rgba(233, 114, 43, 0.7);
+            opacity: 1 !important;
+        }
+    }
+    .wrapperForSwiper1 {
+        position: relative;
+    }
+    .swiper1 img {
+        width: 100%;
+        height: 700px;
+    }
+
+    /* BUTTONS */
+    .rowIcon {
+        width: 15px;
+        color: var(--white);
+    }
+    .prevBtn, .nextBtn {
+        width: 45px;
+        height: 45px;
+        border: none;
+        background: var(--orange);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        position: absolute;
+        z-index: 2;
+        transition: 0.2s;
+    }
+    .prevBtn {
+        left: 0;
+        top: 50%;
+        transform: rotate(90deg) translateX(-50%);
+    }
+    .nextBtn {
+        transform: rotate(-90deg) translateX(50%);
+        right: 0;
+        top: 50%;
+    }
+    @media (hover: hover) {
+        .prevBtn:hover, .nextBtn:hover {
+            opacity: .8;
+        }
+    }
+    @media (min-width: 1000px) and (max-width: 1359px) {
+        .swiper1 img {
+            height: 600px;
+        }
+    }
+    @media (max-width: 999px) {
+        .swiper1 img {
+            height: 300px;
+        }
+    }
+
+
+/* SWIPER 2 */
+    .swiper2 img {
+        height: 200px;
+        width: 100%;
+    }
+    @media (min-width: 1000px) and (max-width: 1359px) {
+        .swiper2 img {
+            height: 175px;
+        }
+    }
+    @media (max-width: 999px) {
+        .swiper2 img {
+            height: 150px;
+        }
+    }
+    .swiper2 {
+        :global(.swiper-slide) {
+            opacity: 0.7;
+            transition: .2s;
+            cursor: pointer;
+        }
+        :global(.swiper-slide-thumb-active), :global(.swiper-slide:hover) {
+            opacity: 1;
+        }
+        :global(.swiper-slide-thumb-active) {
+            cursor: default;
+        }
+    }

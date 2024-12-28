@@ -1,0 +1,64 @@
+.wrapper {
+    width: 100%;
+    position: relative;
+}
+.selectedItem {
+    padding: 20px 10px;
+    background: transparent;
+    color: var(--white);
+    font-weight: 400;
+    font-size: 20px;
+    width: 100%;
+    border: 1px solid var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.selectedItem svg {
+    transition: .2s;
+}
+.selectedItem.active svg {
+    transform: rotate(-180deg);
+}
+
+.popup {
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    width: 100%;
+    z-index: 5;
+    transition: .3s;
+    border-bottom: 1px solid #bbbbbb;
+    overflow: auto;
+    max-height: 320px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1),
+                0 9px 9px 0 rgba(0, 0, 0, 0.09),
+                0 21px 13px 0 rgba(0, 0, 0, 0.05),
+                0 38px 15px 0 rgba(0, 0, 0, 0.01),
+                0 59px 17px 0 rgba(0, 0, 0, 0);
+
+}
+.popup.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.popup .item {
+    padding: 20px 10px;
+    background: transparent;
+    color: var(--dark);
+    font-size: 20px;
+    font-weight: 400;
+    width: 100%;
+    border: none;
+    outline: none;
+}
+.popup .item:not(:first-child) {
+    border-top: 1px solid #bbbbbb;
+}
+.popup .item:disabled {
+    background: #bbbbbb;
+}

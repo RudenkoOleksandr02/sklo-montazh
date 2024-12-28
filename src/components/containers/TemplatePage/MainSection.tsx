@@ -1,25 +1,26 @@
 import React, {FC, useState} from 'react';
-import cl from '../Blogs.module.css';
+import cl from './TemplatePage.module.css';
 import PrimaryButton from "../../../components/ui/buttons/PrimaryButton/PrimaryButton";
 import {ReactComponent as Quadrants} from '../../../assets/images/quadrants.svg';
 import FeedbackPopup from "../../../components/containers/FeedbackPopup/FeedbackPopup";
 
-const MainSection: FC = () => {
+interface MainSectionProps {
+    title: string;
+    text: string;
+}
+
+const MainSection: FC<MainSectionProps> = ({title, text}) => {
     const [active, setActive] = useState<boolean>(false);
 
     return (
         <div className={cl.mainSection}>
             <main>
                 <div className={cl.top_main}>
-                    <h1>Блог</h1>
+                    <h1>{title}</h1>
                     <Quadrants/>
                 </div>
                 <div className={cl.bottom_main}>
-                    <p>
-                        Ласкаво просимо до нашого блогу! Тут ви знайдете корисну інформацію та натхнення для створення
-                        стильного і функціонального інтер’єру з використанням скляних елементів. Ми пропонуємо ідеї та
-                        поради, які допоможуть вам зробити правильний вибір і створити простір вашої мрії.
-                    </p>
+                    <p>{text}</p>
                     <PrimaryButton
                         height='auto'
                         width='auto'

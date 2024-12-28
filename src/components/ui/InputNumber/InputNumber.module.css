@@ -1,0 +1,11 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.wrapper input {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgb(209, 213, 219);
+    outline: none;
+}

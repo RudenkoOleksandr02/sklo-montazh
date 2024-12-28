@@ -1,0 +1,40 @@
+.link {
+    text-decoration: none;
+    transition: .1s;
+    position: relative;
+    padding-bottom: 3px;
+}
+.link::before {
+    content: "";
+    position: absolute;
+    left: 0; bottom: 0;
+    width: 0; height: 1px;
+    transition: width .2s ease;
+}
+@media (hover: hover) {
+    .link:hover::before {
+        width: 100%;
+    }
+}
+@media (hover: none) {
+    .link {
+        transition: none;
+    }
+    .link:active {
+        color: var(--orange) !important;
+    }
+}
+
+.link.white {
+    color: var(--white);
+}
+.link.white::before {
+    background-color: var(--white);
+}
+
+.link.dark {
+    color: var(--dark);
+}
+.link.dark::before {
+    background-color: var(--dark);
+}

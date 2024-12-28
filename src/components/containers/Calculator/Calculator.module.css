@@ -1,0 +1,59 @@
+.wrapper {
+    padding: 20px;
+    border-radius: 20px;
+    background: #fff;
+    border-color: var(--dark);
+}
+.wrapper h5 {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.heightWidthContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.additionalOptionsContainer {
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0 0;
+
+}
+.additionalOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.buttons {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+}
+.buttons button {
+    width: 50%;
+    border: none;
+    outline: none;
+    background-color: var(--dark);
+    color: var(--white);
+    height: 38px;
+}
+.buttons button:first-child {
+    background: var(--orange);
+}
+.totalPrice {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+}
+.totalPrice span {
+    font-size: 18px;
+}

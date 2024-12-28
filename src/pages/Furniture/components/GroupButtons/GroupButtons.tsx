@@ -1,8 +1,8 @@
 import React, {FC} from 'react';
-import cl from '../Furniture.module.css';
-import {FurnitureNames} from "../Furniture";
-import SecondaryButton from "../../../components/ui/buttons/SecondaryButton/SecondaryButton";
-import DropDownList from "../../../components/ui/DropDownList/DropDownList";
+import cl from './GroupButtons.module.css';
+import {FurnitureNames} from "../../Furniture";
+import SecondaryButton from "../../../../components/ui/buttons/SecondaryButton/SecondaryButton";
+import DropDownList from "../../../../components/ui/DropDownList/DropDownList";
 
 interface GroupButtonsProps {
     handleSelectedParams: (param: FurnitureNames) => void;

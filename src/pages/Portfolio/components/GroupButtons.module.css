@@ -1,0 +1,20 @@
+.groupButtons {
+    margin-bottom: 20px;
+}
+
+.groupButtons .desktop {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.groupButtons .mobile {
+    display: none;
+}
+@media (max-width: 999px) {
+    .groupButtons .desktop {
+        display: none;
+    }
+    .groupButtons .mobile {
+        display: block;
+    }
+}

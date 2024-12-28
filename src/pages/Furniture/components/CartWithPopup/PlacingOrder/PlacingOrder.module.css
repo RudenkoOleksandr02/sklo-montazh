@@ -1,0 +1,33 @@
+.wrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.wrapper h3 {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.wrapper .form {
+    display: grid;
+    grid-gap: 10px;
+    align-items: flex-end;
+}
+@media (min-width: 1000px) {
+    .wrapper .form {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+    }
+}
+@media (max-width: 999px) {
+    .wrapper .form {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+.wrapper .button {
+    margin-top: 10px;
+    display: flex;
+    align-items: center; justify-content: center;
+}

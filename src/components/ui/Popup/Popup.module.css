@@ -1,0 +1,52 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.4s;
+    z-index: 100;
+}
+.modal.notCustomClose:hover:not(:has(.modal__content:hover)) {
+    background: rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+.modal.active {
+    opacity: 1;
+    pointer-events: all;
+}
+.modal__content {
+    transform: scale(0.5);
+    transition: 0.3s all;
+    cursor: default;
+}
+.modal__content.active {
+    transform: scale(1);
+}
+.closeBtn {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center; justify-content: center;
+    position: absolute;
+    top: 15px; right: 15px;
+}
+.closeBtn span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background: var(--white);
+}
+.closeBtn span:first-child {
+    transform: rotate(-45deg);
+}
+.closeBtn span:last-child {
+    position: absolute;
+    transform: rotate(45deg);
+}

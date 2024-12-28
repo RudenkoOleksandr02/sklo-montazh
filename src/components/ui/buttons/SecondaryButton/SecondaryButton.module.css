@@ -1,0 +1,54 @@
+.btn {
+    cursor: pointer;
+    position: relative;
+    height: 63px;
+    padding: 0 15px;
+    border: 1px solid var(--white);
+    overflow: hidden;
+    width: 100%;
+    background: transparent;
+}
+.btn span {
+    color: var(--white);
+    z-index: 20;
+    font-size: 20px;
+    line-height: 23px;
+}
+.btn::after {
+    background: var(--white);
+    content: "";
+    height: 155px;
+    left: -75px;
+    opacity: .2;
+    position: absolute;
+    top: -50px;
+    transform: rotate(35deg);
+    transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    width: 50px;
+    z-index: 1;
+}
+@media (hover: hover) {
+    .btn:hover::after {
+        left: 120%;
+        transition: all 550ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+}
+@media (hover: none) {
+    .btn:active {
+        background: rgba(238, 238, 238, .2);
+    }
+}
+.btn.active {
+    background: var(--white);
+}
+.btn.active span {
+    color: var(--dark);
+}
+
+.btn:disabled {
+    cursor: default;
+    opacity: .7;
+}
+.btn:disabled::after {
+    background: transparent;
+}

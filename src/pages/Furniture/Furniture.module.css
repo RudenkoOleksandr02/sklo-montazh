@@ -1,0 +1,36 @@
+.wrapper {
+    background: var(--dark);
+    padding: 145px 20px 80px;
+}
+@media (max-width: 999px) {
+    .wrapper {
+        padding: 194px 15px 80px;
+    }
+}
+.inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    position: relative;
+}
+@media (max-width: 999px) {
+    .inner {
+        flex-direction: column;
+    }
+}
+
+.preloader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+/* SWIPER */
+.wrapper {
+    :global(.swiper-button-prev), :global(.swiper-button-next) {
+        color: var(--dark) !important;
+    }
+}
+

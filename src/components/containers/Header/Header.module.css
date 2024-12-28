@@ -1,0 +1,70 @@
+.wrapper {
+    max-width: 1280px;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px 20px 0;
+}
+.inner {
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+@media (max-width: 999px) {
+    .wrapper {
+        padding: 20px 15px 0;
+    }
+    .inner {
+        padding: 30px;
+    }
+}
+
+.links a {
+    font-size: 16px;
+    text-decoration: none;
+}
+.links a:not(:last-child) {
+    margin-right: 24px;
+}
+@media (max-width: 999px) {
+    .links {
+        display: none;
+    }
+}
+
+.menu_button {
+    display: none;
+}
+@media (max-width: 999px) {
+    .menu_button {
+        display: block;
+    }
+}
+
+.wrapper svg path, .links a {
+    transition: .5s;
+}
+
+.variant1 a, .variant3 a {
+    color: var(--white) !important;
+}
+.variant1 a::before, .variant3 a::before  {
+    background-color: var(--white) !important;
+}
+.variant1 svg path, .variant3 svg path {
+    fill: var(--white);
+}
+
+.variant2 a {
+    color: var(--dark) !important;
+}
+.variant2 a::before {
+    background-color: var(--dark) !important;
+}
+.variant2 svg path {
+    fill: var(--dark);
+}
+

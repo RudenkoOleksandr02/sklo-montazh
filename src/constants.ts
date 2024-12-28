@@ -1,0 +1,1 @@
+export const baseUrl: string = 'https://strapi-production-20fd.up.railway.app/api';

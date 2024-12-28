@@ -1,0 +1,34 @@
+.wrapper {
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+}
+.imageContainer {
+    background: var(--white);
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.count {
+    position: absolute;
+    display: flex;
+    align-items: center; justify-content: center;
+    background: var(--orange);
+    color: var(--white);
+    width: 25px; height: 25px;
+    border-radius: 50%;
+    font-size: 18px;
+    top: -10px; right: -5px;
+}
+
+.wrapper.notProducts {
+    cursor: default;
+}
+.wrapper.notProducts .count {
+    display: none;
+}
+.wrapper.notProducts .imageContainer {
+    opacity: .7;
+}

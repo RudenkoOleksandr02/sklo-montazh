@@ -1,0 +1,85 @@
+p, div, span, a, h1, h2, h3, h4, h5, h6, button, input {
+    font-family: "Roboto", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.app {
+    position: relative;
+    background: var(--white);
+}
+h1 {
+    font-size: 68px;
+    font-weight: 900;
+    line-height: 68px;
+}
+h2 {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 47px;
+}
+h3 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 32px;
+}
+h4 {
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 36px;
+}
+h5 {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+ul, ol {
+    list-style-position: inside;
+}
+button {
+    cursor: pointer;
+}
+@media (max-width: 999px) {
+    h1 {
+        font-size: 36px;
+        line-height: 36px;
+    }
+}
+
+.page-enter-active {
+    animation: fade-in-up 0.5s ease forwards;
+}
+.page-exit-active {
+    animation: fade-out-down 0.5s ease forwards;
+}
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-out-down {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

@@ -1,11 +1,11 @@
 import React, {FC} from 'react';
-import Popup from "../../../components/ui/Popup/Popup";
-import {IFurniture} from "../../../types";
-import cl from '../Furniture.module.css'
+import Popup from "../../../../components/ui/Popup/Popup";
+import {IFurniture} from "../../../../types";
+import cl from './PopupForFurniture.module.css'
 import Markdown from "react-markdown";
 import {Navigation} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
-import Skeleton from "../../../components/ui/Skeleton/Skeleton";
+import Skeleton from "../../../../components/ui/Skeleton/Skeleton";
 
 
 interface PopupForFurnitureProps {
