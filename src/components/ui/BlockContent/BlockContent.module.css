@@ -1,0 +1,17 @@
+.wrapper {
+    width: 100%;
+    border-radius: 20px;
+    border: 1px solid;
+    transition: .5s;
+}
+
+.wrapper.withoutStyle {
+    border-color: var(--dark);
+    background: transparent;
+}
+
+.wrapper.withStyle {
+    backdrop-filter: blur(11px);
+    background: linear-gradient(99.35deg, rgba(255, 255, 255, 0.15) 0.01%, rgba(255, 255, 255, 0.05) 100.01%);
+    border-color: var(--white);
+}
