@@ -1,6 +1,6 @@
 import React, {FC, useState} from 'react';
 import { fetchCities } from '../fetchs/fetchCities';
-import InputSelect from "../../../ui/InputSelect/InputSelect";
+import InputSelect1 from "../../../ui/InputSelect/InputSelect1/InputSelect1";
 import {ICity} from "../NovaPoshta";
 
 interface CitySelectorProps {
@@ -30,7 +30,7 @@ const CitySelector: FC<CitySelectorProps> = ({ setCity, isErrorCity }) => {
 
     return (
         <div>
-            <InputSelect
+            <InputSelect1
                 title="Город"
                 value={searchText}
                 onInputChange={handleInputChange}

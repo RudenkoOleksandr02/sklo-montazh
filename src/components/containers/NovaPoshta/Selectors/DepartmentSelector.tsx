@@ -1,6 +1,6 @@
 import React, {useState, useEffect, FC} from 'react';
 import { fetchDepartments } from '../fetchs/fetchDepartments';
-import InputSelect from "../../../ui/InputSelect/InputSelect";
+import InputSelect1 from "../../../ui/InputSelect/InputSelect1/InputSelect1";
 
 interface DepartmentSelectorProps {
     cityRef: string | null;
@@ -36,7 +36,7 @@ const DepartmentSelector: FC<DepartmentSelectorProps> = ({ cityRef, handleSetDel
 
     return (
         <div>
-            <InputSelect
+            <InputSelect1
                 title="Відділення"
                 value={searchText}
                 onInputChange={handleInputChange}

@@ -1,8 +1,12 @@
 .wrapper {
     padding: 20px;
     border-radius: 20px;
-    background: #fff;
-    border-color: var(--dark);
+    background: var(--white);
+    box-shadow: 0 2px 5px 0 rgba(8, 13, 10, 0.1),
+                0 10px 10px 0 rgba(8, 13, 10, 0.09),
+                0 22px 13px 0 rgba(8, 13, 10, 0.05),
+                0 39px 16px 0 rgba(8, 13, 10, 0.01),
+                0 61px 17px 0 rgba(8, 13, 10, 0);
 }
 .wrapper h5 {
     font-weight: 500;
@@ -18,7 +22,7 @@
 }
 
 .additionalOptionsContainer {
-    background-color: var(--white);
+    background-color: #e0e0e0;
     padding: 20px;
     border-radius: 10px;
     margin: 20px 0 0;
@@ -42,6 +46,11 @@
     background-color: var(--dark);
     color: var(--white);
     height: 38px;
+    transition: .2s;
+    font-size: 16px;
+}
+.buttons button:hover {
+    opacity: 0.8;
 }
 .buttons button:first-child {
     background: var(--orange);
@@ -50,10 +59,20 @@
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    background-color: var(--white);
+    background-color: #e0e0e0;
     padding: 20px;
     border-radius: 10px;
+    font-size: 18px;
 }
 .totalPrice span {
-    font-size: 18px;
+    font-weight: bold;
+    color: var(--orange);
+}
+@media (max-width: 767px) {
+    .buttons {
+        flex-direction: column;
+    }
+    .buttons button {
+        width: 100%;
+    }
 }

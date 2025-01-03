@@ -7,6 +7,7 @@ import cl from "./Product.module.css";
 import SwiperImages from "../../components/containers/SwiperImages/SwiperImages";
 import PrimaryButton from "../../components/ui/buttons/PrimaryButton/PrimaryButton";
 import Preloader, {PreloaderVariant} from "../../components/ui/Preloader/Preloader";
+import {useFetchDollarToHryvniaQuery} from "../../services/DollarToHryvnia";
 
 interface ShowerProps {
     id: string;
@@ -14,6 +15,7 @@ interface ShowerProps {
 
 const Shower: FC<ShowerProps> = ({id}) => {
     const {data, isLoading, isFetching} = useFetchShowerByIdQuery(Number(id));
+    const {data: dollarToHryvniaData} = useFetchDollarToHryvniaQuery('')
 
     const [images, setImages] = useState<IImage[] | null>(null);
     const [additionalOptions, setAdditionalOptions] = useState<IAdditionalOption[] | null>(null);
@@ -66,6 +68,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
                                 additionalOptions={additionalOptions}
                                 handleToggleCheckedByIdAdditionalOption={handleToggleCheckedByIdAdditionalOption}
                                 setCheckedFalseAdditionalOptions={setCheckedFalseAdditionalOptions}
+                                dollarToHryvniaData={dollarToHryvniaData || 1}
                     />
                 </div>
                 <PrimaryButton

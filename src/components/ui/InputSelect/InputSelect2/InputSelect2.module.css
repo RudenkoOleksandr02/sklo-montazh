@@ -1,0 +1,53 @@
+.wrapper {
+    height: 100%;
+    position: relative;
+}
+.inner {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.selectedWithArrow {
+    border-bottom: 1px solid rgb(209, 213, 219);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+}
+.selected {
+    font-size: 16px;
+}
+.arrow {
+    display: flex;
+    align-items: center; justify-content: center;
+    width: 20px; height: 20px;
+    transition: .2s;
+}
+.arrow.rotated {
+    transform: rotate(-180deg);
+}
+.arrow span {
+    height: 1px;
+    width: 100%;
+    background: var(--dark);
+}
+.arrow span:first-child {
+    transform: rotate(45deg) translate(1px, -1px);
+}
+.arrow span:last-child {
+    transform: rotate(-45deg) translate(-1px, -1px);
+}
+.option {
+    cursor: pointer;
+    user-select: none;
+    padding: 5px;
+    transition: .2s;
+    font-size: 16px;
+}
+.option:hover {
+    background: #e0e0e0;
+}
+.overlay {
+
+}

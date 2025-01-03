@@ -1,7 +1,7 @@
-import Modal from './Modal/Modal';
+import Modal from '../Modal/Modal';
 import React, {FC, useEffect, useState} from 'react';
-import classes from './InputSelect.module.css';
-import Input from "../Input/Input";
+import classes from './InputSelect1.module.css';
+import Input from "../../Input/Input";
 
 interface InputSelectProps {
     title: string;
@@ -13,7 +13,7 @@ interface InputSelectProps {
     disabled?: boolean;
 }
 
-const InputSelect: FC<InputSelectProps> = ({
+const InputSelect1: FC<InputSelectProps> = ({
                                                value,
                                                onInputChange,
                                                onOptionClick,
@@ -56,7 +56,7 @@ const InputSelect: FC<InputSelectProps> = ({
                 handleFocus={() => setFocus(true)}
                 isError={isError}
             />
-            <Modal show={showModal && focus} onClose={() => setShowModal(true)}>
+            <Modal show={showModal && focus}>
                 {options.map((option: string, index: number) => (
                     <div
                         key={index}
@@ -71,4 +71,4 @@ const InputSelect: FC<InputSelectProps> = ({
     );
 };
 
-export default InputSelect;
+export default InputSelect1;

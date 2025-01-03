@@ -20,8 +20,10 @@
 }
 .option {
     padding: 5px;
-    transition: .3s;
+    transition: .2s;
     cursor: pointer;
+    user-select: none;
+    font-size: 16px;
 }
 .option:hover {
     background: #e0e0e0;
