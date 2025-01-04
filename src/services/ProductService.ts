@@ -44,7 +44,9 @@ export const productApi = createApi({
                         alternativeText: image.attributes.alternativeText,
                     })),
                     price: attr.price,
-                    description: attr.description
+                    description: attr.description,
+                    metaKeys: attr.metaKeys,
+                    metaDescription: attr.metaDescription
                 }
             }
         })

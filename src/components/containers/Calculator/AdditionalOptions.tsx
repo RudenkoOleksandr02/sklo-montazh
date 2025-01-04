@@ -23,7 +23,7 @@ const AdditionalOptions: FC<AdditionalOptionsProps> = ({additionalOptions, handl
                 <div className={cl.additionalOptions}>
                     {additionalOptions.map(option => (
                         <Checkbox
-                            label={`${option.title} +${dollarToHryvnia(option.price, dollarToHryvniaData)}₴`}
+                            label={`${option.title} +${dollarToHryvnia(option.price, dollarToHryvniaData)} ₴`}
                             checked={option.checked}
                             onChange={() => handleToggleCheckedByIdAdditionalOption(option.id)}
                             key={option.id}

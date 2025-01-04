@@ -13,6 +13,7 @@ interface CalculatorProps extends AdditionalOptionsProps {
     handleToggleCheckedByIdAdditionalOption: (id: number) => void;
     setCheckedFalseAdditionalOptions: () => void;
     dollarToHryvniaData: number;
+    handleSelectCharacteristics: (height: number, width: number[], glassType: string, additionalOptions: IAdditionalOption[] | null, totalPrice: number) => void;
 }
 
 export interface IOption {
@@ -34,7 +35,8 @@ const Calculator: FC<CalculatorProps> = ({
                                              additionalOptions,
                                              handleToggleCheckedByIdAdditionalOption,
                                              setCheckedFalseAdditionalOptions,
-                                             dollarToHryvniaData
+                                             dollarToHryvniaData,
+                                             handleSelectCharacteristics
                                          }) => {
     const [width, setWidth] = useState<(number | string)[]>(startWidth);
     const [height, setHeight] = useState<number | string>(startHeight);
@@ -47,17 +49,17 @@ const Calculator: FC<CalculatorProps> = ({
     }
     const [glassTypes, setGlassTypes] = useState<IOption[]>([
         {id: 1, option: 'Звичайне'},
-        {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)}₴`},
-        {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)}₴`},
-        {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)}₴`}
+        {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)} ₴`},
+        {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)} ₴`},
+        {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)} ₴`}
     ]);
 
     useEffect(() => {
         setGlassTypes([
             {id: 1, option: 'Звичайне'},
-            {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)}₴`},
-            {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)}₴`},
-            {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)}₴`}
+            {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)} ₴`},
+            {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)} ₴`},
+            {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)} ₴`}
         ]);
     }, [diamondPrice, graphitePrice, bronzePrice, width, height]);
 
@@ -84,16 +86,18 @@ const Calculator: FC<CalculatorProps> = ({
         const validHeight = typeof height === 'number' ? height : Number(height);
 
         const additionalOptionsTotalPrice = additionalOptions.filter(option => option.checked).reduce((acc, curr) => acc + curr.price, 0);
-        const pricePer100mmX100mm: number =
-            glassTypeOption === glassTypes[0].option ? ordinaryPrice :
-                glassTypeOption === glassTypes[1].option ? diamondPrice :
-                    glassTypeOption === glassTypes[2].option ? graphitePrice :
-                        glassTypeOption === glassTypes[3].option ? bronzePrice : 1;
 
+        const glassTypeOptionFormat = glassTypeOption.split(' ')[0];
+        const pricePer100mmX100mm: number =
+            glassTypeOptionFormat === glassTypes[0].option.split(' ')[0] ? ordinaryPrice :
+                glassTypeOptionFormat === glassTypes[1].option.split(' ')[0] ? diamondPrice :
+                    glassTypeOptionFormat === glassTypes[2].option.split(' ')[0] ? graphitePrice :
+                        glassTypeOptionFormat === glassTypes[3].option.split(' ')[0] ? bronzePrice : 1;
         const pricePerMm2 = pricePer100mmX100mm / 10000;
         const dimensions = validWidth.reduce((acc, curr) => acc + curr, 0) * validHeight;
 
         setTotalPrice((dimensions * pricePerMm2) + additionalOptionsTotalPrice);
+        handleSelectCharacteristics(validHeight, validWidth, glassTypeOption, additionalOptions.filter(option => option.checked), (dimensions * pricePerMm2) + additionalOptionsTotalPrice)
     };
     const handleGlassTypeChange = (option: IOption) => {
         setGlassType(option);
@@ -144,7 +148,7 @@ const Calculator: FC<CalculatorProps> = ({
                 )}
                 returnToOriginalSettings={() => returnToOriginalSetting()}
             />
-            <p className={cl.totalPrice}>Загальна ціна: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)}₴</span></p>
+            <p className={cl.totalPrice}>Загальна ціна: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)} ₴</span></p>
         </div>
     );
 };

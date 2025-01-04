@@ -46,3 +46,49 @@
     font-weight: bold;
     text-align: end;
 }
+
+.makeOrder {
+    display: flex;
+    justify-content: flex-end;
+}
+@media (max-width: 767px) {
+    .makeOrder button {
+        width: 100% !important;
+    }
+}
+
+.contentForOrder {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.nameWithArticle {
+    font-size: 24px;
+}
+.nameWithArticle .article {
+    color: rgb(156, 163, 175);
+    font-size: 20px;
+}
+.selectedCharacteristics {
+    font-size: 20px;
+}
+.characteristics .list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 18px;
+}
+.characteristics .list li:first-letter {
+    text-transform: capitalize;
+}
+.contentForOrder .totalPrice {
+    font-size: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.contentForOrder .totalPrice span {
+    color: var(--orange);
+    font-weight: 600;
+}

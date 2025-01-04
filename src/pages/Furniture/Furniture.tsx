@@ -78,6 +78,7 @@ const Furniture: FC = () => {
                     />
                 )}
             </div>
+            {}
             <CartWithPopup
                 generalQuantity={generalQuantity}
                 generalPrice={generalPrice}

@@ -2,7 +2,6 @@ import React, {FC, useEffect, useState} from 'react';
 import cl from '../Portfolio.module.css';
 import {IImage, IPortfolio} from "../../../types";
 import Masonry from 'react-layout-masonry';
-import SecondaryButton from "../../../components/ui/buttons/SecondaryButton/SecondaryButton";
 import {useWindowWidth} from "../../../hooks/useWindowWidth";
 import {ReactComponent as BlockWithArrow} from '../../../assets/images/blockWithArrow.svg'
 import Skeleton from "../../../components/ui/Skeleton/Skeleton";

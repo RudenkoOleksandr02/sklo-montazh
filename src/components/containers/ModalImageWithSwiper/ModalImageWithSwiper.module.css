@@ -16,7 +16,6 @@
     cursor: pointer;
 }
 .modalContent {
-    border-radius: 20px;
     overflow: hidden;
     align-items: center; justify-content: center;
 }

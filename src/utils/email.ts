@@ -6,11 +6,12 @@ const PUBLIC_KEY: string = 'pdEXm-DmTqi493iQu';
 const TEMPLATE_ID_basic: string = 'template_bta90ej';
 const TEMPLATE_ID_forFurniture: string = 'template_bttyo57';
 
-export const basicSendEmail = (name: string, phone: string, title?: string): void => {
+export const basicSendEmail = (name: string, phone: string, title?: string, orderTemplate?: any): void => {
     const templateParams = {
         name,
         phone,
-        title: title ? title : 'Клієт бажає зв\'язатися'
+        title: title ? title : 'Клієт бажає зв\'язатися',
+        orderTemplate
     }
 
     emailjs.send(SERVICE_ID, TEMPLATE_ID_basic, templateParams, {

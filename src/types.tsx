@@ -101,4 +101,6 @@ export interface IProductPage {
     description: string;
     price: number;
     images: IImage[];
+    metaDescription: string;
+    metaKeys: string;
 }

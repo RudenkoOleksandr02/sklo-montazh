@@ -19,9 +19,10 @@
     .wrapperForSwiper1 {
         position: relative;
     }
-    .swiper1 img {
+    .swiper1 .image, .swiper1 .skeleton {
         width: 100%;
         height: 700px;
+        cursor: url("../../../assets/images/zoom-in.png"), pointer;
     }
 
     /* BUTTONS */
@@ -59,29 +60,29 @@
         }
     }
     @media (min-width: 1000px) and (max-width: 1359px) {
-        .swiper1 img {
+        .swiper1 .image, .swiper1 .skeleton {
             height: 600px;
         }
     }
     @media (max-width: 999px) {
-        .swiper1 img {
+        .swiper1 .image, .swiper1 .skeleton {
             height: 300px;
         }
     }
 
 
 /* SWIPER 2 */
-    .swiper2 img {
+    .swiper2 .image, .swiper2 .skeleton {
         height: 200px;
         width: 100%;
     }
     @media (min-width: 1000px) and (max-width: 1359px) {
-        .swiper2 img {
+        .swiper2 .image, .swiper2 .skeleton {
             height: 175px;
         }
     }
     @media (max-width: 999px) {
-        .swiper2 img {
+        .swiper2 .image, .swiper2 .skeleton {
             height: 150px;
         }
     }

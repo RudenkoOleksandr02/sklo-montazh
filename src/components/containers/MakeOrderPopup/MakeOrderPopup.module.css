@@ -1,0 +1,18 @@
+.content {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 50px;
+    width: 500px;
+    max-height: 80vh;
+    overflow: auto;
+}
+@media (max-width: 767px) {
+    .content {
+        width: 330px;
+    }
+}
+.feedback > div {
+    box-shadow: none;
+    padding: 0;
+    margin-top: 20px;
+}

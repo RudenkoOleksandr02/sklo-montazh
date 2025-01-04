@@ -74,13 +74,10 @@ const ModalImageWithSwiper: FC<ModalImageProps> = ({onClose, images, selectedIma
                                 <Arrow className={`${cl.rowIcon}`} />
                             </button>
                         </div>
-                        /*<img src={selectedImage} alt='Selected' className={cl.selectedImage}/>*/
-                    )
-                }
+                    )}
             </div>
         </div>
-    )
-        ;
+    );
 };
 
 export default ModalImageWithSwiper;

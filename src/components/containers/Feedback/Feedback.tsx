@@ -7,9 +7,11 @@ import InputMobile from "../../ui/InputMobile/InputMobile";
 
 interface FeedbackProps {
     closePopup?: () => void;
+    textBtn?: string;
+    orderData?: {title: string, other?: any};
 }
 
-const Feedback: FC<FeedbackProps> = ({closePopup}) => {
+const Feedback: FC<FeedbackProps> = ({closePopup, textBtn = 'Оформити заявку', orderData}) => {
     const [name, setName] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
     const [isErrorName, setIsErrorName] = useState<boolean>(false);
@@ -31,7 +33,7 @@ const Feedback: FC<FeedbackProps> = ({closePopup}) => {
 
         if (isNameValid && isPhoneValid) {
             setIsSuccess(true);
-            basicSendEmail(name, phone);
+            basicSendEmail(name, phone, orderData?.title, orderData?.other);
 
             const timer = setTimeout(() => {
                 setName('');
@@ -57,7 +59,7 @@ const Feedback: FC<FeedbackProps> = ({closePopup}) => {
                 isSuccess={isSuccess}
                 resetSuccess={() => setIsSuccess(false)}
             >
-                Оформити заявку
+                {textBtn}
             </PrimaryButton>
         </div>
     );
