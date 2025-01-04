@@ -2,6 +2,7 @@ import React, {createRef, FC} from 'react';
 import cl from './Products.module.css'
 import {CSSTransition, TransitionGroup} from "react-transition-group";
 import {ProductsState} from "../CartWithPopup";
+import {ReactComponent as IcoTrash} from './../../../../../assets/images/trashIco.svg';
 
 const Products: FC<ProductsState> = ({products, reduceQuantityOfProductById, addProduct, deleteProductById}) => {
     return (
@@ -24,9 +25,14 @@ const Products: FC<ProductsState> = ({products, reduceQuantityOfProductById, add
                     >
                         <div className={cl.product} ref={nodeRef}>
                             <div className={cl.inner}>
-                                <div className={cl.imageContainer}>
-                                    <img src={product.image.url}
-                                         alt={product.image.alternativeText || 'furniture ' + index}/>
+                                <div className={cl.deleteAndImageContainer}>
+                                    <button onClick={() => deleteProductById(product.id)} className={cl.deleteBtn}>
+                                        <IcoTrash/>
+                                    </button>
+                                    <div className={cl.imageContainer}>
+                                        <img src={product.image.url}
+                                             alt={product.image.alternativeText || 'furniture ' + index}/>
+                                    </div>
                                 </div>
                                 <div className={cl.articleWithName}>
                                     <p>{product.name}</p>
@@ -34,7 +40,9 @@ const Products: FC<ProductsState> = ({products, reduceQuantityOfProductById, add
                                 </div>
                             </div>
                             <div className={cl.inner}>
-                                <p className={cl.price}>{product.price * product.quantity}₴</p>
+                                <span className={cl.article}>{product.price} ₴/ шт.</span>
+                            </div>
+                            <div className={cl.inner}>
                                 <div className={cl.buttonsAndQuantity}>
                                     <button onClick={() => reduceQuantityOfProductById(product.id)}
                                             className={cl.minus}>
@@ -48,11 +56,7 @@ const Products: FC<ProductsState> = ({products, reduceQuantityOfProductById, add
                                         <span/>
                                     </button>
                                 </div>
-                                <button onClick={() => deleteProductById(product.id)}
-                                        className={cl.deleteBtn}>
-                                    <span/>
-                                    <span/>
-                                </button>
+                                <p className={cl.price}>{product.price * product.quantity} ₴</p>
                             </div>
                         </div>
                     </CSSTransition>

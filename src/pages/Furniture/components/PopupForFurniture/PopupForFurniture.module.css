@@ -3,7 +3,7 @@
 }
 
 .popupForFurniture {
-    padding: 15px;
+    padding: 30px;
     background: #fff;
     color: var(--dark);
     display: flex;
@@ -14,6 +14,7 @@
     width: 500px;
     max-height: 80vh;
     overflow: auto;
+    border-radius: 50px;
 }
 .popupForFurniture .imgContainer {
     display: flex;

@@ -1,7 +1,7 @@
 .products {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 10px;
 }
 
 .product {
@@ -10,7 +10,11 @@
     align-items: center;
     gap: 15px;
 }
-@media (max-width: 999px) {
+.product:not(:last-child) {
+    border-bottom: 1px solid rgba(75, 85, 99, 0.2);
+    padding-bottom: 10px;
+}
+@media (max-width: 768px) {
     .product {
         flex-direction: column;
     }
@@ -20,16 +24,33 @@
     align-items: center;
     gap: 15px;
 }
-@media (max-width: 999px) {
+@media (max-width: 767px) {
     .product .inner {
         width: 100%;
         justify-content: space-between;
     }
 }
+
+.deleteAndImageContainer {
+    position: relative;
+}
+.product .deleteBtn {
+    background: transparent;
+    border: none;
+    position: absolute;
+    width: 25px; height: 25px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: .2s;
+}
+.product .deleteBtn:hover {
+    background: rgba(36, 36, 36, 0.2);
+}
 .product .imageContainer {
     width: 73px; height: 73px;
+    margin-left: 10px;
 }
-@media (max-width: 999px) {
+@media (max-width: 767px) {
     .product .imageContainer {
         width: 60px; height: 60px;
     }
@@ -45,7 +66,7 @@
     gap: 5px;
     width: 250px;
 }
-@media (max-width: 999px) {
+@media (max-width: 767px) {
     .product .articleWithName {
         width: auto;
         max-width: 250px;
@@ -55,13 +76,8 @@
 .price {
     width: 65px;
     text-align: end;
+    font-weight: bold;
 }
-@media (max-width: 999px) {
-    .price {
-        text-align: start;
-    }
-}
-
 
 .product .buttonsAndQuantity {
     display: flex;
@@ -105,32 +121,6 @@
     text-align: center;
 }
 
-.product .deleteBtn {
-    background: transparent;
-    border: none;
-    position: relative;
-    width: 25px; height: 25px;
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    transition: .2s;
-}
-.product .deleteBtn:hover {
-    background: rgba(36, 36, 36, 0.2);
-}
-.product .deleteBtn span {
-    display: block;
-    height: 1px;
-    width: 85%;
-    background: var(--dark);
-    position: absolute;
-}
-.product .deleteBtn span:first-child {
-    transform: rotate(45deg);
-}
-.product .deleteBtn span:last-child {
-    transform: rotate(-45deg);
-}
-
 @media (hover: none) {
     .product button {
         opacity: 1 !important;
@@ -150,4 +140,8 @@
 .productExitActive {
     opacity: 0;
     transition: opacity 300ms ease-in;
+}
+
+.product .article {
+    color: rgba(75, 85, 99, 1);
 }
