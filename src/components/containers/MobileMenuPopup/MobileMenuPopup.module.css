@@ -11,12 +11,15 @@
     opacity: 1;
 }
 .modal_content {
+    position: relative;
     padding: 30px 15px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: #fff;
     transform: scale(0.7);
     transition: 0.2s all;
+    height: 100%;
 }
 .modal_content.isOpen {
     transform: scale(1);
@@ -25,6 +28,10 @@
     transform: scale(0.7);
     opacity: 0;
 }
+.modal_content .inner {
+    display: flex;
+    flex-direction: column;
+}
 .button {
     background: none;
     border: none;
@@ -32,19 +39,39 @@
     margin: -10px;
     align-self: flex-end;
 }
+.button svg {
+    width: 30px;
+    height: 30px;
+}
 .links {
     display: flex;
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 .links a {
     color: var(--dark);
     text-decoration: none;
+    font-size: 22px;
 }
 @media (hover: none) {
     .links a:active {
         color: var(--orange);
     }
+}
+
+.modal_content .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.modal_content .bottom a {
+    text-decoration: none;
+    color: var(--dark);
+}
+.modal_content .bottom svg path {
+    fill: var(--dark);
 }

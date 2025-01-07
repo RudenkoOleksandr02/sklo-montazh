@@ -3,17 +3,20 @@ import cl from './Services.module.css';
 import {ReactComponent as Quadrants} from "../../../assets/images/quadrants.svg";
 import {IService} from "../../../types";
 import Service from "./Service";
+import linksToServices from './../../../data/linksToServices.json';
 
-const Services: FC = () => {
+interface IServicesProps {
+    title?: string;
+}
+
+const Services: FC<IServicesProps> = ({title = 'Наші послуги'}) => {
     const services: IService[] = [
-        {title: 'Душові кабіни', path: '/catalog/showers', description: 'Скляні душові кабіни з індивідуальним дизайном.'},
-        {title: 'Дзеркала', path: '/catalog/mirrors', description: 'Стильні дзеркала з підсвіткою та підігрівом.'},
-        {title: 'Скляні двері', path: '/catalog/doors', description: 'Сучасні скляні двері для інтер’єру та екстер’єру.'},
-        {title: 'Скляні перила та перегородки', path: '/catalog/railing-partitions', description: 'Естетичні скляні перила та перегородки для зонування простору.'},
-        {title: 'Інші вироби зі скла', path: '/catalog/other-glass-products', description: 'Оригінальні скляні елементи для інтер’єру, включаючи фотодрук та декоративні вироби.'}
+        {title: linksToServices[0].title, path: linksToServices[0].path, description: 'Скляні душові кабіни з індивідуальним дизайном.'},
+        {title: linksToServices[1].title, path: linksToServices[1].path, description: 'Стильні дзеркала з підсвіткою та підігрівом.'},
+        {title: linksToServices[2].title, path: linksToServices[2].path, description: 'Сучасні скляні двері для інтер’єру та екстер’єру.'},
+        {title: linksToServices[3].title, path: linksToServices[3].path, description: 'Естетичні скляні перила та перегородки для зонування простору.'},
+        {title: linksToServices[4].title, path: linksToServices[4].path, description: 'Оригінальні скляні елементи для інтер’єру, включаючи фотодрук та декоративні вироби.'}
     ];
-
-    const title = 'Наші послуги';
 
     return (
         <div className={cl.wrapper}>

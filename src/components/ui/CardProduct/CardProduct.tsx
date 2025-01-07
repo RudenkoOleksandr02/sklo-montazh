@@ -12,6 +12,7 @@ interface CardProductProps {
     path: string;
     image: IImage;
     article?: string;
+    priceFrom?: boolean;
 }
 
 const CardProduct: FC<CardProductProps> = ({
@@ -21,7 +22,8 @@ const CardProduct: FC<CardProductProps> = ({
                                                measurement,
                                                name,
                                                image,
-                                               description
+                                               description,
+                                               priceFrom = false
                                            }) => {
     const navigate = useNavigate();
 
@@ -38,7 +40,9 @@ const CardProduct: FC<CardProductProps> = ({
                     <p className={cl.name}>{name} {article && <>|<span> артикул: {article}</span></>}</p>
                     <div className={cl.descriptionWithPrice}>
                         <p className={cl.description}>{description}</p>
-                        <span className={cl.price}>{!!price ? price + ' ' + measurement : 'Ціну уточнюйте'}</span>
+                        <div className={cl.price}>
+                            {!!price ? (priceFrom ? 'від ' : '') + price + ' ' + measurement : 'Ціну уточнюйте'}
+                        </div>
                     </div>
                 </div>
                 <div className={cl.toGo}>

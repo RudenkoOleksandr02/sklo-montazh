@@ -15,9 +15,10 @@ interface TemplateProps {
     seoDescription: string;
     seoKeywords: string;
     isLoading: boolean;
+    priceFrom?: boolean;
 }
 
-const Template: FC<TemplateProps> = ({data, text, title, forWhom, seoDescription, seoKeywords, isLoading}) => {
+const  Template: FC<TemplateProps> = ({data, text, title, forWhom, seoDescription, seoKeywords, isLoading, priceFrom = false}) => {
     const {data: dollarToHryvniaData} = useFetchDollarToHryvniaQuery('')
 
     return (
@@ -41,11 +42,12 @@ const Template: FC<TemplateProps> = ({data, text, title, forWhom, seoDescription
                             <CardProduct
                                 key={item.id}
                                 name={item.name}
-                                path={`/catalog/${forWhom}/${item.id}`}
+                                path={`/services/${forWhom}/${item.id}`}
                                 price={dollarToHryvnia(item.price, dollarToHryvniaData || 1)}
                                 measurement='₴/кв.м'
                                 description={item.pre_description}
                                 image={item.image}
+                                priceFrom={priceFrom}
                             />
                         ))}
                     </div>

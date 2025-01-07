@@ -6,6 +6,7 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 import cl from "./Category.module.css";
 import CardProduct from "../../components/ui/CardProduct/CardProduct";
 import Preloader, {PreloaderVariant} from "../../components/ui/Preloader/Preloader";
+import linksToService from './../../data/linksToServices.json';
 
 interface ShowersProps {
     dollarToHryvniaData: number;
@@ -53,7 +54,7 @@ const Showers: FC<ShowersProps> = ({dollarToHryvniaData}) => {
                             <CardProduct
                                 key={shower.id}
                                 name={shower.name}
-                                path={`/catalog/showers/${shower.id}`}
+                                path={`${linksToService[0].path}/${shower.id}`}
                                 price={priceForShower(shower.priceOrdinary, shower.defaultHeight, shower.defaultWidth)}
                                 measurement='₴'
                                 article={shower.article}

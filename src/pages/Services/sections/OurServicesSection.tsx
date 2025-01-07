@@ -4,7 +4,7 @@ import Services from "../../../components/containers/Services/Services";
 const OurServicesSection: FC = () => {
     return (
         <section>
-            <Services/>
+            <Services title=''/>
         </section>
     );
 };

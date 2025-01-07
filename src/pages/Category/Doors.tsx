@@ -14,7 +14,7 @@ const Doors: FC = () => {
 
     return (
         <Template data={doorsData || []} text={text} title='Скляні двері' seoDescription={doorsSeo?.description || ''}
-                  seoKeywords={doorsSeo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.doors}/>
+                  seoKeywords={doorsSeo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.doors} priceFrom={true}/>
     );
 };
 

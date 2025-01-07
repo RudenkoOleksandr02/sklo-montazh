@@ -5,17 +5,17 @@ import CallToActionSection from "./sections/CallToActionSection";
 import QuestionsSection from "./sections/QuestionsSection";
 import {useFetchSeoQuery} from "../../services/SeoService";
 
-const Catalog: FC = () => {
+const Services: FC = () => {
     const {data} = useFetchSeoQuery('/catalog-seo');
 
-    const text = `Тут зібрано найкращі рішення для створення сучасного інтер’єру зі скляними елементами. 
-    Кожна позиція – це поєднання естетики, функціональності та надійності. Ми дбаємо про те, щоб ваш вибір 
-    був максимально простим і зрозумілим. Ознайомтесь із нашим асортиментом та оберіть ідеальне рішення 
-    для вашого простору.`;
+    const text = `Наша команда спеціалізується на професійному монтажі скляних конструкцій: 
+    душових кабін, дзеркал з LED-підсвіткою та підігрівом, скляних дверей, полиць, перегородок, 
+    перил, а також фотодруку на склі. Ми використовуємо сучасні технології та обладнання,
+    щоб кожен проєкт відповідав найвищим стандартам якості, стилю та функціональності.`;
 
     return (
         <TemplatePage
-            title="Каталог"
+            title="Послуги"
             text={text}
             seoDescription={data?.description || ''}
             seoKeywords={data?.keywords || ''}
@@ -28,4 +28,4 @@ const Catalog: FC = () => {
     );
 };
 
-export default Catalog;
+export default Services;

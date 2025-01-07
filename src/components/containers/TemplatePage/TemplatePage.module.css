@@ -21,7 +21,7 @@
 .mainSection {
     color: var(--dark);
     margin: 0 auto;
-    padding: 145px 20px 80px;
+    padding: 145px 20px 72px;
     box-sizing: content-box;
 }
 @media (max-width: 999px) {

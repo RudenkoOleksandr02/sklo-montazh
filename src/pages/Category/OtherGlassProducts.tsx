@@ -14,7 +14,7 @@ const OtherGlassProducts: FC = () => {
 
     return (
         <Template data={data || []} text={text} title='Інші вироби зі скла' seoDescription={seo?.description || ''}
-                  seoKeywords={seo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.otherGlassProducts}/>
+                  seoKeywords={seo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.otherGlassProducts} priceFrom={true}/>
     );
 };
 

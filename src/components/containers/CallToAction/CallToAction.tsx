@@ -8,7 +8,7 @@ const CallToAction: FC = () => {
     const [active, setActive] = useState(false);
 
     return (
-        <>
+        <div className={cl.wrapper}>
             <BlockBlurredBackground>
                 <div className={cl.callToAction}>
                     <p>Розкажіть про свої задачі, ми зробимо гарну пропозицію</p>
@@ -24,7 +24,7 @@ const CallToAction: FC = () => {
                 </div>
             </BlockBlurredBackground>
             <FeedbackPopup active={active} setActive={setActive}/>
-        </>
+        </div>
     );
 };
 

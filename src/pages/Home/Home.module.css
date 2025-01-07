@@ -111,13 +111,14 @@
 
 /* workResult */
 .sectionWorkResult {
-    padding: 20px 0;
+    padding: 72px 0 0;
 }
 .workResult {
     color: var(--white);
     padding: 60px;
     display: flex;
     justify-content: space-between;
+    gap: 20px;
 }
 .workResult div {
     display: flex;
@@ -125,7 +126,7 @@
     align-items: center;
 }
 .workResult span {
-    font-size: 96px;
+    font-size: 80px;
     font-weight: 900;
     line-height: 112px;
 }
@@ -143,7 +144,7 @@
         row-gap: 18px;
     }
     .workResult span {
-        font-size: 58px;
+        font-size: 50px;
         line-height: 68px;
     }
     .workResult p {

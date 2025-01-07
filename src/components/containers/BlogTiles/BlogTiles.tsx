@@ -4,12 +4,16 @@ import Tile from "./Tile";
 import {useFetchAllBlogsQuery} from "../../../services/BlogService";
 import Preloader from "../../ui/Preloader/Preloader";
 
-const BlogTiles: FC = () => {
+interface BlogTilesProps {
+    title?: string;
+}
+
+const BlogTiles: FC<BlogTilesProps> = ({title = 'Наш блог'}) => {
     const {data: blogTilesData, isLoading} = useFetchAllBlogsQuery('');
 
     return (
         <div className={cl.wrapper}>
-            <h2>Блог</h2>
+            {title && <h2 className={cl.title}>{title}</h2>}
             {isLoading ? <div><Preloader/></div> : (
                 <div className={cl.grid}>
                     {blogTilesData?.map((item) => (

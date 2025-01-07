@@ -1,7 +1,6 @@
 [
+  {"title": "Послуги", "path": "/services"},
   {"title": "Портфоліо", "path": "/portfolio"},
-  {"title": "Каталог", "path": "/catalog"},
   {"title": "Фурнітура", "path": "/furniture"},
-  {"title": "Блог", "path": "/blog"},
-  {"title": "Про нас", "path": "/about"}
+  {"title": "Блог", "path": "/blog"}
 ]

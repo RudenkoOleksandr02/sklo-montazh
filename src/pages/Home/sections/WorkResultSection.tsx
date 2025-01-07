@@ -4,11 +4,11 @@ import BlockBlurredBackground from "../../../components/ui/BlockContent/BlockCon
 
 const WorkResultSection: FC = () => {
     const workResult: {id: number, count: string, desc: string}[] = [
-        {id: 1, count: '1k', desc: 'Виконаних проектів'},
-        {id: 2, count: '12', desc: 'Років роботи'},
-        {id: 3, count: '43', desc: 'Щасливі клієнти'},
-        {id: 4, count: '6', desc: 'Областей'},
-    ]
+        {id: 1, count: '200+', desc: 'Виконаних проектів'},
+        {id: 2, count: '5', desc: 'Років успішної роботи'},
+        {id: 3, count: '98%', desc: 'Завершених проєктів вчасно'},
+        {id: 4, count: '20%', desc: 'Вигідніше, ніж у конкурентів'},
+    ];
 
     return (
         <section className={cl.sectionWorkResult}>

@@ -1,6 +1,6 @@
 .button {
     height: 74px; width: 74px;
-    display: flex; align-items: center; justify-content: center;
+    display: flex; align-items: center; justify-content: flex-end;
     background: none;
     border: none;
     cursor: pointer;

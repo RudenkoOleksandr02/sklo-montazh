@@ -14,7 +14,7 @@ const Mirrors: FC = () => {
 
     return (
         <Template data={mirrorsData || []} text={text} title='Дзеркала' seoDescription={mirrorsSeo?.description || ''}
-                  seoKeywords={mirrorsSeo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.mirrors}/>
+                  seoKeywords={mirrorsSeo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.mirrors} priceFrom={true}/>
     );
 };
 

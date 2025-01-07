@@ -55,15 +55,17 @@ const TemplateProduct: FC<TemplateProductProps> = ({id, pathname}) => {
                 <div className={cl.infoAboutProduct}>
                     <h1 className={cl.title}>{data?.name}</h1>
                     <p className={cl.description}>{data?.description}</p>
-                    <div className={cl.price}>
-                        {data?.price === 0 && <span>Ціну уточнюйте</span>}
+                    <div className={cl.priceContainer}>
+                        {data?.price === 0 && <span className={cl.price}>Ціну уточнюйте</span>}
                         {data?.price !== 0 &&
-                            <span>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span>}
+                            <p><span className={cl.priceFrom}>Ціна від:</span> <span className={cl.price}>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span>
+                            </p>
+                        }
                     </div>
                     <div className={cl.makeOrder}>
                         <PrimaryButton
                             height='auto'
-                            width='50%'
+                            width='auto'
                             minWidth='229px'
                             padding='20px 30px'
                             onClick={() => setIsOpenModalMakeOrder(true)}
@@ -83,7 +85,7 @@ const TemplateProduct: FC<TemplateProductProps> = ({id, pathname}) => {
                         <span className={cl.name}>{data?.name}</span>
                     </div>
                     {data?.price !== 0 ? (
-                        <p className={cl.totalPrice}>Ціна: <span>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span></p>
+                        <p className={cl.totalPrice}>Ціна від: <span>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span></p>
                     ) : (
                         <p className={cl.totalPrice}><span>Ціну уточнюйте</span></p>
                     )}

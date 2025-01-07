@@ -2,6 +2,10 @@ import React, {FC, useEffect, useState} from 'react';
 import cl from './MobileMenuPopup.module.css';
 import {ReactComponent as Close} from './../../../assets/images/close.svg';
 import {Link} from "react-router-dom";
+import linksToServices from "../../../data/linksToServices.json";
+import DropDownListForLink from "../../ui/DropDownListForLink/DropDownListForLink";
+import linksToPages from "../../../data/linksToPages.json";
+import {ReactComponent as Logo} from './../../../assets/images/logo_white.svg';
 
 interface MobileMenuProps {
     isOpen: boolean;
@@ -37,13 +41,24 @@ const MobileMenuPopup: FC<MobileMenuProps> = ({isOpen, onClose, linksData}) => {
         <div className={`${cl.modal} ${isOpen ? cl.isOpen : ''}`} onClick={handleClose}>
             <div onClick={e => e.stopPropagation()}
                  className={`${cl.modal_content} ${isOpen ? cl.isOpen : ''} ${isClosing ? cl.isClosing : ''}`}>
-                <button className={cl.button} onClick={handleClose}>
-                    <Close/>
-                </button>
-                <div className={cl.links}>
-                    {linksData.map(link => (
-                        <Link key={link.path} to={link.path} onClick={() => onClose()}>{link.title}</Link>
-                    ))}
+                <div className={cl.inner}>
+                    <button className={cl.button} onClick={handleClose}>
+                        <Close/>
+                    </button>
+                    <div className={cl.links}>
+                        <DropDownListForLink title='Послуги' mainLink='/services' handleLinkClick={() => onClose()}>
+                            {linksToServices.map(link => (
+                                <Link to={link.path} key={link.path} onClick={() => onClose()}>{link.title}</Link>
+                            ))}
+                        </DropDownListForLink>
+                        <Link to={linksToPages[1].path} onClick={() => onClose()}>{linksToPages[1].title}</Link>
+                        <Link to={linksToPages[2].path} onClick={() => onClose()}>{linksToPages[2].title}</Link>
+                        <Link to={linksToPages[3].path} onClick={() => onClose()}>{linksToPages[3].title}</Link>
+                    </div>
+                </div>
+                <div className={cl.bottom}>
+                    <a href="tel:+380673843181">+38 (067) 384 31 81</a>
+                    <Logo/>
                 </div>
             </div>
         </div>

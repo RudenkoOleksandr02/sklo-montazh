@@ -14,7 +14,7 @@ const RailingPartitions: FC = () => {
 
     return (
         <Template data={data || []} text={text} title='Скляні перила та перегородки' seoDescription={seo?.description || ''}
-                  seoKeywords={seo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.railings_partitions}/>
+                  seoKeywords={seo?.keywords || ''} isLoading={isLoading} forWhom={CatalogPath.railings_partitions} priceFrom={true}/>
     );
 };
 

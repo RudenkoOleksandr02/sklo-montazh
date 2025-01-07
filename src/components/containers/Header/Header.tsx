@@ -3,9 +3,11 @@ import {ReactComponent as LogoWhite} from './../../../assets/images/logo_white.s
 import cl from './Header.module.css';
 import {Link} from "react-router-dom";
 import MenuButton, {MenuVariant} from "../../ui/buttons/MenuButton/MenuButton";
-import LinkAnimaUnderline, {colorVariant} from "../../ui/LinkAnimaUnderline/LinkAnimaUnderline";
 import linksToPages from '../../../data/linksToPages.json';
 import BlockContent, {BlockContentVariant} from "../../ui/BlockContent/BlockContent";
+import DropDownListForLink from "../../ui/DropDownListForLink/DropDownListForLink";
+
+import linksToServices from "../../../data/linksToServices.json";
 
 export enum HeaderVariant {
     variant1 = 'variant1',
@@ -21,10 +23,14 @@ interface HeaderProps {
 const Header: FC<HeaderProps> = ({variant, setIsOpenMobileMenu}) => {
     const linksJSX: React.JSX.Element = (
         <div className={cl.links}>
-            {linksToPages.map(link => (
-                <LinkAnimaUnderline key={link.path} path={link.path}
-                                    variant={colorVariant.white}>{link.title}</LinkAnimaUnderline>
-            ))}
+            <DropDownListForLink title='Послуги' mainLink='/services' handleLinkClick={() => {}}>
+                {linksToServices.map(link => (
+                    <Link to={link.path} key={link.path}>{link.title}</Link>
+                ))}
+            </DropDownListForLink>
+            <Link to={linksToPages[1].path}>{linksToPages[1].title}</Link>
+            <Link to={linksToPages[2].path}>{linksToPages[2].title}</Link>
+            <Link to={linksToPages[3].path}>{linksToPages[3].title}</Link>
         </div>
     );
 
