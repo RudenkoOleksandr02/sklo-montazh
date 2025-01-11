@@ -1,12 +1,12 @@
 import React, {FC, useEffect, useState} from 'react';
 import TemplatePage from "../../components/containers/TemplatePage/TemplatePage";
 import cl from './Blog.module.css';
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import QuestionsSection from "./QuestionsSection";
 import {useFetchAllBlogsQuery} from "../../services/BlogService";
 import {IBlog} from "../../types";
 import {useParams} from "react-router-dom";
+import Preloader from "../../components/ui/Preloader/Preloader";
+import MarkdownWithStyle from "../../components/containers/MarkdownWithStyle/MarkdownWithStyle";
 
 type Params = {
     id: string;
@@ -28,11 +28,17 @@ const Blog: FC = () => {
                       text={blog?.description || ''}
                       seoDescription={blog?.meta_description || ''}
                       seoKeywords={blog?.meta_keys || ''}>
-            <section className={cl.content}>
-                <Markdown remarkPlugins={[remarkGfm]}>
-                    {blog?.text || ''}
-                </Markdown>
-            </section>
+            {!blog ? <Preloader/> : (
+                <section className={cl.content}>
+                    <div className={cl.video}>
+                        <video controls width="100%" height='500px'>
+                            <source src={blog?.video} type="video/mp4"/>
+                            Ваш браузер не поддерживает воспроизведение видео.
+                        </video>
+                    </div>
+                    <MarkdownWithStyle content={blog?.text || ''}/>
+                </section>
+            )}
             <QuestionsSection/>
         </TemplatePage>
     );

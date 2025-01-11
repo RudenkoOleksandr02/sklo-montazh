@@ -9,6 +9,7 @@ import {dollarToHryvnia} from "../../utils/dollarToHryvnia";
 import {useFetchDollarToHryvniaQuery} from "../../services/DollarToHryvnia";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import MakeOrderPopup from "../../components/containers/MakeOrderPopup/MakeOrderPopup";
+import MarkdownWithStyle from "../../components/containers/MarkdownWithStyle/MarkdownWithStyle";
 
 interface TemplateProductProps {
     id: string;
@@ -54,11 +55,14 @@ const TemplateProduct: FC<TemplateProductProps> = ({id, pathname}) => {
                 </div>
                 <div className={cl.infoAboutProduct}>
                     <h1 className={cl.title}>{data?.name}</h1>
-                    <p className={cl.description}>{data?.description}</p>
+                    <div className={cl.description}>
+                        <MarkdownWithStyle content={data?.description || ''}/>
+                    </div>
                     <div className={cl.priceContainer}>
                         {data?.price === 0 && <span className={cl.price}>Ціну уточнюйте</span>}
                         {data?.price !== 0 &&
-                            <p><span className={cl.priceFrom}>Ціна від:</span> <span className={cl.price}>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span>
+                            <p><span className={cl.priceFrom}>Ціна від:</span> <span
+                                className={cl.price}>{dollarToHryvnia(data?.price || 1, dollarToHryvniaData || 1)} ₴/кв.м</span>
                             </p>
                         }
                     </div>

@@ -3,9 +3,6 @@
     padding: 72px 0 0;
     font-size: 18px;
 }
-.content *:not(:first-child) {
-    margin-top: 16px;
-}
-.content li {
-    margin-top: 8px !important;
+.video {
+    margin-bottom: 16px;
 }

@@ -6,6 +6,7 @@ import Markdown from "react-markdown";
 import {Navigation} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Skeleton from "../../../../components/ui/Skeleton/Skeleton";
+import MarkdownWithStyle from "../../../../components/containers/MarkdownWithStyle/MarkdownWithStyle";
 
 interface PopupForFurnitureProps {
     dataForPopup: IFurniture | null;
@@ -44,7 +45,7 @@ const PopupForFurniture: FC<PopupForFurnitureProps> = ({
                 <p className={cl.price}>Ціна: {item?.priceDollars && Math.ceil(item.priceDollars * dollarToHryvnia)}₴</p>
                 <div className={cl.description}>
                     <span>Опис:</span>
-                    <Markdown className={cl.markdown}>{item?.description}</Markdown>
+                    <MarkdownWithStyle content={item?.description || ''}/>
                 </div>
             </div>
         </Popup>

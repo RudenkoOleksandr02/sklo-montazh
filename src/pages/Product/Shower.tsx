@@ -11,6 +11,7 @@ import {useFetchDollarToHryvniaQuery} from "../../services/DollarToHryvnia";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import MakeOrderPopup from "../../components/containers/MakeOrderPopup/MakeOrderPopup";
 import {dollarToHryvnia} from "../../utils/dollarToHryvnia";
+import MarkdownWithStyle from "../../components/containers/MarkdownWithStyle/MarkdownWithStyle";
 
 interface ShowerProps {
     id: string;
@@ -131,7 +132,9 @@ const Shower: FC<ShowerProps> = ({id}) => {
                 <div className={cl.infoAboutProduct}>
                     <span className={cl.article}>Артикул: {data?.article}</span>
                     <h1 className={cl.title}>{data?.name}</h1>
-                    <p className={cl.description}>{data?.description}</p>
+                    <div className={cl.description}>
+                        <MarkdownWithStyle content={data?.description || ''} />
+                    </div>
                     <div className={cl.calculator}>
                         <Calculator startWidth={data?.defaultWidth || []}
                                     startHeight={data?.defaultHeight || 1}

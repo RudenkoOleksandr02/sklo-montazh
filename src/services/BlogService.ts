@@ -8,7 +8,7 @@ export const blogAPI = createApi({
     endpoints: (build) => ({
         fetchAllBlogs: build.query<IBlog[], ''>({
             query: () => ({
-                url: `/blogs`
+                url: `/blogs?populate=*`
             }),
             transformResponse: (response: any): IBlog[] => {
                 return response.data.map(((blog: any): IBlog => ({
@@ -17,6 +17,7 @@ export const blogAPI = createApi({
                     pre_description: blog.attributes.pre_description,
                     description: blog.attributes.description,
                     text: blog.attributes.text,
+                    video: blog.attributes.video.data.attributes.url,
                     meta_description: blog.attributes.meta_description,
                     meta_keys: blog.attributes.meta_keys
                 })))

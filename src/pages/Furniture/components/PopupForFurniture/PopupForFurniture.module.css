@@ -32,12 +32,6 @@
 .popupForFurniture .title {
     font-size: 24px;
 }
-.popupForFurniture .markdown * {
-    margin-top: 8px;
-}
-.popupForFurniture .markdown li {
-    margin-top: 8px !important;
-}
 @media (max-width: 560px) {
     .popupForFurniture {
         width: 330px;

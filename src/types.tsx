@@ -19,6 +19,7 @@ export interface IBlog {
     pre_description: string;
     description: string;
     text: string;
+    video: string;
     meta_description: string;
     meta_keys: string;
 }
