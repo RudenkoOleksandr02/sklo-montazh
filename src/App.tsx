@@ -31,20 +31,19 @@ const App = () => {
                 setHeaderVariant(HeaderVariant.variant1);
                 break;
             case '/portfolio':
-            case '/catalog':
-            case `/catalog/${id}`:
-            case `/catalog/showers/${id}`:
-            case `/catalog/mirrors/${id}`:
-            case `/catalog/doors/${id}`:
-            case `/catalog/railing-partitions/${id}`:
-            case `/catalog/other-glass-products/${id}`:
-            case '/product':
+            case '/services':
             case '/blog':
             case `/blog/${id}`:
-            case '/about':
                 setHeaderVariant(HeaderVariant.variant2);
                 break;
             case '/furniture':
+            case `/services/${id}`:
+            case `/services/showers/${id}`:
+            case `/services/mirrors/${id}`:
+            case `/services/doors/${id}`:
+            case `/services/railing-partitions/${id}`:
+            case `/services/other-glass-products/${id}`:
+            case '/product':
                 setHeaderVariant(HeaderVariant.variant3);
                 break;
             default:

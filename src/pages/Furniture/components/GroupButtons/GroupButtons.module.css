@@ -7,6 +7,8 @@
     border: 1px solid var(--white);
     position: sticky;
     top: 15px;
+    max-height: calc(100vh - 30px);
+    overflow-y: auto;
 }
 .groupButtons .mobile {
     display: none;

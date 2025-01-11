@@ -84,19 +84,19 @@
     gap: 10px;
     align-items: center; justify-content: center;
 }
-.socials a svg rect {
+.socials a svg rect, .socials a:last-child svg path {
     transition: .2s;
 }
 @media (hover: hover) {
-    .socials a:hover svg rect {
+    .socials a:hover svg rect, .socials a:last-child:hover svg path {
         fill: var(--orange);
     }
 }
 @media (hover: none) {
-    .socials a svg rect {
+    .socials a svg rect, .socials a:last-child svg path {
         transition: none;
     }
-    .socials a:active svg rect {
+    .socials a:active svg rect, .socials a:last-child:active svg path {
         fill: var(--orange);
     }
 }

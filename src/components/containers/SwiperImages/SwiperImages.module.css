@@ -69,6 +69,22 @@
             height: 300px;
         }
     }
+    @media (min-width: 1000px) {
+        .imageZoomOnHoverContainer {
+            display: block;
+        }
+        .skeletonContainer {
+            display: none;
+        }
+    }
+    @media (max-width: 999px) {
+        .imageZoomOnHoverContainer {
+            display: none;
+        }
+        .skeletonContainer {
+            display: block;
+        }
+    }
 
 
 /* SWIPER 2 */

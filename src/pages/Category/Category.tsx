@@ -25,11 +25,13 @@ const Category: FC = () => {
     const {data: dollarToHryvniaData} = useFetchDollarToHryvniaQuery('')
 
     return <div className={cl.wrapper}>
-        {path === CatalogPath.showers && <Showers dollarToHryvniaData={dollarToHryvniaData || 1} />}
-        {path === CatalogPath.mirrors && <Mirrors />}
-        {path === CatalogPath.doors && <Doors />}
-        {path === CatalogPath.railings_partitions && <RailingPartitions/>}
-        {path === CatalogPath.otherGlassProducts && <OtherGlassProducts />}
+        <div className={cl.inner}>
+            {path === CatalogPath.showers && <Showers dollarToHryvniaData={dollarToHryvniaData || 1} />}
+            {path === CatalogPath.mirrors && <Mirrors />}
+            {path === CatalogPath.doors && <Doors />}
+            {path === CatalogPath.railings_partitions && <RailingPartitions/>}
+            {path === CatalogPath.otherGlassProducts && <OtherGlassProducts />}
+        </div>
     </div>
 };
 

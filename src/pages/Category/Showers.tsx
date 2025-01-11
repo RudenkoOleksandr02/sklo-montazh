@@ -60,10 +60,11 @@ const Showers: FC<ShowersProps> = ({dollarToHryvniaData}) => {
                                 article={shower.article}
                                 description={descriptionForShower(shower.defaultHeight, shower.defaultWidth)}
                                 image={shower.image}
+                                priceFrom={true}
                             />
                         ))}
                     </div>
-                ) : <Preloader variant={PreloaderVariant.variant2}/>}
+                ) : <Preloader/>}
             </>
         </HelmetProvider>
     );

@@ -36,7 +36,7 @@ const TemplateProduct: FC<TemplateProductProps> = ({id, pathname}) => {
       )}
     </div>`;
 
-    if (isLoading || isFetching) return <Preloader variant={PreloaderVariant.variant2}/>
+    if (isLoading || isFetching) return <Preloader />
 
     return (
         <HelmetProvider>

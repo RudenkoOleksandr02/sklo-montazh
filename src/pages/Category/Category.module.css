@@ -1,14 +1,18 @@
 .wrapper {
     padding: 145px 20px 80px;
-    max-width: 1240px;
-    overflow: hidden;
-    margin: 0 auto;
-    box-sizing: content-box;
+    background: var(--dark);
+    color: var(--white);
 }
 @media (max-width: 999px) {
     .wrapper {
         padding: 194px 15px 80px;
     }
+}
+.inner {
+    max-width: 1240px;
+    overflow: hidden;
+    margin: 0 auto;
+    box-sizing: content-box;
 }
 
 .cardList {
@@ -37,5 +41,4 @@
 .top p {
     line-height: 24px;
     font-size: 18px;
-    color: rgb(75, 85, 99);
 }

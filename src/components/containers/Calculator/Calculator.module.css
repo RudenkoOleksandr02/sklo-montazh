@@ -1,12 +1,9 @@
 .wrapper {
     padding: 20px;
     border-radius: 20px;
-    background: var(--white);
-    box-shadow: 0 2px 5px 0 rgba(8, 13, 10, 0.1),
-                0 10px 10px 0 rgba(8, 13, 10, 0.09),
-                0 22px 13px 0 rgba(8, 13, 10, 0.05),
-                0 39px 16px 0 rgba(8, 13, 10, 0.01),
-                0 61px 17px 0 rgba(8, 13, 10, 0);
+    border: 1px solid var(--white);
+    color: var(--white);
+    background: var(--dark);
 }
 .wrapper h5 {
     font-weight: 500;
@@ -20,13 +17,12 @@
     gap: 15px;
     margin-bottom: 15px;
 }
+.heightWidthContainer input {
+    color: var(--white);
+}
 
 .additionalOptionsContainer {
-    background-color: #e0e0e0;
-    padding: 20px;
-    border-radius: 10px;
     margin: 20px 0 0;
-
 }
 .additionalOptions {
     display: flex;
@@ -45,7 +41,7 @@
     outline: none;
     background-color: var(--dark);
     color: var(--white);
-    height: 38px;
+    height: 50px;
     transition: .2s;
     font-size: 16px;
 }
@@ -55,11 +51,14 @@
 .buttons button:first-child {
     background: var(--orange);
 }
+.buttons button:last-child {
+    border: 1px solid var(--white);
+}
 .totalPrice {
     margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    background-color: #e0e0e0;
+    border: 1px solid var(--white);
     padding: 20px;
     border-radius: 10px;
     font-size: 18px;

@@ -1,0 +1,36 @@
+.magnifierContainer {
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    cursor: zoom-in;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.magnifierContainer img {
+    display: block;
+    transition: opacity 0.2s ease;
+}
+
+.magnifierContainer.zoomed {
+    cursor: crosshair;
+}
+
+.magnifierContainer.zoomed img {
+    opacity: 0; /* Скрываем изображение */
+    pointer-events: none;
+}
+
+.skeleton {
+    background-color: #e0e0e0;
+    animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}

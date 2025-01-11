@@ -20,7 +20,8 @@ const GroupButtons: FC<GroupButtonsProps> = ({selectedParam, handleSelectedParam
         {name: 'Ущільнювачі', param: FurnitureNames.furniture_sealers},
         {name: 'Поличні кріплення', param: FurnitureNames.furniture_shelf_mounts},
         {name: 'Розсувні системи', param: FurnitureNames.furniture_sliding_systems},
-        {name: 'Поріжки', param: FurnitureNames.furniture_thresholds}
+        {name: 'Поріжки', param: FurnitureNames.furniture_thresholds},
+        {name: 'Офісні ручки', param: FurnitureNames.furniture_office_handles}
     ];
 
     return (

@@ -30,7 +30,7 @@
 .arrow span {
     height: 1px;
     width: 100%;
-    background: var(--dark);
+    background: var(--white);
 }
 .arrow span:first-child {
     transform: rotate(45deg) translate(1px, -1px);
@@ -44,6 +44,7 @@
     padding: 5px;
     transition: .2s;
     font-size: 16px;
+    color: var(--dark);
 }
 .option:hover {
     background: #e0e0e0;

@@ -1,10 +1,10 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { fetchCities } from '../fetchs/fetchCities';
 import InputSelect1 from "../../../ui/InputSelect/InputSelect1/InputSelect1";
 import {ICity} from "../NovaPoshta";
 
 interface CitySelectorProps {
-    setCity: (city: ICity) => void;
+    setCity: (city: ICity | null) => void;
     isErrorCity: boolean;
 }
 
@@ -12,13 +12,38 @@ const CitySelector: FC<CitySelectorProps> = ({ setCity, isErrorCity }) => {
     const [cities, setCities] = useState<ICity[]>([]);
     const [searchText, setSearchText] = useState<string>('');
 
-    const handleInputChange = async (e: React.ChangeEvent<any>) => {
-        const text = e.target.value;
-        setSearchText(text);
-        if (text.length > 0) {
-            const results = await fetchCities(text);
-            setCities(results);
-        }
+    useEffect(() => {
+        let isMounted = true;
+
+        const fetchCitiesAsync = async () => {
+            if (searchText.length > 0) {
+                try {
+                    const results = await fetchCities(searchText);
+                    if (isMounted) {
+                        setCities(results);
+                    }
+                } catch (error) {
+                    if (isMounted) {
+                        console.error("Ошибка при загрузке городов:", error);
+                    }
+                }
+            } else {
+                if (isMounted) {
+                    setCities([]);
+                    setCity(null);
+                }
+            }
+        };
+
+        fetchCitiesAsync();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [searchText]);
+
+    const handleInputChange = async (value: string) => {
+        setSearchText(value);
     };
 
     const handleOptionClick = (option: string) => {

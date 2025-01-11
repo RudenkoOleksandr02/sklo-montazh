@@ -16,7 +16,7 @@ const MakeOrderPopup: FC<MakeOrderPopupProps> = ({children, active, setActive, o
             <div className={cl.content}>
                 <div className={cl.children}>{children}</div>
                 <div className={cl.feedback}>
-                    <Feedback closePopup={() => setActive(false)} textBtn='Оформити замовлення' orderData={orderData}/>
+                    <Feedback closePopup={() => setActive(false)} textBtn='Залишити заявку' orderData={orderData}/>
                 </div>
             </div>
         </Popup>

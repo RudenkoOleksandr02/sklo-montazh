@@ -11,23 +11,50 @@ interface DepartmentSelectorProps {
 const DepartmentSelector: FC<DepartmentSelectorProps> = ({ cityRef, handleSetDeliveryInfo, isErrorDepartment }) => {
     const [departments, setDepartments] = useState<string[]>([]);
     const [searchText, setSearchText] = useState<string>('');
+    const [prevCityRef, setPrevCityRef] = useState<null | string>(null);
 
     useEffect(() => {
         handleSetDeliveryInfo(searchText, 'department')
     }, [searchText])
 
     useEffect(() => {
+        let isMounted = true;
+
         const fetchDeps = async () => {
-            if (cityRef) {
+            if (!cityRef) {
+                setDepartments([]);
+                setSearchText('');
+                return;
+            }
+
+            if (prevCityRef !== cityRef) {
+                setDepartments([]);
+                setSearchText('');
+            }
+
+            setPrevCityRef(cityRef);
+
+            try {
                 const results = await fetchDepartments(cityRef, searchText);
-                setDepartments(results);
+                if (isMounted) {
+                    setDepartments(results);
+                }
+            } catch (error) {
+                if (isMounted) {
+                    console.error("Ошибка при загрузке отделений:", error);
+                }
             }
         };
-        fetchDeps();
-    }, [cityRef, searchText]);
 
-    const handleInputChange = (e: React.ChangeEvent<any>) => {
-        setSearchText(e.target.value);
+        fetchDeps();
+
+        return () => {
+            isMounted = false;
+        };
+    }, [cityRef, searchText, prevCityRef]);
+
+    const handleInputChange = (value: string) => {
+        setSearchText(value);
     };
 
     const handleOptionClick = (option: string) => {

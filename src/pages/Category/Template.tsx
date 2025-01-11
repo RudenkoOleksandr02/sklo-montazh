@@ -51,7 +51,7 @@ const  Template: FC<TemplateProps> = ({data, text, title, forWhom, seoDescriptio
                             />
                         ))}
                     </div>
-                ) : <Preloader variant={PreloaderVariant.variant2}/>}
+                ) : <Preloader/>}
             </>
         </HelmetProvider>
     );

@@ -7,7 +7,6 @@ import {Navigation} from "swiper/modules";
 import {Swiper, SwiperSlide} from "swiper/react";
 import Skeleton from "../../../../components/ui/Skeleton/Skeleton";
 
-
 interface PopupForFurnitureProps {
     dataForPopup: IFurniture | null;
     handleClosePopup: (active: boolean) => void;
@@ -27,7 +26,7 @@ const PopupForFurniture: FC<PopupForFurnitureProps> = ({
                 <div className={cl.slider}>
                     <Swiper navigation={true} modules={[Navigation]}>
                         {item?.images.map((img, index) => (
-                            <SwiperSlide key={item?.id || index}>
+                            <SwiperSlide key={img?.id || index}>
                                 <div className={cl.imgContainer}>
                                     <Skeleton
                                         src={img.url}

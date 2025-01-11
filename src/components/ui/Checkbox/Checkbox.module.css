@@ -10,8 +10,11 @@
     align-items: center;
     justify-content: center;
     width: 20px; height: 20px;
-    border: 1px solid var(--dark);
+    border: 1px solid var(--white);
 }
 .checkbox svg {
     width: 20px; height: 20px;
+}
+.checkbox svg path {
+    fill: var(--white);
 }

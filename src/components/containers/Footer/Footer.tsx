@@ -5,6 +5,7 @@ import {ReactComponent as Instagram} from "../../../assets/images/instagram.svg"
 import {ReactComponent as Whatsapp} from "../../../assets/images/whatsapp.svg";
 import {ReactComponent as Viber} from "../../../assets/images/viber.svg";
 import {ReactComponent as Telegram} from "../../../assets/images/telegram.svg";
+import {ReactComponent as Facebook} from "../../../assets/images/facebook.svg";
 import linksToSocials from '../../../data/linksToSocials.json';
 import linksToPages from '../../../data/linksToPages.json';
 import LinkAnimaUnderline, {colorVariant} from "../../ui/LinkAnimaUnderline/LinkAnimaUnderline";
@@ -41,10 +42,11 @@ const Footer: FC = () => {
             <div className={cl.footer}>
                 <div className={cl.logo}><Logo/></div>
                 <div className={cl.socials}>
-                    <a href={linksToSocials[0].path}><Instagram/></a>
-                    <a href={linksToSocials[1].path}><Whatsapp/></a>
-                    <a href={linksToSocials[2].path}><Viber/></a>
-                    <a href={linksToSocials[3].path}><Telegram/></a>
+                    <a href={linksToSocials[0].path} target='_blank'><Instagram/></a>
+                    <a href={linksToSocials[1].path} target='_blank'><Whatsapp/></a>
+                    <a href={linksToSocials[2].path} target='_blank'><Viber/></a>
+                    <a href={linksToSocials[3].path} target='_blank'><Telegram/></a>
+                    <a href={linksToSocials[4].path} target='_blank'><Facebook/></a>
                 </div>
             </div>
         </footer>

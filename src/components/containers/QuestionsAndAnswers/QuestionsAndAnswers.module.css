@@ -1,6 +1,6 @@
 .wrapper {
     color: var(--white);
-    padding: 72px 0 0;
+    padding: 72px 0;
 }
 .titleWithSVG {
     display: flex;

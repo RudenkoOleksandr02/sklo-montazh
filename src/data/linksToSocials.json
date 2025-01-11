@@ -1,6 +1,7 @@
 [
-  {"where": "instagram", "path": "/"},
-  {"where": "whatsapp", "path": "/"},
-  {"where": "viber", "path": "/"},
-  {"where": "telegram", "path": "/"}
+  {"where": "instagram", "path": "https://www.instagram.com/sklomontazh.kiev/"},
+  {"where": "whatsapp", "path": "https://wa.me/380673843181"},
+  {"where": "viber", "path": "viber://chat?number=380673843181"},
+  {"where": "telegram", "path": "https://t.me/SkloMontazh"},
+  {"where":  "facebook", "path": "https://www.facebook.com/people/Sklo-Montazh/100083367159420/"}
 ]

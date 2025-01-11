@@ -108,11 +108,11 @@ const Shower: FC<ShowerProps> = ({id}) => {
             ${selectedCharacteristics?.additionalOptions
                 ?.map((item) => `<li>${item.title}</li>`)
                 .join("")}
-            <li>Підсумкова ціна: ${selectedCharacteristics.totalPrice} ₴</li>
+            <li>Ціна від: ${selectedCharacteristics.totalPrice} ₴</li>
           </ul>
     `;
 
-    if (isLoading || isFetching) return <Preloader variant={PreloaderVariant.variant2}/>
+    if (isLoading || isFetching) return <Preloader />
 
     return (
         <HelmetProvider>
@@ -171,13 +171,13 @@ const Shower: FC<ShowerProps> = ({id}) => {
                         <ul className={cl.list}>
                             <li>Висота: {selectedCharacteristics.height} мм</li>
                             <li>Ширина: {(selectedCharacteristics.width.map((width, index) => selectedCharacteristics.width.length > 1 ? (selectedCharacteristics.width.length - index !== 1 ? `${width}x` : width) : width)).join('')} мм</li>
-                            <li>Тип скла: {selectedCharacteristics.glassType.split(' ')[0]}</li>
+                            <li>Колір скла: {selectedCharacteristics.glassType.split(' ')[0]}</li>
                             {selectedCharacteristics?.additionalOptions?.map(item => {
                                 return <li key={item.id}>{item.title}</li>
                             })}
                         </ul>
                     </div>
-                    <p className={cl.totalPrice}>Підсумкова ціна: <span>{selectedCharacteristics.totalPrice} ₴</span></p>
+                    <p className={cl.totalPrice}>Ціна від: <span>{selectedCharacteristics.totalPrice} ₴</span></p>
                 </div>
             </MakeOrderPopup>
         </HelmetProvider>

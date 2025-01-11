@@ -55,7 +55,7 @@ const HeightWidth: FC<HeightWidthProps> = ({width, height, setWidth, setHeight})
                     label={`Ширина ${width.length > 1 ? index + 1 : ''} (мм)`}
                     value={el}
                     onChange={e => handleDimensionsChange(e, 'width', index)}
-                    onBlur={e => handleDimensionsBlur(e, 'width')}
+                    onBlur={e => handleDimensionsBlur(e, 'width', index)}
                     key={index}
                 />
             ))}

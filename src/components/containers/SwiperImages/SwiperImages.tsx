@@ -6,6 +6,7 @@ import {IImage} from "../../../types";
 import {ReactComponent as Arrow} from "./../../../assets/images/arrowBottom2.svg";
 import ModalImageWithSwiper from "../ModalImageWithSwiper/ModalImageWithSwiper";
 import Skeleton from "../../ui/Skeleton/Skeleton";
+import ImageZoomOnHover from "../ImageZoomOnHover/ImageZoomOnHover";
 
 interface SwiperImagesProps {
     images: IImage[] | null;
@@ -41,13 +42,23 @@ const SwiperImages: FC<SwiperImagesProps> = ({images}) => {
                     >
                         {images && images.map((data, index) => (
                             <SwiperSlide key={data.id}>
-                                <Skeleton
-                                    src={data.url}
-                                    alt={data.alternativeText || 'image for slide ' + data.id}
-                                    classNameSkeleton={cl.skeleton}
-                                    classNameImage={cl.image}
-                                    onClick={() => handleImageClick(index)}
-                                />
+                                <div className={cl.imageZoomOnHoverContainer}>
+                                    <ImageZoomOnHover
+                                        image={data.url}
+                                        alt={data.alternativeText || 'image for slide ' + data.id}
+                                        classNameSkeleton={cl.skeleton}
+                                        classNameImage={cl.image}
+                                    />
+                                </div>
+                                <div className={cl.skeletonContainer}>
+                                    <Skeleton
+                                        src={data.url}
+                                        alt={data.alternativeText || 'image for slide ' + data.id}
+                                        classNameSkeleton={cl.skeleton}
+                                        classNameImage={cl.image}
+                                        onClick={() => handleImageClick(index)}
+                                    />
+                                </div>
                             </SwiperSlide>
                         ))}
                     </Swiper>

@@ -125,7 +125,7 @@ const Calculator: FC<CalculatorProps> = ({
                 setHeight={setHeight}
             />
             <InputSelect2
-                label='Тип скла'
+                label='Колір скла'
                 options={glassTypes}
                 value={glassType}
                 onClick={handleGlassTypeChange}
@@ -148,7 +148,7 @@ const Calculator: FC<CalculatorProps> = ({
                 )}
                 returnToOriginalSettings={() => returnToOriginalSetting()}
             />
-            <p className={cl.totalPrice}>Загальна ціна: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)} ₴</span></p>
+            <p className={cl.totalPrice}>Ціна від: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)} ₴</span></p>
         </div>
     );
 };

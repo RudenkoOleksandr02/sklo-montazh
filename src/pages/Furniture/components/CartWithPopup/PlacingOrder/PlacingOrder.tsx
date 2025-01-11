@@ -24,17 +24,18 @@ const PlacingOrder: FC<PlacingOrderProps> = ({cleanCart, products, generalPrice}
         city: "",
         department: ""
     });
+
     const [isErrorCity, setIsErrorCity] = useState<boolean>(false);
     const [isErrorDepartment, setIsErrorDepartment] = useState<boolean>(false);
 
     const handleSetDeliveryInfo = (value: string, key: string) => {
         setDeliveryInfo({...deliveryInfo, [key]: value})
     }
-    const changeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
+    const changeNameHandler = (value: string) => {
+        setName(value);
     }
-    const changeLastNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLastName(e.target.value);
+    const changeLastNameHandler = (value: string) => {
+        setLastName(value);
     }
     const changePhoneHandler = (value: string) => {
         setPhone(value);
@@ -94,7 +95,7 @@ const PlacingOrder: FC<PlacingOrderProps> = ({cleanCart, products, generalPrice}
                     isSuccess={isSuccess}
                     resetSuccess={() => setIsSuccess(false)}
                 >
-                    Оформити замовлення
+                    Залишити заявку
                 </PrimaryButton>
             </div>
         </div>

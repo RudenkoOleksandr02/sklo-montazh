@@ -27,11 +27,11 @@ const TemplatePage: FC<TemplatePageProps> = ({children, title, text, seoDescript
             <MainSection title={title} text={text}/>
             <div className={cl.sectionsWithDarkBG}>
                 {children}
-                {seoText && (
+                {/*{seoText && (
                     <section>
                         <SEO text={seoText}/>
                     </section>
-                )}
+                )}*/}
             </div>
         </HelmetProvider>
 

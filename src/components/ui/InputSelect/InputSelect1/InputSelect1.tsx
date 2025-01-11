@@ -1,12 +1,12 @@
 import Modal from '../Modal/Modal';
 import React, {FC, useEffect, useState} from 'react';
 import classes from './InputSelect1.module.css';
-import Input from "../../Input/Input";
+import InputText from "../../InputText/InputText";
 
 interface InputSelectProps {
     title: string;
     value: string;
-    onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onInputChange: (value: string) => void;
     onOptionClick: (option: string) => void;
     options: string[];
     isError?: boolean;
@@ -29,8 +29,8 @@ const InputSelect1: FC<InputSelectProps> = ({
         setShowModal(options.length !== 0);
     }, [options, focus]);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        onInputChange(e);
+    const handleInputChange = (value: string) => {
+        onInputChange(value);
         setShowModal(true);
     };
 
@@ -46,7 +46,7 @@ const InputSelect1: FC<InputSelectProps> = ({
 
     return (
         <div className={classes.wrapper}>
-            <Input
+            <InputText
                 value={value}
                 handleChange={handleInputChange}
                 title={title}
@@ -55,6 +55,7 @@ const InputSelect1: FC<InputSelectProps> = ({
                 handleBlur={handleBlur}
                 handleFocus={() => setFocus(true)}
                 isError={isError}
+                onlyText={false}
             />
             <Modal show={showModal && focus}>
                 {options.map((option: string, index: number) => (

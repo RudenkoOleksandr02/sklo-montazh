@@ -9,13 +9,15 @@ type Params = {
 }
 
 const Product: FC = () => {
-    const location = useLocation();
+    const pathname = (useLocation()).pathname.split("/")[2];
     const {id} = useParams<Params>();
 
     return (
         <div className={cl.wrapper}>
-            {location.pathname.split("/")[2] === 'showers' && <Shower id={id || ''}/>}
-            {location.pathname.split("/")[2] !== 'showers' && <TemplateProduct id={id || ''} pathname={location.pathname.split('/')[2]} />}
+            <div className={cl.inner}>
+                {pathname === 'showers' && <Shower id={id || ''}/>}
+                {pathname !== 'showers' && pathname !== undefined && <TemplateProduct id={id || ''} pathname={pathname} />}
+            </div>
         </div>
     );
 };

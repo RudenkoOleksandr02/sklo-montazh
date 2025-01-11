@@ -35,7 +35,7 @@ const Home: FC = () => {
                     <CallToActionSection/>
                     <BlogSection/>
                     <QuestionsSection/>
-                    <SeoSection text={data?.text || ''}/>
+                    {/*<SeoSection text={data?.text || ''}/>*/}
                 </div>
             </div>
         </HelmetProvider>

@@ -2,7 +2,7 @@ import React, {FC, useState} from 'react';
 import cl from './Feedback.module.css'
 import PrimaryButton from "../../ui/buttons/PrimaryButton/PrimaryButton";
 import {basicSendEmail} from "../../../utils/email";
-import Input from "../../ui/Input/Input";
+import InputText from "../../ui/InputText/InputText";
 import InputMobile from "../../ui/InputMobile/InputMobile";
 
 interface FeedbackProps {
@@ -11,7 +11,7 @@ interface FeedbackProps {
     orderData?: {title: string, other?: any};
 }
 
-const Feedback: FC<FeedbackProps> = ({closePopup, textBtn = 'Оформити заявку', orderData}) => {
+const Feedback: FC<FeedbackProps> = ({closePopup, textBtn = 'Залишити заявку', orderData}) => {
     const [name, setName] = useState<string>('');
     const [lastName, setLastName] = useState<string>('');
     const [phone, setPhone] = useState<string>('');
@@ -20,11 +20,11 @@ const Feedback: FC<FeedbackProps> = ({closePopup, textBtn = 'Оформити з
     const [isErrorPhone, setIsErrorPhone] = useState<boolean>(false);
     const [isSuccess, setIsSuccess] = useState<boolean>(false);
 
-    const changeNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setName(e.target.value);
+    const changeNameHandler = (value: string) => {
+        setName(value);
     }
-    const changeLastNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setLastName(e.target.value);
+    const changeLastNameHandler = (value: string) => {
+        setLastName(value);
     }
     const changePhoneHandler = (value: string) => {
         setPhone(value);
@@ -57,8 +57,8 @@ const Feedback: FC<FeedbackProps> = ({closePopup, textBtn = 'Оформити з
 
     return (
         <div className={cl.wrapper}>
-            <Input value={name} handleChange={changeNameHandler} title="Ім'я" isError={isErrorName}/>
-            <Input value={lastName} handleChange={changeLastNameHandler} title="Прізвище" isError={isErrorLastName}/>
+            <InputText value={name} handleChange={changeNameHandler} title="Ім'я" isError={isErrorName}/>
+            <InputText value={lastName} handleChange={changeLastNameHandler} title="Прізвище" isError={isErrorLastName}/>
             <InputMobile phone={phone} changePhoneHandler={changePhoneHandler} isErrorPhone={isErrorPhone}/>
             <PrimaryButton
                 width='100%'

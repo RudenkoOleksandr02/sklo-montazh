@@ -4,7 +4,6 @@ import CartButton from "../../../../components/ui/buttons/CartButton/CartButton"
 import Popup from "../../../../components/ui/Popup/Popup";
 import {IProduct} from "../../../../types";
 import Products from "./Products/Products";
-import DeliveryData from "./PlacingOrder/DeliveryData";
 import PlacingOrder from "./PlacingOrder/PlacingOrder";
 
 export interface ProductsState {
@@ -59,7 +58,7 @@ const CartWithPopup: FC<CartWithPopupProps> = ({
                         reduceQuantityOfProductById={reduceQuantityOfProductById}
                         deleteProductById={deleteProductById}
                     />
-                    <div className={cl.generalPrice}>Загальна ціна: <span>{generalPrice}₴</span></div>
+                    <div className={cl.generalPrice}>Загальна ціна: <span>{generalPrice} ₴</span></div>
                     <PlacingOrder cleanCart={cleanCart} products={products} generalPrice={generalPrice}/>
                 </div>
             </Popup>

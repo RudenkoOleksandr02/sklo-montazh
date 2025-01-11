@@ -14,6 +14,7 @@ export enum FurnitureNames {
     furniture_barbells = 'furniture-barbells',
     furniture_fastenings = 'furniture-fastenings',
     furniture_handles = 'furniture-handles',
+    furniture_office_handles = 'furniture-office-handles',
     furniture_loops = 'furniture-loops',
     furniture_pendulum_systems = 'furniture-pendulum-systems',
     furniture_profiles = 'furniture-profiles',
@@ -78,7 +79,6 @@ const Furniture: FC = () => {
                     />
                 )}
             </div>
-            {}
             <CartWithPopup
                 generalQuantity={generalQuantity}
                 generalPrice={generalPrice}
