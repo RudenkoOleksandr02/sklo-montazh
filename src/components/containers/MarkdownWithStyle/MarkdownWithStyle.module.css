@@ -1,6 +1,9 @@
 .wrapper *:not(:first-child) {
     margin-top: 16px;
 }
-.wrapper li {
-    margin-top: 8px !important;
+.wrapper ul, .wrapper ol {
+    margin-top: 16px;
+}
+.wrapper li > p {
+    display: inline-block;
 }
