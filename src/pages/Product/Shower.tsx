@@ -2,7 +2,7 @@ import React, {FC, useEffect, useState} from 'react';
 import {useFetchShowerByIdQuery} from "../../services/ShowerService";
 import {IImage} from "../../types";
 import {IAdditionalOption} from "../../components/containers/Calculator/AdditionalOptions";
-import Calculator, {IPrices} from "../../components/containers/Calculator/Calculator";
+import Calculator, {IOption, IPrices} from "../../components/containers/Calculator/Calculator";
 import cl from "./Product.module.css";
 import SwiperImages from "../../components/containers/SwiperImages/SwiperImages";
 import PrimaryButton from "../../components/ui/buttons/PrimaryButton/PrimaryButton";
@@ -20,7 +20,9 @@ interface ShowerProps {
 interface ISelectedCharacteristics {
     height: number;
     width: number[];
+    glassColor: string;
     glassType: string;
+    furnitureColor: string;
     totalPrice: number;
     additionalOptions: IAdditionalOption[] | null;
 }
@@ -33,7 +35,9 @@ const Shower: FC<ShowerProps> = ({id}) => {
     const [selectedCharacteristics, setSelectedCharacteristics] = useState<ISelectedCharacteristics>({
         height: 0,
         width: [0],
+        glassColor: '',
         glassType: '',
+        furnitureColor: '',
         additionalOptions: null,
         totalPrice: 0
     });
@@ -43,8 +47,10 @@ const Shower: FC<ShowerProps> = ({id}) => {
         ordinaryPrice: 0.01,
         diamondPrice: 0.01,
         graphitePrice: 0.01,
-        bronzePrice: 0.01
+        bronzePrice: 0.01,
+        mattePrice: 0.01,
     });
+    const [furnitureColors, setFurnitureColors] = useState<IOption[]>([{id: 123, option: ''}]);
 
     useEffect(() => {
         if (!isFetching) {
@@ -54,8 +60,10 @@ const Shower: FC<ShowerProps> = ({id}) => {
                 ordinaryPrice: data?.priceOrdinary || 0.01,
                 diamondPrice: data?.priceDiamond || 0.01,
                 graphitePrice: data?.priceGraphite || 0.01,
-                bronzePrice: data?.priceBronze || 0.01
+                bronzePrice: data?.priceBronze || 0.01,
+                mattePrice: data?.priceMatte || 0.01
             });
+            setFurnitureColors(data?.furnitureColor.map(item => ({id: item.id, option: item.color})) || [{id: 123, option: ''}]);
 
             const pricePerMm2 = (data?.priceOrdinary || 1) / 10000;
             const dimensions = (data?.defaultWidth?.reduce((acc, curr) => acc + curr, 0) || 1) * (data?.defaultHeight || 1);
@@ -63,7 +71,9 @@ const Shower: FC<ShowerProps> = ({id}) => {
             setSelectedCharacteristics({
                 height: data?.defaultHeight || 1,
                 width: data?.defaultWidth || [],
-                glassType: 'Звичайне',
+                glassColor: 'Звичайне',
+                glassType: 'Прозоре',
+                furnitureColor: data?.furnitureColor[0].color || '',
                 additionalOptions: null,
                 totalPrice: dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)
             })
@@ -83,12 +93,14 @@ const Shower: FC<ShowerProps> = ({id}) => {
     const handleSelectCharacteristics = (
         height: number,
         width: number[],
+        glassColor: string,
         glassType: string,
+        furnitureColor: string,
         additionalOptions: IAdditionalOption[] | null,
         totalPrice: number
     ): void => {
         const formatTotalPrice = dollarToHryvnia(totalPrice, dollarToHryvniaData || 1);
-        setSelectedCharacteristics({height, width, glassType, additionalOptions, totalPrice: formatTotalPrice})
+        setSelectedCharacteristics({height, width, glassColor, glassType, furnitureColor, additionalOptions, totalPrice: formatTotalPrice})
     }
 
     const orderShowerTemplate = `
@@ -105,7 +117,9 @@ const Shower: FC<ShowerProps> = ({id}) => {
                     )
                     .join("")
             } мм</li>
+            <li>Колір скла: ${selectedCharacteristics.glassColor.split(" ")[0]}</li>
             <li>Тип скла: ${selectedCharacteristics.glassType.split(" ")[0]}</li>
+            <li>Колір фурнітури: ${selectedCharacteristics.furnitureColor.split(" ")[0]}</li>
             ${selectedCharacteristics?.additionalOptions
                 ?.map((item) => `<li>${item.title}</li>`)
                 .join("")}
@@ -140,6 +154,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
                                     startHeight={data?.defaultHeight || 1}
                                     prices={prices}
                                     additionalOptions={additionalOptions}
+                                    furnitureColors={furnitureColors}
                                     handleToggleCheckedByIdAdditionalOption={handleToggleCheckedByIdAdditionalOption}
                                     setCheckedFalseAdditionalOptions={setCheckedFalseAdditionalOptions}
                                     dollarToHryvniaData={dollarToHryvniaData || 1}
@@ -174,7 +189,9 @@ const Shower: FC<ShowerProps> = ({id}) => {
                         <ul className={cl.list}>
                             <li>Висота: {selectedCharacteristics.height} мм</li>
                             <li>Ширина: {(selectedCharacteristics.width.map((width, index) => selectedCharacteristics.width.length > 1 ? (selectedCharacteristics.width.length - index !== 1 ? `${width}x` : width) : width)).join('')} мм</li>
-                            <li>Колір скла: {selectedCharacteristics.glassType.split(' ')[0]}</li>
+                            <li>Колір скла: {selectedCharacteristics.glassColor.split(' ')[0]}</li>
+                            <li>Тип скла: {selectedCharacteristics.glassType.split(' ')[0]}</li>
+                            <li>Колір фурнітури: {selectedCharacteristics.furnitureColor.split(" ")[0]}</li>
                             {selectedCharacteristics?.additionalOptions?.map(item => {
                                 return <li key={item.id}>{item.title}</li>
                             })}

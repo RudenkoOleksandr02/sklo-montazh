@@ -4,18 +4,19 @@
     border: 1px solid var(--white);
     color: var(--white);
     background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 .wrapper h5 {
     font-weight: 500;
     font-size: 20px;
-    margin-bottom: 20px;
 }
 
 .heightWidthContainer {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 20px;
 }
 .heightWidthContainer input {
     color: var(--white);
@@ -33,10 +34,9 @@
 .buttons {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
 }
 .buttons button {
-    width: 50%;
+    width: 100%;
     border: none;
     outline: none;
     background-color: var(--dark);
@@ -48,14 +48,13 @@
 .buttons button:hover {
     opacity: 0.8;
 }
-.buttons button:first-child {
+/*.buttons button:first-child {
     background: var(--orange);
-}
+}*/
 .buttons button:last-child {
     border: 1px solid var(--white);
 }
 .totalPrice {
-    margin-top: 20px;
     display: flex;
     justify-content: space-between;
     border: 1px solid var(--white);

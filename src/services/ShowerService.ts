@@ -48,6 +48,8 @@ export const showerApi = createApi({
                     priceBronze: attr.priceBronze,
                     priceDiamond: attr.priceDiamond,
                     priceGraphite: attr.priceGraphite,
+                    priceMatte: attr.priceMatte,
+                    furnitureColor: attr.furnitureColor,
                     defaultHeight: attr.defaultHeight,
                     defaultWidth: attr.defaultWidth.map((width: any) => width.width),
                     images: attr.images.data.map((image: any) => ({

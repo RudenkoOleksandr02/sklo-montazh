@@ -10,8 +10,8 @@ interface ButtonsProps {
 const Buttons: FC<ButtonsProps> = ({handleCalculate, returnToOriginalSettings}) => {
     return (
         <div className={cl.buttons}>
-            <button onClick={handleCalculate}>Розрахувати</button>
-            <button onClick={returnToOriginalSettings}>Відновити стандартні</button>
+            {/*<button onClick={handleCalculate}>Розрахувати</button>*/}
+            <button onClick={returnToOriginalSettings}>Відновити стандартні параметри</button>
         </div>
     );
 };

@@ -42,9 +42,9 @@ const PopupForFurniture: FC<PopupForFurnitureProps> = ({
                 </div>
                 <h3 className={cl.title}>{item?.name}</h3>
                 <p className={cl.article}>Артикул: {item?.article}</p>
-                <p className={cl.price}>Ціна: {item?.priceDollars && Math.ceil(item.priceDollars * dollarToHryvnia)}₴</p>
+                <p className={cl.price}>Ціна: {item?.priceDollars && Math.ceil(item.priceDollars * dollarToHryvnia)} ₴</p>
                 <div className={cl.description}>
-                    <span>Опис:</span>
+                    <span className={cl.firstChild}>Опис:</span>
                     <MarkdownWithStyle content={item?.description || ''}/>
                 </div>
             </div>

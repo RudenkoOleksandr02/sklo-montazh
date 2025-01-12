@@ -21,12 +21,7 @@ const FurnitureList: FC<FurnitureListProps> = ({furniture, dollarToHryvnia, hand
         setActivePopup(true);
     }
     const handleClosePopup = () => {
-        setActivePopup(false)
-        const timeout = setTimeout(() => {
-            setDataForPopup(null);
-        }, 300)
-
-        return () => clearTimeout(timeout);
+        setActivePopup(false);
     }
 
     return (
