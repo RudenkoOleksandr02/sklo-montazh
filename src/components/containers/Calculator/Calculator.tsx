@@ -133,9 +133,10 @@ const Calculator: FC<CalculatorProps> = ({
         const pricePerMm2 = pricePer100mmX100mm / 10000;
         const priceMatteMm2 = priceMatte100mmX100mm / 10000;
         const dimensions = validWidth.reduce((acc, curr) => acc + curr, 0) * validHeight;
+        const totalPrice = ((dimensions * pricePerMm2) + (dimensions * priceMatteMm2) + additionalOptionsTotalPrice) + (parseInt(furnitureColorOption.match(/\d+/)?.[0] || "0", 10) / dollarToHryvniaData);
 
-        setTotalPrice((dimensions * pricePerMm2) + (dimensions * priceMatteMm2) + additionalOptionsTotalPrice);
-        handleSelectCharacteristics(validHeight, validWidth, glassColorOption, glassTypeOption, furnitureColorOption, additionalOptions.filter(option => option.checked), (dimensions * pricePerMm2) + (dimensions * priceMatteMm2) + additionalOptionsTotalPrice)
+        setTotalPrice(totalPrice);
+        handleSelectCharacteristics(validHeight, validWidth, glassColorOption, glassTypeOption, furnitureColorOption, additionalOptions.filter(option => option.checked), totalPrice)
     };
 
     const handleGlassColorChange = (option: IOption) => {

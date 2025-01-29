@@ -87,7 +87,7 @@ export interface IShowerPage {
     priceGraphite: number;
     priceBronze: number;
     priceMatte: number;
-    furnitureColor: {id: number, color: string}[]
+    furnitureColor: {id: number, color: string, priceDollars: number}[]
     images: IImage[];
     additionalOptions: {id: number; title: string; price: number}[];
 }

@@ -6,7 +6,7 @@ import Calculator, {IOption, IPrices} from "../../components/containers/Calculat
 import cl from "./Product.module.css";
 import SwiperImages from "../../components/containers/SwiperImages/SwiperImages";
 import PrimaryButton from "../../components/ui/buttons/PrimaryButton/PrimaryButton";
-import Preloader, {PreloaderVariant} from "../../components/ui/Preloader/Preloader";
+import Preloader from "../../components/ui/Preloader/Preloader";
 import {useFetchDollarToHryvniaQuery} from "../../services/DollarToHryvnia";
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import MakeOrderPopup from "../../components/containers/MakeOrderPopup/MakeOrderPopup";
@@ -63,7 +63,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
                 bronzePrice: data?.priceBronze || 0.01,
                 mattePrice: data?.priceMatte || 0.01
             });
-            setFurnitureColors(data?.furnitureColor.map(item => ({id: item.id, option: item.color})) || [{id: 123, option: ''}]);
+            setFurnitureColors(data?.furnitureColor.map(item => ({id: item.id, option: `${item.color} ${dollarToHryvnia(item.priceDollars || 1, dollarToHryvniaData || 1)} ₴`})) || [{id: 123, option: ''}]);
 
             const pricePerMm2 = (data?.priceOrdinary || 1) / 10000;
             const dimensions = (data?.defaultWidth?.reduce((acc, curr) => acc + curr, 0) || 1) * (data?.defaultHeight || 1);
@@ -73,7 +73,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
                 width: data?.defaultWidth || [],
                 glassColor: 'Звичайне',
                 glassType: 'Прозоре',
-                furnitureColor: data?.furnitureColor[0].color || '',
+                furnitureColor: data?.furnitureColor[0].color + ' ' + dollarToHryvnia(data?.furnitureColor[0].priceDollars || 1, dollarToHryvniaData || 1) + ' ₴' || '',
                 additionalOptions: null,
                 totalPrice: dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)
             })
@@ -119,7 +119,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
             } мм</li>
             <li>Колір скла: ${selectedCharacteristics.glassColor.split(" ")[0]}</li>
             <li>Тип скла: ${selectedCharacteristics.glassType.split(" ")[0]}</li>
-            <li>Колір фурнітури: ${selectedCharacteristics.furnitureColor.split(" ")[0]}</li>
+            <li>Колір фурнітури: ${selectedCharacteristics.furnitureColor.split(' ')[0]}</li>
             ${selectedCharacteristics?.additionalOptions
                 ?.map((item) => `<li>${item.title}</li>`)
                 .join("")}
@@ -191,7 +191,7 @@ const Shower: FC<ShowerProps> = ({id}) => {
                             <li>Ширина: {(selectedCharacteristics.width.map((width, index) => selectedCharacteristics.width.length > 1 ? (selectedCharacteristics.width.length - index !== 1 ? `${width}x` : width) : width)).join('')} мм</li>
                             <li>Колір скла: {selectedCharacteristics.glassColor.split(' ')[0]}</li>
                             <li>Тип скла: {selectedCharacteristics.glassType.split(' ')[0]}</li>
-                            <li>Колір фурнітури: {selectedCharacteristics.furnitureColor.split(" ")[0]}</li>
+                            <li>Колір фурнітури: {selectedCharacteristics.furnitureColor.split(' ')[0]}</li>
                             {selectedCharacteristics?.additionalOptions?.map(item => {
                                 return <li key={item.id}>{item.title}</li>
                             })}
