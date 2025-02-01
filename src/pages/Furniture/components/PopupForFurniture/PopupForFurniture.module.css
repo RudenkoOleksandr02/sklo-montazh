@@ -15,6 +15,10 @@
     max-height: 80vh;
     overflow: auto;
     border-radius: 50px;
+
+    :global(.swiper-wrapper) {
+        align-items: center !important;
+    }
 }
 .popupForFurniture .imgContainer {
     display: flex;
