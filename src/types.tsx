@@ -70,7 +70,8 @@ export interface IShowerCard {
     article: string;
     defaultHeight: number;
     defaultWidth: number[];
-    priceOrdinary: number;
+    numberHoles: number;
+    furniturePrice: number;
     image: IImage;
 }
 export interface IShowerPage {
@@ -82,15 +83,21 @@ export interface IShowerPage {
     description: string;
     metaKeys: string;
     metaDescription: string;
-    priceOrdinary: number;
-    priceDiamond: number;
-    priceGraphite: number;
-    priceBronze: number;
-    priceMatte: number;
+    numberHoles: number;
     furnitureColor: {id: number, color: string, priceDollars: number}[]
     images: IImage[];
-    additionalOptions: {id: number; title: string; price: number}[];
 }
+export interface IVariablesForShowers {
+    ordinaryPrice: number;
+    diamondPrice: number;
+    graphitePrice: number;
+    bronzePrice: number;
+    mattePrice: number;
+    linearPrice: number;
+    holesPrice: number;
+    hardeningPrice: number;
+}
+
 export interface IProductCard {
     id: number;
     name: string;

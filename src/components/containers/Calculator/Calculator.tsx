@@ -1,223 +1,167 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useMemo, useState} from 'react';
 import cl from './Calculator.module.css';
 import HeightWidth from "./HeightWidth";
-import AdditionalOptions, {AdditionalOptionsProps, IAdditionalOption} from "./AdditionalOptions";
 import Buttons from "./Buttons";
 import {dollarToHryvnia} from "../../../utils/dollarToHryvnia";
 import InputSelect2 from "../../ui/InputSelect/InputSelect2/InputSelect2";
 
-interface CalculatorProps extends AdditionalOptionsProps {
-    startWidth: number[];
-    startHeight: number;
-    prices: IPrices;
-    handleToggleCheckedByIdAdditionalOption: (id: number) => void;
-    setCheckedFalseAdditionalOptions: () => void;
-    dollarToHryvniaData: number;
-    furnitureColors: IOption[];
-    handleSelectCharacteristics: (height: number, width: number[], glassColor: string, glassType: string, furnitureColor: string, additionalOptions: IAdditionalOption[] | null, totalPrice: number) => void;
-}
-
 export interface IOption {
     id: number;
     option: string;
+    priceDollars?: number;
 }
 
-export interface IPrices {
-    ordinaryPrice: number;
-    diamondPrice: number;
-    graphitePrice: number;
-    bronzePrice: number;
-    mattePrice: number;
+interface CalculatorProps {
+    startWidth: number[];
+    startHeight: number;
+    variables: {
+        ordinaryPrice: number;
+        diamondPrice: number;
+        graphitePrice: number;
+        bronzePrice: number;
+        mattePrice: number;
+        linearPrice: number;
+        holesPrice: number;
+        hardeningPrice: number;
+    };
+    numberHoles: number;
+    dollarToHryvniaData: number;
+    furnitureColors: IOption[];
+    handleSelectCharacteristics: (
+        height: number,
+        width: number[],
+        glassColor: string,
+        glassType: string,
+        furnitureColor: string,
+        totalPrice: number
+    ) => void;
 }
 
 const Calculator: FC<CalculatorProps> = ({
                                              startWidth,
                                              startHeight,
-                                             prices: {ordinaryPrice, graphitePrice, diamondPrice, bronzePrice, mattePrice},
-                                             additionalOptions,
-                                             handleToggleCheckedByIdAdditionalOption,
-                                             setCheckedFalseAdditionalOptions,
+                                             variables,
                                              dollarToHryvniaData,
                                              handleSelectCharacteristics,
-                                             furnitureColors
+                                             furnitureColors,
+                                             numberHoles
                                          }) => {
     const [width, setWidth] = useState<(number | string)[]>(startWidth);
     const [height, setHeight] = useState<number | string>(startHeight);
-
-    const priceIncreaseRelativeToStandardGlass = (glassPrice: number) => {
-        const validWidth = width.map(el => (typeof el === 'number' ? el : Number(el)));
-        const totalArea = validWidth.reduce((acc: number, curr: number) => acc + (curr * Number(height)), dollarToHryvniaData || 1);
-
-        return dollarToHryvnia(((totalArea * (glassPrice / 10000)) - (totalArea * (ordinaryPrice / 10000))), dollarToHryvniaData || 1);
-    }
-    const priceIncreaseForMatte = (glassPrice: number) => {
-        const validWidth = width.map(el => (typeof el === 'number' ? el : Number(el)));
-        const totalArea = validWidth.reduce((acc: number, curr: number) => acc + (curr * Number(height)), dollarToHryvniaData || 1);
-
-        return dollarToHryvnia(totalArea * (glassPrice / 10000), dollarToHryvniaData || 1);
-    }
-
-    const [glassColors, setGlassColors] = useState<IOption[]>([
-        {id: 1, option: 'Звичайне'},
-        {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)} ₴`},
-        {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)} ₴`},
-        {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)} ₴`}
-    ]);
-    const [glassTypes, setGlassTypes] = useState<IOption[]>([
-        {id: 1, option: 'Прозоре'},
-        {id: 2, option: `Матове +${priceIncreaseRelativeToStandardGlass(mattePrice)} ₴`},
-    ]);
+    const [glassColor, setGlassColor] = useState<IOption>({id: 1, option: 'Звичайне'});
+    const [glassType, setGlassType] = useState<IOption>({id: 1, option: 'Прозоре'});
+    const [furnitureColor, setFurnitureColor] = useState<IOption>(
+        furnitureColors.length > 0
+            ? furnitureColors[0]
+            : { id: 1, option: 'Default', priceDollars: 0 }
+    );
+    const [totalPrice, setTotalPrice] = useState(0);
 
     useEffect(() => {
-        setGlassColors([
-            {id: 1, option: 'Звичайне'},
-            {id: 2, option: `Діамант +${priceIncreaseRelativeToStandardGlass(diamondPrice)} ₴`},
-            {id: 3, option: `Графіт +${priceIncreaseRelativeToStandardGlass(graphitePrice)} ₴`},
-            {id: 4, option: `Бронза +${priceIncreaseRelativeToStandardGlass(bronzePrice)} ₴`}
-        ]);
-        setGlassTypes([
-            {id: 1, option: 'Прозоре'},
-            {id: 2, option: `Матове +${priceIncreaseForMatte(mattePrice)} ₴`},
-        ]);
-    }, [diamondPrice, graphitePrice, bronzePrice, mattePrice, width, height]);
-
-    const [glassColor, setGlassColor] = useState<IOption>(glassColors[0]);
-    const [glassType, setGlassType] = useState<IOption>(glassTypes[0]);
-    const [furnitureColor, setFurnitureColor] = useState<IOption>(furnitureColors[0]);
-    const [totalPrice, setTotalPrice] = useState<number>(0);
-
-    useEffect(() => {
-        setFurnitureColor(furnitureColors[0]);
+        if (furnitureColors.length > 0) {
+            setFurnitureColor(furnitureColors[0]);
+        }
     }, [furnitureColors]);
 
-    useEffect(() => {
-        glassColors.forEach(option => {
-            if (option.id === glassColor.id)
-                setGlassColor(option);
-        });
-        glassTypes.forEach(option => {
-            if (option.id === glassType.id)
-                setGlassType(option);
-        });
-    }, [width, height]);
+    const numericWidth = useMemo(() => width.map(Number), [width]);
+    const numericHeight = useMemo(() => Number(height), [height]);
 
-    useEffect(() => {
-        handleCalculate(startWidth, startHeight, glassColors[0].option, glassTypes[0].option, furnitureColors[0].option, additionalOptions !== null ? additionalOptions : []);
-    }, [ordinaryPrice, startWidth, startHeight, mattePrice]);
+    const calculatePriceModifier = (price: number, isMatte = false) => {
+        const totalArea = numericWidth.reduce((acc, w) =>
+                acc + (Number(w) / 1000) * (numericHeight / 1000), // Конвертация мм -> м
+            0
+        );
+        const priceDifference = isMatte
+            ? price
+            : Math.max(price - variables.ordinaryPrice, 0); // Защита от отрицательных значений
 
-    const handleCalculate = (
-        width: (number | string)[],
-        height: number | string,
-        glassColorOption: string,
-        glassTypeOption: string,
-        furnitureColorOption: string,
-        additionalOptions: IAdditionalOption[]
-    ) => {
-        const validWidth = width.map(el => (typeof el === 'number' ? el : Number(el)));
-        const validHeight = typeof height === 'number' ? height : Number(height);
-
-        const additionalOptionsTotalPrice = additionalOptions.filter(option => option.checked).reduce((acc, curr) => acc + curr.price, 0);
-
-        const glassColorOptionFormat = glassColorOption.split(' ')[0];
-        const pricePer100mmX100mm: number =
-            glassColorOptionFormat === glassColors[0].option.split(' ')[0] ? ordinaryPrice :
-                glassColorOptionFormat === glassColors[1].option.split(' ')[0] ? diamondPrice :
-                    glassColorOptionFormat === glassColors[2].option.split(' ')[0] ? graphitePrice :
-                        glassColorOptionFormat === glassColors[3].option.split(' ')[0] ? bronzePrice : 1;
-
-        const glassTypeOptionFormat = glassTypeOption.split(' ')[0];
-        const priceMatte100mmX100mm: number =
-            glassTypeOptionFormat === glassTypes[0].option.split(' ')[0] ? 0 :
-                glassTypeOptionFormat === glassTypes[1].option.split(' ')[0] ? mattePrice : 0;
-
-        const pricePerMm2 = pricePer100mmX100mm / 10000;
-        const priceMatteMm2 = priceMatte100mmX100mm / 10000;
-        const dimensions = validWidth.reduce((acc, curr) => acc + curr, 0) * validHeight;
-        const totalPrice = ((dimensions * pricePerMm2) + (dimensions * priceMatteMm2) + additionalOptionsTotalPrice) + (parseInt(furnitureColorOption.match(/\d+/)?.[0] || "0", 10) / dollarToHryvniaData);
-
-        setTotalPrice(totalPrice);
-        handleSelectCharacteristics(validHeight, validWidth, glassColorOption, glassTypeOption, furnitureColorOption, additionalOptions.filter(option => option.checked), totalPrice)
+        return dollarToHryvnia(
+            totalArea * priceDifference,
+            dollarToHryvniaData
+        );
     };
 
-    const handleGlassColorChange = (option: IOption) => {
-        setGlassColor(option);
-    }
-    const handleGlassTypeChange = (option: IOption) => {
-        setGlassType(option);
-    }
-    const handleFurnitureColorChange = (option: IOption) => {
-        setFurnitureColor(option);
-    }
+    const glassOptions = useMemo(() => [
+        { id: 1, option: 'Звичайне' },
+        { id: 2, option: `Діамант +${calculatePriceModifier(variables.diamondPrice)} ₴` },
+        { id: 3, option: `Графіт +${calculatePriceModifier(variables.graphitePrice)} ₴` },
+        { id: 4, option: `Бронза +${calculatePriceModifier(variables.bronzePrice)} ₴` }
+    ], [numericWidth, numericHeight, dollarToHryvniaData, variables]);
 
-    const returnToOriginalSetting = () => {
-        setWidth(startWidth);
-        setHeight(startHeight);
-        setGlassColor(glassColors[0]);
-        setGlassType(glassTypes[0]);
-        setFurnitureColor(furnitureColors[0]);
-        setCheckedFalseAdditionalOptions();
+    const glassTypeOptions = useMemo(() => [
+        { id: 1, option: 'Прозоре' },
+        { id: 2, option: `Матове +${calculatePriceModifier(variables.mattePrice, true)} ₴` }
+    ], [numericWidth, numericHeight, dollarToHryvniaData, variables]);
 
-        handleCalculate(startWidth, startHeight, glassColors[0].option, glassTypes[0].option, furnitureColors[0].option, additionalOptions !== null ? additionalOptions.map(option => ({
-            ...option,
-            checked: false
-        })) : []);
-    }
+    const calculateTotalPrice = () => {
+        const totalArea = numericWidth.reduce((acc, w) => acc + (numericHeight * w), 0) / 1_000_000;
+        const totalPerimeter = numericWidth.reduce((acc, w) => acc + (2 * numericHeight + 2 * w), 0) / 1000;
+
+        const glassPrices = {
+            'Звичайне': variables.ordinaryPrice,
+            'Діамант': variables.diamondPrice,
+            'Графіт': variables.graphitePrice,
+            'Бронза': variables.bronzePrice
+        };
+
+        const typePrices = {
+            'Прозоре': 0,
+            'Матове': variables.mattePrice
+        };
+
+        const glassColorKey = glassColor.option.split(' ')[0];
+        const glassTypeKey = glassType.option.split(' ')[0];
+
+        const glassCost = totalArea * glassPrices[glassColorKey as keyof typeof glassPrices];
+        const frameCost = totalPerimeter * variables.linearPrice;
+        const hardeningCost = totalArea * variables.hardeningPrice;
+        const typeCost = totalArea * typePrices[glassTypeKey as keyof typeof typePrices];
+        const furnitureCost = furnitureColor.priceDollars || 0;
+        const holesCost = numberHoles * variables.holesPrice;
+
+        return glassCost + frameCost + hardeningCost + typeCost + furnitureCost + holesCost;
+    };
 
     useEffect(() => {
-        handleCalculate(width, height, glassColor.option, glassType.option, furnitureColor.option, additionalOptions !== null ? additionalOptions.map(option => ({
-            ...option,
-            checked: false
-        })) : [])
-    }, [width, height, glassColor.option, glassType.option, furnitureColor.option, additionalOptions]);
+        const price = calculateTotalPrice();
+        setTotalPrice(price);
+        handleSelectCharacteristics(
+            numericHeight,
+            numericWidth,
+            glassColor.option,
+            glassType.option,
+            furnitureColor?.option || 'Default',
+            price
+        );
+    }, [numericWidth, numericHeight, glassColor, glassType, furnitureColor]);
+
+    const resetSettings = () => {
+        setWidth(startWidth);
+        setHeight(startHeight);
+        setGlassColor(glassOptions[0]);
+        setGlassType(glassTypeOptions[0]);
+        setFurnitureColor(furnitureColors[0] || {id: 1, option: 'Default'});
+    };
 
     return (
         <div className={cl.wrapper}>
             <h5>Калькулятор індивідуального замовлення</h5>
-            <HeightWidth
-                width={width}
-                height={height}
-                setWidth={setWidth}
-                setHeight={setHeight}
-            />
-            <InputSelect2
-                label='Колір скла'
-                options={glassColors}
-                value={glassColor}
-                onClick={handleGlassColorChange}
-            />
-            <InputSelect2
-                label='Тип скла'
-                options={glassTypes}
-                value={glassType}
-                onClick={handleGlassTypeChange}
-            />
-            <InputSelect2
-                label='Колір фурнітури'
-                options={furnitureColors}
-                value={furnitureColor}
-                onClick={handleFurnitureColorChange}
-            />
-            {additionalOptions !== null && !!additionalOptions.length && (
-                <AdditionalOptions
-                    additionalOptions={additionalOptions}
-                    handleToggleCheckedByIdAdditionalOption={handleToggleCheckedByIdAdditionalOption}
-                    dollarToHryvniaData={dollarToHryvniaData || 1}
-                />
-            )}
+            <HeightWidth width={width} height={height} setWidth={setWidth} setHeight={setHeight}/>
+
+            <InputSelect2 label='Колір скла' options={glassOptions} value={glassColor} onClick={setGlassColor}/>
+            <InputSelect2 label='Тип скла' options={glassTypeOptions} value={glassType} onClick={setGlassType}/>
+            <InputSelect2 label='Колір фурнітури' options={furnitureColors} value={furnitureColor}
+                          onClick={setFurnitureColor}/>
+
             <Buttons
-                handleCalculate={() => (
-                    handleCalculate(
-                        width,
-                        height,
-                        glassColor.option,
-                        glassType.option,
-                        furnitureColor.option,
-                        additionalOptions !== null ? additionalOptions : []
-                    )
-                )}
-                returnToOriginalSettings={() => returnToOriginalSetting()}
+                handleCalculate={() => {
+                }}
+                returnToOriginalSettings={resetSettings}
             />
-            <p className={cl.totalPrice}>Ціна від: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData || 1)} ₴</span></p>
+
+            <p className={cl.totalPrice}>
+                Ціна від: <span>{dollarToHryvnia(totalPrice, dollarToHryvniaData)} ₴</span>
+            </p>
         </div>
     );
 };

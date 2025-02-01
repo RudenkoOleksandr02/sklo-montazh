@@ -1,6 +1,6 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {baseUrl} from "../constants";
-import {IShowerCard, IShowerPage} from "../types";
+import {IShowerCard, IShowerPage, IVariablesForShowers} from "../types";
 
 export const showerApi = createApi({
     reducerPath: "showerApi",
@@ -18,7 +18,8 @@ export const showerApi = createApi({
                         id: showerCard.id,
                         name: attr.name,
                         article: attr.article,
-                        priceOrdinary: attr.priceOrdinary,
+                        numberHoles: attr.numberHoles,
+                        furniturePrice: attr.furnitureColor[0].priceDollars,
                         defaultHeight: attr.defaultHeight,
                         defaultWidth: attr.defaultWidth.map((width: any) => width.width),
                         image: {
@@ -44,11 +45,7 @@ export const showerApi = createApi({
                     description: attr.description,
                     metaDescription: attr.metaDescription,
                     metaKeys: attr.metaKeys,
-                    priceOrdinary: attr.priceOrdinary,
-                    priceBronze: attr.priceBronze,
-                    priceDiamond: attr.priceDiamond,
-                    priceGraphite: attr.priceGraphite,
-                    priceMatte: attr.priceMatte,
+                    numberHoles: attr.numberHoles,
                     furnitureColor: attr.furnitureColor,
                     defaultHeight: attr.defaultHeight,
                     defaultWidth: attr.defaultWidth.map((width: any) => width.width),
@@ -57,11 +54,29 @@ export const showerApi = createApi({
                         url: image.attributes.url,
                         alternativeText: image.attributes.alternativeText,
                     })),
-                    additionalOptions: attr.additionalOptions
+                }
+            }
+        }),
+        fetchVariablesForShowers: build.query<IVariablesForShowers, ''>({
+            query: () => ({
+                url: `/variables-for-shower`
+            }),
+            transformResponse: (response: any): IVariablesForShowers => {
+                const attr = response.data.attributes;
+
+                return {
+                    ordinaryPrice: attr.ordinaryPrice,
+                    diamondPrice: attr.diamondPrice,
+                    graphitePrice: attr.graphitePrice,
+                    bronzePrice: attr.bronzePrice,
+                    mattePrice: attr.mattePrice,
+                    linearPrice: attr.linearPrice,
+                    holesPrice: attr.holesPrice,
+                    hardeningPrice: attr.hardeningPrice
                 }
             }
         })
     })
 })
 
-export const {useFetchAllShowersQuery, useFetchShowerByIdQuery} = showerApi;
+export const {useFetchAllShowersQuery, useFetchShowerByIdQuery, useFetchVariablesForShowersQuery} = showerApi;
