@@ -25,7 +25,7 @@ const Card: FC<CardProps> = ({img, title, price, firstButton, secondaryButton, i
                 classNameSkeleton={cl.skeleton}
             />
             <p className={cl.title}>{title}</p>
-            <span className={cl.price}>{price}₴</span>
+            <span className={cl.price}>{price} ₴</span>
             <div className={cl.button} onClick={e => e.stopPropagation()}>
                 {quantityInCart > 0 ? (
                     <SecondaryButton onClick={() => secondaryButton.onClick()}>

@@ -43,11 +43,11 @@ const FurnitureList: FC<FurnitureListProps> = ({furniture, dollarToHryvnia, hand
                             image: item.images[0],
                             quantity: 1
                         }),
-                        text: 'Додати до кошика'
+                        text: 'В кошик'
                     }}
                     secondaryButton={{
                         onClick: () => setIsOpenCart(true),
-                        text: 'Перейти до кошика'
+                        text: 'Кошик'
                     }}
                     title={item.name}
                     price={Math.ceil(item.priceDollars * dollarToHryvnia)}
