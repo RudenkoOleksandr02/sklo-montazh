@@ -31,7 +31,7 @@ const Home: FC = () => {
                 <div className={cl.sectionsWithDarkBG}>
                     <OurServicesSection/>
                     <WorkResultSection/>
-                    <ReviewsSection/>
+                    {/*<ReviewsSection/>*/}
                     <CallToActionSection/>
                     <BlogSection/>
                     <QuestionsSection/>

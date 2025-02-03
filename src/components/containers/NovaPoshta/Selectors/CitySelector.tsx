@@ -56,7 +56,7 @@ const CitySelector: FC<CitySelectorProps> = ({ setCity, isErrorCity }) => {
     return (
         <div>
             <InputSelect1
-                title="Город"
+                title="Місто"
                 value={searchText}
                 onInputChange={handleInputChange}
                 onOptionClick={handleOptionClick}
