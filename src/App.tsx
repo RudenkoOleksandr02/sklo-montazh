@@ -1,5 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react';
-import {useLocation, useOutlet, useParams} from "react-router-dom";
+import React, {useEffect, useMemo, useRef, useState} from 'react';
+import {matchPath, useLocation, useOutlet, useParams} from "react-router-dom";
 import './assets/styles/global.css';
 import './assets/styles/variables.css';
 import 'swiper/css';
@@ -20,10 +20,21 @@ type Params = {
 
 const App = () => {
     const location = useLocation();
-    const {id} = useParams<Params>();
-    const {nodeRef} = routes.find(route => route.path === location.pathname) ?? {};
-    const currentOutlet = useOutlet()
+    const { id } = useParams<Params>();
+    const { nodeRef } = routes.find(route => matchPath({ path: route.path, end: true }, location.pathname)) ?? {};
+    const currentOutlet = useOutlet();
     const [headerVariant, setHeaderVariant] = useState<HeaderVariant>(HeaderVariant.variant1);
+
+    // Определяем ключ для анимации
+    const routeKey = useMemo(() => {
+        // Если это маршрут /furniture/:id, используем только путь без id
+        if (matchPath({ path: "/furniture/:id", end: true }, location.pathname)) {
+            return "/furniture";
+        }
+
+        // Для всех остальных маршрутов используем полный путь
+        return location.pathname;
+    }, [location.pathname]);
 
     useEffect(() => {
         switch (location.pathname) {
@@ -36,7 +47,7 @@ const App = () => {
             case `/blog/${id}`:
                 setHeaderVariant(HeaderVariant.variant2);
                 break;
-            case '/furniture':
+            case `/furniture/${id}`:
             case `/services/${id}`:
             case `/services/showers/${id}`:
             case `/services/mirrors/${id}`:
@@ -49,10 +60,9 @@ const App = () => {
             default:
                 setHeaderVariant(HeaderVariant.variant2);
         }
-    }, [location.pathname]);
+    }, [location.pathname, id]);
 
     const [isOpenMobileMenu, setIsOpenMobileMenu] = useState<boolean>(false);
-
     const localNodeRef = useRef<HTMLDivElement>(null);
 
     return (
@@ -60,7 +70,7 @@ const App = () => {
             <Header variant={headerVariant} setIsOpenMobileMenu={() => setIsOpenMobileMenu(true)}/>
             <SwitchTransition>
                 <CSSTransition
-                    key={location.pathname}
+                    key={routeKey}
                     nodeRef={nodeRef || localNodeRef}
                     timeout={500}
                     classNames="page"

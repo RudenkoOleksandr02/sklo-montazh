@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {ReactComponent as LogoWhite} from './../../../assets/images/logo_white.svg';
 import cl from './Header.module.css';
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import MenuButton, {MenuVariant} from "../../ui/buttons/MenuButton/MenuButton";
 import linksToPages from '../../../data/linksToPages.json';
 import BlockContent, {BlockContentVariant} from "../../ui/BlockContent/BlockContent";
@@ -21,6 +21,8 @@ interface HeaderProps {
 }
 
 const Header: FC<HeaderProps> = ({variant, setIsOpenMobileMenu}) => {
+    const location = useLocation();
+
     const linksJSX: React.JSX.Element = (
         <div className={cl.links}>
             <DropDownListForLink title='Послуги' mainLink='/services' handleLinkClick={() => {}}>
@@ -29,7 +31,16 @@ const Header: FC<HeaderProps> = ({variant, setIsOpenMobileMenu}) => {
                 ))}
             </DropDownListForLink>
             <Link to={linksToPages[1].path}>{linksToPages[1].title}</Link>
-            <Link to={linksToPages[2].path}>{linksToPages[2].title}</Link>
+            <Link
+                  onClick={(e) => {
+                      if (`/${location.pathname.split('/')[1]}` === `/${linksToPages[2].path.split('/')[1]}`) {
+                          e.preventDefault();
+                      }
+                  }}
+                  to={linksToPages[2].path}
+                  aria-disabled={`/${location.pathname.split('/')[1]}` === `/${linksToPages[2].path.split('/')[1]}`}
+            >{linksToPages[2].title}
+            </Link>
             <Link to={linksToPages[3].path}>{linksToPages[3].title}</Link>
         </div>
     );

@@ -9,6 +9,7 @@ import {useAppDispatch, useAppSelector} from "../../hooks/redux";
 import {cartSlice} from "../../store/reducers/cartSlice";
 import {IProduct} from "../../types";
 import CartWithPopup from "./components/CartWithPopup/CartWithPopup";
+import {useNavigate, useParams} from "react-router-dom";
 
 export enum FurnitureNames {
     furniture_barbells = 'furniture-barbells',
@@ -24,9 +25,15 @@ export enum FurnitureNames {
     furniture_thresholds = 'furniture-thresholds'
 }
 
+type FurnitureItemPageParams = {
+    id: string;
+}
+
 const Furniture: FC = () => {
-    const [selectedParam, setSelectedParam] = useState<FurnitureNames>(FurnitureNames.furniture_barbells);
-    const {data, isFetching} = useFetchFurnitureByParamQuery(selectedParam);
+    const params = useParams<FurnitureItemPageParams>();
+    const navigate = useNavigate();
+
+    const {data, isFetching} = useFetchFurnitureByParamQuery(params.id || FurnitureNames.furniture_barbells);
     const {data: dollarToHryvnia, isLoading: loadingDollarToHryvnia} = useFetchDollarToHryvniaQuery('')
     const [isLocalLoading, setIsLocalLoading] = useState<boolean>(false);
 
@@ -36,7 +43,7 @@ const Furniture: FC = () => {
 
     const [isOpenCart, setIsOpenCart] = useState<boolean>(false);
 
-    const handleSelectedParams = (param: FurnitureNames) => setSelectedParam(param);
+    const handleSelectedParams = (param: FurnitureNames) => navigate('/furniture/' + param);
 
     useEffect(() => {
         setIsLocalLoading(true);
@@ -46,11 +53,11 @@ const Furniture: FC = () => {
         }, 300)
 
         return () => clearTimeout(timeout);
-    }, [selectedParam]);
+    }, [params.id]);
 
     useEffect(() => {
         window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
-    }, [selectedParam]);
+    }, [params.id]);
 
     const handleAddProduct = (product: IProduct) => {
         dispatch(addProduct(product))
@@ -68,7 +75,7 @@ const Furniture: FC = () => {
     return (
         <div className={cl.wrapper}>
             <div className={cl.inner}>
-                <GroupButtons handleSelectedParams={handleSelectedParams} selectedParam={selectedParam}/>
+                <GroupButtons handleSelectedParams={handleSelectedParams} selectedParam={params.id as FurnitureNames || FurnitureNames.furniture_barbells}/>
                 {isFetching || isLocalLoading || loadingDollarToHryvnia ? <div className={cl.preloader}><Preloader/></div> : (
                     <FurnitureList
                         furniture={data || []}
