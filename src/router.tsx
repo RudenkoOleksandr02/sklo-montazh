@@ -24,8 +24,8 @@ export const routes: IRoutes[] = [
     {path: '/services', name: 'Catalog', element: <Services/>, nodeRef: createRef()},
     {path: '/services/:id', name: 'Category', element: <Category/>, nodeRef: createRef()},
     {path: '/services/:id/:id', name: 'Product', element: <Product/>, nodeRef: createRef()},
-    {path: '/blog', name: 'Blog', element: <Blogs/>, nodeRef: createRef()},
-    {path: '/blog/:id', name: 'Blog', element: <Blog/>, nodeRef: createRef()},
+/*    {path: '/blog', name: 'Blog', element: <Blogs/>, nodeRef: createRef()},
+    {path: '/blog/:id', name: 'Blog', element: <Blog/>, nodeRef: createRef()},*/
     {path: '/furniture/:id', name: 'Furniture', element: <Furniture/>, nodeRef: createRef()},
 ]
 

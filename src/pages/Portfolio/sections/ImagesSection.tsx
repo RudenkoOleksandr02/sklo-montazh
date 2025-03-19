@@ -116,7 +116,7 @@ const ImagesSection: FC<ImagesSectionProps> = ({images, isLoading}) => {
                 <div className={cl.prelaoder}><Preloader/></div>
             ) : (
                 <div className={cl.masonry}>
-                    <Masonry columns={windowWidth > 999 ? 3 : 2} gap={windowWidth > 999 ? 20 : 10}>
+                    <Masonry columns={(windowWidth > 999 && 4) || (windowWidth > 599 && 3) || 2} gap={windowWidth > 999 ? 20 : 10}>
                         {selectedImages.slice(0, visibleCount).map((item, index) => (
                             <div key={item.id} className={cl.containerImg}>
                                 <Skeleton

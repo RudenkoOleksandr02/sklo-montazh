@@ -41,7 +41,6 @@ const Header: FC<HeaderProps> = ({variant, setIsOpenMobileMenu}) => {
                   aria-disabled={`/${location.pathname.split('/')[1]}` === `/${linksToPages[2].path.split('/')[1]}`}
             >{linksToPages[2].title}
             </Link>
-            <Link to={linksToPages[3].path}>{linksToPages[3].title}</Link>
         </div>
     );
 

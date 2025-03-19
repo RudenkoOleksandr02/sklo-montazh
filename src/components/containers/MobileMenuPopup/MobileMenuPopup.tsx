@@ -53,7 +53,6 @@ const MobileMenuPopup: FC<MobileMenuProps> = ({isOpen, onClose, linksData}) => {
                         </DropDownListForLink>
                         <Link to={linksToPages[1].path} onClick={() => onClose()}>{linksToPages[1].title}</Link>
                         <Link to={linksToPages[2].path} onClick={() => onClose()}>{linksToPages[2].title}</Link>
-                        <Link to={linksToPages[3].path} onClick={() => onClose()}>{linksToPages[3].title}</Link>
                     </div>
                 </div>
                 <div className={cl.bottom}>

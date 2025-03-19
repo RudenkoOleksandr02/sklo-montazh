@@ -1,6 +1,5 @@
 [
   {"title": "Послуги", "path": "/services"},
   {"title": "Портфоліо", "path": "/portfolio"},
-  {"title": "Фурнітура", "path": "/furniture/furniture-barbells"},
-  {"title": "Блог", "path": "/blog"}
+  {"title": "Фурнітура", "path": "/furniture/furniture-barbells"}
 ]

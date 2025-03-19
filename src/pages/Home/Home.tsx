@@ -33,7 +33,7 @@ const Home: FC = () => {
                     <WorkResultSection/>
                     {/*<ReviewsSection/>*/}
                     <CallToActionSection/>
-                    <BlogSection/>
+                    {/*<BlogSection/>*/}
                     <QuestionsSection/>
                     {/*<SeoSection text={data?.text || ''}/>*/}
                 </div>
