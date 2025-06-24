@@ -32,7 +32,7 @@ export interface IOption {
 }
 
 const Shower: FC<ShowerProps> = ({ id }) => {
-    const { data, isLoading, isFetching } = useFetchShowerByIdQuery(Number(id));
+    const { data, isLoading, isFetching } = useFetchShowerByIdQuery(id);
     const { data: dollarToHryvniaData } = useFetchDollarToHryvniaQuery('');
     const { data: variables } = useFetchVariablesForShowersQuery('');
 

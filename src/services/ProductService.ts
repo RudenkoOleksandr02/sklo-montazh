@@ -8,17 +8,19 @@ export const productApi = createApi({
     endpoints: (build) => ({
         fetchAllProducts: build.query<IProductCard[], string>({
             query: (products) => ({
-                url: `/${products}?populate=*`
+                url: `/${products}?populate[values][populate]=*`
             }),
             transformResponse: (response: any): IProductCard[] => {
                 return response.data.map((productCard: any): IProductCard => {
-                    const image = productCard.images[0];
+                    const values = productCard.values;
+                    const image = values.images[0];
 
                     return {
-                        id: productCard.id,
-                        name: productCard.name,
-                        pre_description: productCard.pre_description,
-                        price: productCard.price,
+                        id: values.id,
+                        documentId: productCard.documentId,
+                        name: values.name,
+                        pre_description: values.pre_description,
+                        price: values.price,
                         image: {
                             id: image.id,
                             url: image.url,
@@ -28,25 +30,25 @@ export const productApi = createApi({
                 })
             }
         }),
-        fetchProductById: build.query<IProductPage, {products: string, id: number}>({
+        fetchProductById: build.query<IProductPage, {products: string, id: string}>({
             query: ({products, id}) => ({
-                url: `/${products}/${id}?populate=*`
+                url: `/${products}/${id}?populate[values][populate]=*`
             }),
             transformResponse: (response: any): IProductPage => {
-                const attr = response.data.attributes;
+                const values = response.data.values;
 
                 return {
-                    id: response.data.id,
-                    name: attr.name,
-                    images: attr.images.data.map((image: any) => ({
+                    id: values.id,
+                    name: values.name,
+                    images: values.images.map((image: any) => ({
                         id: image.id,
-                        url: image.attributes.url,
-                        alternativeText: image.attributes.alternativeText,
+                        url: image.url,
+                        alternativeText: image.alternativeText,
                     })),
-                    price: attr.price,
-                    description: attr.description,
-                    metaKeys: attr.metaKeys,
-                    metaDescription: attr.metaDescription
+                    price: values.price,
+                    description: values.description,
+                    metaKeys: values.metaKeys,
+                    metaDescription: values.metaDescription
                 }
             }
         })

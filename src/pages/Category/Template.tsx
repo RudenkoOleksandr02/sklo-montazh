@@ -40,9 +40,9 @@ const  Template: FC<TemplateProps> = ({data, text, title, forWhom, seoDescriptio
                     <div className={cl.cardList}>
                         {data?.map(item => (
                             <CardProduct
-                                key={item.id}
+                                key={item.documentId}
                                 name={item.name}
-                                path={`/services/${forWhom}/${item.id}`}
+                                path={`/services/${forWhom}/${item.documentId}`}
                                 price={dollarToHryvnia(item.price, dollarToHryvniaData || 1)}
                                 measurement='₴/кв.м'
                                 description={item.pre_description}

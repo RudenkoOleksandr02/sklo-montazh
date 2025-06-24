@@ -5,8 +5,8 @@ import {IImage, IPortfolio} from "../types";
 const getDataByCondition = (condition: any[]): IImage[] => {
     return condition.map((item: any): IImage => ({
         id: item.id,
-        url: item.attributes.url,
-        alternativeText: item.attributes.alternativeText
+        url: item.url,
+        alternativeText: item.alternativeText
     }))
 }
 
@@ -19,16 +19,16 @@ export const portfolioAPI = createApi({
                 url: ''
             }),
             transformResponse: (response: {data: any, meta: any}): IPortfolio => {
-                const attributes = response.data.attributes;
+                const data = response.data;
 
                 return {
-                    shower_images: getDataByCondition(attributes.shower_images.data),
-                    door_images: getDataByCondition(attributes.door_images.data),
-                    partition_images: getDataByCondition(attributes.partition_images.data),
-                    railing_images: getDataByCondition(attributes.railing_images.data),
-                    photoPrinting_images: getDataByCondition(attributes.photoPrinting_images.data),
-                    mirror_images: getDataByCondition(attributes.mirror_images.data),
-                    shelf_images: getDataByCondition(attributes.shelf_images.data)
+                    shower_images: getDataByCondition(data.shower_images),
+                    door_images: getDataByCondition(data.door_images),
+                    partition_images: getDataByCondition(data.partition_images),
+                    railing_images: getDataByCondition(data.railing_images),
+                    photoPrinting_images: getDataByCondition(data.photoPrinting_images),
+                    mirror_images: getDataByCondition(data.mirror_images),
+                    shelf_images: getDataByCondition(data.shelf_images)
                 }
             }
         })

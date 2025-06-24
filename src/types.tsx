@@ -66,6 +66,7 @@ export interface IProduct {
 }
 export interface IShowerCard {
     id: number;
+    documentId: string;
     name: string;
     article: string;
     defaultHeight: number;
@@ -100,13 +101,14 @@ export interface IVariablesForShowers {
 
 export interface IProductCard {
     id: number;
+    documentId: string;
     name: string;
     pre_description: string;
     price: number;
     image: IImage;
 }
 export interface IProductPage {
-    id: number;
+    id: string;
     name: string;
     description: string;
     price: number;

@@ -64,7 +64,7 @@ const Showers: FC<ShowersProps> = ({dollarToHryvniaData}) => {
                     <CardProduct
                         key={shower.id}
                         name={shower.name}
-                        path={`${linksToService[0].path}/${shower.id}`}
+                        path={`${linksToService[0].path}/${shower.documentId}`}
                         price={calculateShowerPrice(
                             shower.defaultHeight,
                             shower.defaultWidth,

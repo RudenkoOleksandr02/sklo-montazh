@@ -17,7 +17,7 @@ interface TemplateProductProps {
 }
 
 const TemplateProduct: FC<TemplateProductProps> = ({id, pathname}) => {
-    const {data, isLoading, isFetching} = useFetchProductByIdQuery({products: pathname, id: Number(id)});
+    const {data, isLoading, isFetching} = useFetchProductByIdQuery({products: pathname, id: id});
     const {data: dollarToHryvniaData} = useFetchDollarToHryvniaQuery('')
     const [images, setImages] = useState<IImage[] | null>(null);
     const [isOpenModalMakeOrder, setIsOpenModalMakeOrder] = useState<boolean>(false);

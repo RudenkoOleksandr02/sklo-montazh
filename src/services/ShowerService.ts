@@ -12,47 +12,47 @@ export const showerApi = createApi({
             }),
             transformResponse: (response: any): IShowerCard[] => {
                 return response.data.map(((showerCard: any): IShowerCard => {
-                    const attr = showerCard.attributes;
-                    const image = attr.images.data[0];
+                    const image = showerCard.images[0];
                     return {
                         id: showerCard.id,
-                        name: attr.name,
-                        article: attr.article,
-                        numberHoles: attr.numberHoles,
-                        furniturePrice: attr.furnitureColor[0].priceDollars, // 1 ---------
-                        defaultHeight: attr.defaultHeight,
-                        defaultWidth: attr.defaultWidth.map((width: any) => width.width), // 2 -------------
+                        documentId: showerCard.documentId,
+                        name: showerCard.name,
+                        article: showerCard.article,
+                        numberHoles: showerCard.numberHoles,
+                        furniturePrice: showerCard.furnitureColor[0].priceDollars, // 1 ---------
+                        defaultHeight: showerCard.defaultHeight,
+                        defaultWidth: showerCard.defaultWidth.map((width: any) => width.width), // 2 -------------
                         image: {
                             id: image.id,
-                            url: image.attributes.url,
-                            alternativeText: image.attributes.alternativeText,
+                            url: image.url,
+                            alternativeText: image.alternativeText,
                         }
                     }
                 }))
             }
         }),
-        fetchShowerById: build.query<IShowerPage, number>({
+        fetchShowerById: build.query<IShowerPage, string>({
             query: (id) => ({
                 url: `/showers/${id}?populate=*`
             }),
             transformResponse: (response: any): IShowerPage => {
-                const attr = response.data.attributes;
+                const data = response.data;
 
                 return {
-                    id: response.data.id,
-                    name: attr.name,
-                    article: attr.article,
-                    description: attr.description,
-                    metaDescription: attr.metaDescription,
-                    metaKeys: attr.metaKeys,
-                    numberHoles: attr.numberHoles,
-                    furnitureColor: attr.furnitureColor, // 1 --------------------
-                    defaultHeight: attr.defaultHeight,
-                    defaultWidth: attr.defaultWidth.map((width: any) => width.width), // 2 --------------
-                    images: attr.images.data.map((image: any) => ({
+                    id: data.id,
+                    name: data.name,
+                    article: data.article,
+                    description: data.description,
+                    metaDescription: data.metaDescription,
+                    metaKeys: data.metaKeys,
+                    numberHoles: data.numberHoles,
+                    furnitureColor: data.furnitureColor, // 1 --------------------
+                    defaultHeight: data.defaultHeight,
+                    defaultWidth: data.defaultWidth.map((width: any) => width.width), // 2 --------------
+                    images: data.images.map((image: any) => ({
                         id: image.id,
-                        url: image.attributes.url,
-                        alternativeText: image.attributes.alternativeText,
+                        url: image.url,
+                        alternativeText: image.alternativeText,
                     })),
                 }
             }
@@ -62,17 +62,17 @@ export const showerApi = createApi({
                 url: `/variables-for-shower`
             }),
             transformResponse: (response: any): IVariablesForShowers => {
-                const attr = response.data.attributes;
+                const data = response.data;
 
                 return {
-                    ordinaryPrice: attr.ordinaryPrice,
-                    diamondPrice: attr.diamondPrice,
-                    graphitePrice: attr.graphitePrice,
-                    bronzePrice: attr.bronzePrice,
-                    mattePrice: attr.mattePrice,
-                    linearPrice: attr.linearPrice,
-                    holesPrice: attr.holesPrice,
-                    hardeningPrice: attr.hardeningPrice
+                    ordinaryPrice: data.ordinaryPrice,
+                    diamondPrice: data.diamondPrice,
+                    graphitePrice: data.graphitePrice,
+                    bronzePrice: data.bronzePrice,
+                    mattePrice: data.mattePrice,
+                    linearPrice: data.linearPrice,
+                    holesPrice: data.holesPrice,
+                    hardeningPrice: data.hardeningPrice
                 }
             }
         })
