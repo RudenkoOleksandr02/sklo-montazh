@@ -11,21 +11,21 @@ export const productApi = createApi({
                 url: `/${products}?populate=*`
             }),
             transformResponse: (response: any): IProductCard[] => {
-                return response.data.map(((mirrorCard: any): IProductCard => {
-                    const attr = mirrorCard.attributes;
-                    const image = attr.images.data[0];
+                return response.data.map((productCard: any): IProductCard => {
+                    const image = productCard.images[0];
+
                     return {
-                        id: mirrorCard.id,
-                        name: attr.name,
-                        pre_description: attr.pre_description,
-                        price: attr.price,
+                        id: productCard.id,
+                        name: productCard.name,
+                        pre_description: productCard.pre_description,
+                        price: productCard.price,
                         image: {
                             id: image.id,
-                            url: image.attributes.url,
-                            alternativeText: image.attributes.alternativeText,
+                            url: image.url,
+                            alternativeText: image.alternativeText,
                         }
                     }
-                }))
+                })
             }
         }),
         fetchProductById: build.query<IProductPage, {products: string, id: number}>({

@@ -8,25 +8,26 @@ export const furnitureAPI = createApi({
     endpoints: (build) => ({
         fetchFurnitureByParam: build.query<IFurniture[], string>({
             query: (name) => ({
-                url: `/${name}?populate=*`
+                url: `/${name}?populate[values][populate]=*`
             }),
             transformResponse: (response: any): IFurniture[] => {
                 return response.data.map((item: any): IFurniture => {
-                    const attr = item.attributes;
-                    const images: IImage[] = attr.images.data.map((img: any): IImage => ({
+                    const values = item.values;
+
+                    const images: IImage[] = values.images.map((img: any): IImage => ({
                         id: img.id,
-                        url: img.attributes.url,
+                        url: img.url,
                         alternativeText: img.alternativeText
                     }))
 
                     return {
-                        id: item.id,
-                        name: attr.name,
-                        article: attr.article,
-                        priceDollars: attr.priceDollars,
-                        inStock: attr.inStock,
+                        id: values.id,
+                        name: values.name,
+                        article: values.article,
+                        priceDollars: values.priceDollars,
+                        inStock: values.inStock,
                         images: images,
-                        description: attr.description
+                        description: values.description
                     }
                 })
             }

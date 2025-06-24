@@ -19,9 +19,9 @@ export const showerApi = createApi({
                         name: attr.name,
                         article: attr.article,
                         numberHoles: attr.numberHoles,
-                        furniturePrice: attr.furnitureColor[0].priceDollars,
+                        furniturePrice: attr.furnitureColor[0].priceDollars, // 1 ---------
                         defaultHeight: attr.defaultHeight,
-                        defaultWidth: attr.defaultWidth.map((width: any) => width.width),
+                        defaultWidth: attr.defaultWidth.map((width: any) => width.width), // 2 -------------
                         image: {
                             id: image.id,
                             url: image.attributes.url,
@@ -46,9 +46,9 @@ export const showerApi = createApi({
                     metaDescription: attr.metaDescription,
                     metaKeys: attr.metaKeys,
                     numberHoles: attr.numberHoles,
-                    furnitureColor: attr.furnitureColor,
+                    furnitureColor: attr.furnitureColor, // 1 --------------------
                     defaultHeight: attr.defaultHeight,
-                    defaultWidth: attr.defaultWidth.map((width: any) => width.width),
+                    defaultWidth: attr.defaultWidth.map((width: any) => width.width), // 2 --------------
                     images: attr.images.data.map((image: any) => ({
                         id: image.id,
                         url: image.attributes.url,

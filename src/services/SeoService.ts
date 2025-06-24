@@ -11,11 +11,11 @@ export const seoAPI = createApi({
                 url
             }),
             transformResponse: (response: any): ISeo => {
-                const attributes = response.data.attributes;
+                const data = response.data;
                 return {
-                    text: attributes.text,
-                    description: attributes.description,
-                    keywords: attributes.keywords,
+                    text: data.text,
+                    description: data.description,
+                    keywords: data.keywords,
                 }
             }
         }),

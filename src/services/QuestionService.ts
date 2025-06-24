@@ -13,8 +13,8 @@ export const questionAPI = createApi({
             transformResponse: (response: any): IQuestionAndAnswer[] => {
                 return response.data.map((question: any): IQuestionAndAnswer => ({
                     id: question.id,
-                    question: question.attributes.question,
-                    answer: question.attributes.answer,
+                    question: question.question,
+                    answer: question.answer,
                 }))
             }
         })

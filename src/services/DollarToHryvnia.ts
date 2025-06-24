@@ -10,7 +10,7 @@ export const dollarToHryvniaAPI = createApi({
                 url: '/dollar-to-hryvnia'
             }),
             transformResponse: (response: {data: any, meta: any}): number => {
-                return response.data.attributes.value
+                return response.data.value
             }
         })
     })
