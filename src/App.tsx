@@ -13,6 +13,7 @@ import linksToPages from "./data/linksToPages.json";
 import MobileMenuPopup from "./components/containers/MobileMenuPopup/MobileMenuPopup";
 import {routes} from "./router";
 import {CSSTransition, SwitchTransition} from "react-transition-group";
+import MyElfsightWidget from "./components/containers/MyElfsightWidget/MyElfsightWidget";
 
 type Params = {
     id: string;
@@ -83,6 +84,7 @@ const App = () => {
                 </CSSTransition>
             </SwitchTransition>
             <Footer/>
+            <MyElfsightWidget/>
             <MobileMenuPopup isOpen={isOpenMobileMenu} onClose={() => setIsOpenMobileMenu(false)} linksData={linksToPages}/>
         </div>
     );
